@@ -1,0 +1,114 @@
+<atlassian-plugin name='JQL Functions' key='jira.jql.function' i18n-name-key="jql.function.plugin.name">
+    <plugin-info>
+        <description key="jql.function.plugin.desc">This plugin implements a JQL function in JIRA.</description>
+        <vendor name="Atlassian" url="http://www.atlassian.com"/>
+        <application-version min="4.0" max="4.0"/>
+        <version>1.0</version>
+    </plugin-info>
+
+    <jql-function key="released-versions-jql-function" i18n-name-key="jql.function.plugin.released.versions.name" name="Released Versions Function"
+            class="com.atlassian.jira.plugin.jql.function.AllReleasedVersionsFunction" system="true">
+        <description key="jql.function.plugin.released.versions.desc">Returns released versions for the specified projects.</description>
+        <fname>releasedVersions</fname>
+        <list>true</list>
+    </jql-function>
+
+    <jql-function key="unreleased-versions-jql-function" i18n-name-key="jql.function.plugin.unreleased.versions.name" name="Unreleased Versions Function"
+            class="com.atlassian.jira.plugin.jql.function.AllUnreleasedVersionsFunction" system="true">
+        <description key="jql.function.plugin.unreleased.versions.desc">Returns unreleased versions for the specified projects.</description>
+        <fname>unreleasedVersions</fname>
+        <list>true</list>
+    </jql-function>
+
+    <jql-function key="now-jql-function" i18n-name-key="jql.function.plugin.now.name" name="Now Function"
+            class="com.atlassian.jira.plugin.jql.function.NowFunction" system="true">
+        <description key="jql.function.plugin.now.desc">Returns the current system time.</description>
+        <fname>now</fname>
+        <list>false</list>
+    </jql-function>
+
+    <jql-function key="members-of-jql-function" i18n-name-key="jql.function.plugin.members.of.name" name="Members Of Function"
+            class="com.atlassian.jira.plugin.jql.function.MembersOfFunction" system="true">
+        <description key="jql.function.plugin.members.of.desc">Returns the usernames of the specified group.</description>
+        <fname>membersOf</fname>
+        <list>true</list>
+    </jql-function>
+
+    <jql-function key="current-user-jql-function" i18n-name-key="jql.function.plugin.current.user.name" name="Current User Function"
+            class="com.atlassian.jira.plugin.jql.function.CurrentUserFunction" system="true">
+        <description key="jql.function.plugin.current.user.desc">Returns the currently logged in user.</description>
+        <fname>currentUser</fname>
+        <list>false</list>
+    </jql-function>
+
+    <jql-function key="sub-issue-types-jql-function" i18n-name-key="jql.function.plugin.sub.issue.types.name" name="All Sub-task Issue Types Function"
+            class="com.atlassian.jira.plugin.jql.function.AllSubIssueTypesFunction" system="true">
+        <description key="jql.function.plugin.sub.issue.types.desc">Returns all the sub task issue types.</description>
+        <fname>subTaskIssueTypes</fname>
+        <list>true</list>
+    </jql-function>
+
+    <jql-function key="standard-issue-types-jql-function" i18n-name-key="jql.function.plugin.standard.issue.types.name" name="All Standard Issue Types Function"
+            class="com.atlassian.jira.plugin.jql.function.AllStandardIssueTypesFunction" system="true">
+        <description key="jql.function.plugin.standard.issue.types.desc">Returns all the standard issue types.</description>
+        <fname>standardIssueTypes</fname>
+        <list>true</list>
+    </jql-function>
+
+    <jql-function key="issue-history-jql-function" i18n-name-key="jql.function.plugin.issue.history.name" name="Issue History Function"
+            class="com.atlassian.jira.plugin.jql.function.IssueHistoryFunction" system="true">
+        <description key="jql.function.plugin.issue.history.desc">Returns all the issues in the user's history.</description>
+        <fname>issueHistory</fname>
+        <list>true</list>
+    </jql-function>
+
+    <jql-function key="watched-issues-jql-function" i18n-name-key="jql.function.plugin.watched.issues.name" name="Watched Issues Function"
+            class="com.atlassian.jira.plugin.jql.function.WatchedIssuesFunction" system="true">
+        <description key="jql.function.plugin.watched.issues.desc">Returns all the user's watched issues.</description>
+        <fname>watchedIssues</fname>
+        <list>true</list>
+    </jql-function>
+
+    <jql-function key="voted-issues-jql-function" i18n-name-key="jql.function.plugin.voted.issues.name" name="Voted Issues Function"
+            class="com.atlassian.jira.plugin.jql.function.VotedIssuesFunction" system="true">
+        <description key="jql.function.plugin.voted.issues.desc">Returns all the user's voted on issues.</description>
+        <fname>votedIssues</fname>
+        <list>true</list>
+    </jql-function>
+
+    <jql-function key="linked-issues-jql-function" i18n-name-key="jql.function.plugin.linked.issues.name" name="Linked Issues Function"
+            class="com.atlassian.jira.plugin.jql.function.LinkedIssuesFunction" system="true">
+        <description key="jql.function.plugin.linked.issues.desc">Returns all the issues linked to the specified issue.</description>
+        <fname>linkedIssues</fname>
+        <list>true</list>
+    </jql-function>
+
+    <jql-function key="cascade-option-jql-function" i18n-name-key="jql.function.plugin.cascade.option.name" name="Cascade Option Function"
+            class="com.atlassian.jira.plugin.jql.function.CascadeOptionFunction" system="true">
+        <description key="jql.function.plugin.cascade.option.desc">Returns option ids which represent the option hierarchy specified in the arguments.</description>
+        <fname>cascadeOption</fname>
+        <list>true</list>
+    </jql-function>
+
+    <jql-function key="echo-jql-function" i18n-name-key="jql.function.plugin.echo.name" name="Echo Function"
+            class="com.atlassian.jira.plugin.jql.function.EchoFunction" system="true">
+        <description key="jql.function.plugin.echo.desc">Returns its arguments as its values.</description>
+        <fname>echo</fname>
+        <list>false</list>
+    </jql-function>
+
+    <jql-function key="last-login-jql-function" i18n-name-key="jql.function.plugin.last.login.name" name="Last Login"
+            class="com.atlassian.jira.plugin.jql.function.LastLoginFunction" system="true">
+        <description key="jql.function.plugin.last.login.desc">Return the date of the last login for the current user.</description>
+        <fname>lastLogin</fname>
+        <list>false</list>
+    </jql-function>
+
+    <jql-function key="current-login-jql-function" i18n-name-key="jql.function.plugin.current.login.name" name="Current Login"
+            class="com.atlassian.jira.plugin.jql.function.CurrentLoginFunction" system="true">
+        <description key="jql.function.plugin.current.login.desc">Return the date of the current login for the current user.</description>
+        <fname>currentLogin</fname>
+        <list>false</list>
+    </jql-function>
+
+</atlassian-plugin>

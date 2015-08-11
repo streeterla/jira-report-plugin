@@ -1,0 +1,9 @@
+#if ($created)
+    #if (${displayParams.excel_view})
+        $outlookDateManager.getOutlookDate($authcontext.getLocale()).formatDMYHMS($created)
+    #else
+        $outlookDateManager.getOutlookDate($authcontext.getLocale()).formatDMY($created)
+    #end
+#else
+    &nbsp;
+#end

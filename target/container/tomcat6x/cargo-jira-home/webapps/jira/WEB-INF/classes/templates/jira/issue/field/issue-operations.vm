@@ -1,0 +1,12 @@
+<div class="action-dropdown aui-dd-parent">
+    #if ($displayParams && $displayParams.get('nolink'))
+        <span>$i18n.getText('issue.actions.and.operations')</span>
+    #else
+    <a class="aui-dd-link standard icon-tools-small" id="actions_$issue.id" title="$i18n.getText('issue.actions.and.operations')" href="${requestContext.baseUrl}/rest/api/1.0/issues/$issue.id/ActionsAndOperations" hidefocus onClick="return false;">
+        <span>
+            <em>$i18n.getText('issue.actions.and.operations')</em>
+        </span>
+    </a>
+    <div id="actions_${issue.id}_drop" class="aui-dropdown standard hidden gadget-dropdown"></div>
+    #end
+</div>

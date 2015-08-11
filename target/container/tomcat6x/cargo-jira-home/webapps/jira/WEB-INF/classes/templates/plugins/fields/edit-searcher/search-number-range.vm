@@ -1,0 +1,21 @@
+#searcherEditHeader (${customField.id} ${customField.name})
+
+<span class="lead">$i18n.getText('common.words.between')</span>
+
+<input type="text"
+       name="${customField.id}:greaterThan"
+       id="${customField.id}:greaterThan"
+       class="smallInputField"
+       value="$!value.getFirstValueForKey('greaterThan')" 
+/>
+
+$i18n.getText('common.words.and')
+
+<input type="text"
+       name="${customField.id}:lessThan"
+       id="${customField.id}:lessThan"
+       class="smallInputField"
+       value="$!value.getFirstValueForKey('lessThan')" 
+/>
+
+#searcherEditFooter (${customField.id} $customField.description)

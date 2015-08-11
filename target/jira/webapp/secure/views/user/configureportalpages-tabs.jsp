@@ -1,0 +1,7 @@
+<%@ taglib uri="webwork" prefix="webwork" %>
+<ul id="filter_type_table" class="vertical tabs">
+    <li id="md_fav_li" class="<webwork:if test="/view == 'favourites'">active </webwork:if>first"><a id="favourite-dash-tab" title="<webwork:text name="'configureportalpages.favourite.desc'"/>" href="<%= request.getContextPath() %>/secure/ConfigurePortalPages!default.jspa?view=favourites"><strong><webwork:text name="'common.favourites.favourites'"/></strong></a></li>
+    <li id="md_my_li" <webwork:if test="/view == 'my'">class="active"</webwork:if>><a id="my-dash-tab" title="<webwork:text name="'configureportalpages.my.desc'"/>" href="<%= request.getContextPath() %>/secure/ConfigurePortalPages!default.jspa?view=my"><strong><webwork:text name="'common.concepts.my'"/></strong></a></li>
+    <li id="md_popular_li" <webwork:if test="/view == 'popular'">class="active"</webwork:if>><a id="popular-dash-tab" title="<webwork:text name="'configureportalpages.popular.desc'"/>" href="<%= request.getContextPath() %>/secure/ConfigurePortalPages!default.jspa?view=popular"><strong><webwork:text name="'common.concepts.popular'"/></strong></a></li>
+    <li id="md_search_li" <webwork:if test="/view == 'search'">class="active"</webwork:if>><a id="search-dash-tab" title="<webwork:text name="'configureportalpages.search.desc'"/>" href="<%= request.getContextPath() %>/secure/ConfigurePortalPages!default.jspa?view=search"><strong><webwork:text name="'common.concepts.search'"/></strong></a></li>
+</ul>

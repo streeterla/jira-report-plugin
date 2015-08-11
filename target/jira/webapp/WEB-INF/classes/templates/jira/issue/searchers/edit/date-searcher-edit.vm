@@ -1,0 +1,32 @@
+#* @vtlvariable name="dateConfig" type="com.atlassian.jira.issue.search.searchers.util.DateSearcherConfig" *#
+#searcherEditHeader ($afterField ${afterFieldLabel})
+
+#if($hasCalendarTranslation)
+<div class="calendarPicker"><img id="${afterField}_trigger_c" src="${baseurl}/images/icons/cal.gif" width="16" height="16" alt="$i18n.getText('date.picker.select.date')" title="$i18n.getText('date.picker.select.date')" /></div>
+#end
+<input type="text" class="dateSearcher" name="${afterField}" id="${afterField}"
+    value="$!fieldValuesHolder.getEscaped($afterField)" title="${i18n.getText('navigator.filter.date.tooltip', $afterFieldLabel.toLowerCase())}"/>
+#datePopup(${afterField} "${afterField}_trigger_c" $dateTimeFormat $dateFormat $timeFormat $dateTimePicker $currentMillis $currentCalendar)
+#searcherEditFooter ($afterField '')
+
+#searcherEditHeader ($beforeField ${beforeFieldLabel})
+
+#if($hasCalendarTranslation)
+<div class="calendarPicker"><img id="${beforeField}_trigger_c" src="${baseurl}/images/icons/cal.gif" width="16" height="16" alt="$i18n.getText('date.picker.select.date')" title="$i18n.getText('date.picker.select.date')" /></div>
+#end
+<input type="text" class="dateSearcher" name="${beforeField}" id="${beforeField}"
+    value="$!fieldValuesHolder.getEscaped($beforeField)" title="${i18n.getText('navigator.filter.date.tooltip', $beforeFieldLabel.toLowerCase())}"/>
+#datePopup(${beforeField} "${beforeField}_trigger_c" $dateTimeFormat $dateFormat $timeFormat $dateTimePicker $currentMillis $currentCalendar)
+#searcherEditFooter ($beforeField '')
+
+
+#searcherEditHeader ($previousField ${periodLabel})
+
+<a class="calendarPicker" href="javascript:openDateRangePicker('filterform', '${previousField}', '${nextField}', '${id}')"><img src="${baseurl}/images/icons/duedatepicker-icon.gif" width="16" height="16" alt="$i18n.getText('date.picker.select.date.range')" title="$i18n.getText('date.picker.select.date.range')" /></a>
+
+<label for="${previousField}" class="label">${i18n.getText('navigator.filter.constants.duedate.from')}</label>
+<input type="text" name="${previousField}" id="${previousField}" class="periodSearcher"  value="$!fieldValuesHolder.getEscaped($previousField)" />
+<label for="${nextField}" class="label">${i18n.getText('navigator.filter.constants.duedate.to')}</label>
+<input type="text" name="${nextField}" id="${nextField}" class="periodSearcher" value="$!fieldValuesHolder.getEscaped($nextField)" />
+
+#searcherEditFooter ($previousField ${description})

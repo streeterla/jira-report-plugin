@@ -1,0 +1,272 @@
+<div style="padding: 5px">
+	<!-- Display the report configuration -->
+	<h4>
+		<!--headline -->
+		<center>Final Result</center>
+		$i18n.getText('report.issuesummary.project'): $projectName |
+		$i18n.getText('report.issuesummary.duration'): $outlookDate.formatDMY($startDate) - $outlookDate.formatDMY($endDate) |
+		$i18n.getText('report.issuesummary.reporttype'): $reportType 
+	</h4>
+	<br />
+
+	<p />
+	<!-- if KPI-report was choosen -->
+	#if ($reportType == "1")
+		<!-- table for the number for each issue created in the choosen period --> 
+		<table border="1">
+			<tr>
+				<td>Project: $projectName</td>
+			</tr>
+			<tr>
+				<td>Type of Issue</td>
+				<td>Defined</td>
+				<td>Assigned</td>
+				<td>In Work</td>
+				<td>CheckedIn</td>
+				<td>Reviewed</td>
+				<td>Open</td>
+				<td>Recent</td>
+			</tr>
+			<tr>
+				<td>Number</td>
+				<td>$numberOfDefinedIssues</td>
+				<td>$numberOfAssignedIssues</td>
+				<td>$numberOfInWorkIssues</td>
+				<td>$numberOfCheckedInIssues</td>
+				<td>$numberOfReviewedIssues</td>
+				<td>$numberOfOpenIssues</td>
+				<td>$numberOfRecentIssues</td>
+			</tr>
+		</table>
+		<p />
+		<!-- bar chart to show the number of each type of issue - one bar for each type of issue -->
+		<!--
+			google chart api:
+			- chs ==> chart size
+			- chd ==> comma seperated values
+			- cht ==> chart type - bvg for vertical bar chart with grouped bars
+			- chco ==> color for each bar
+			- chxt ==> bar labels (x,y)
+			- chxl ==> bar labels (status)
+			- chxr ==> axis range
+			- chm ==> line fills
+			- chds ==> bar width and spacing
+		-->
+		<img style="border:5px solid black" src="http://chart.apis.google.com/chart?chs=1000x300&chd=t:$numberOfDefinedIssues,$numberOfAssignedIssues,$numberOfInWorkIssues,$numberOfCheckedInIssues,$numberOfReviewedIssues,$numberOfOpenIssues,$numberOfRecentIssues&cht=bvg&chco=8A0808|FE2E2E|FF8000|58ACFA|0404B4|ABCDEF|BB00BB&chxt=x,y&chxl=0:|Defined|Assigned|InWork|CheckedIn|Reviewed|Open|Recent&chxr=0,0,7|1,0,$maxIssue&chm=N,000000,0,-1,11&chds=0,$maxIssue&chbh=r,5.0,5.0" />
+		<p />
+
+		<!-- table for the number of issues for each week -->
+		<table border="1">
+			<tr>
+				<td><b>Week</b></td>
+				#set ($i = 1)
+				#foreach ($assignedNumber in $assignedCollector)
+					<td>$i</td>
+					#set ($i = $i + 1)
+				#end
+			</tr>
+			<tr>
+				<td><b>Defined Issues</b></td>
+				#foreach ($definedNumber in $definedCollector)
+					<td>$definedNumber</td>
+				#end
+			</tr>
+			<tr>
+				<td><b>Assigned Issues</b></td>
+				#foreach ($assignedNumber in $assignedCollector)
+					<td>$assignedNumber</td>
+				#end
+			</tr>
+			<tr>
+				<td><b>In Work Issues</b></td>
+				#foreach ($inWorkNumber in $inWorkCollector)
+					<td>$inWorkNumber</td>
+				#end
+			</tr>
+			<tr>
+				<td><b>CheckedIn Issues</b></td>
+				#foreach ($checkedInNumber in $checkedInCollector)
+					<td>$checkedInNumber</td>
+				#end
+			</tr>
+			<tr>
+				<td><b>Reviewed Issues</b></td>
+				#foreach ($reviewedNumber in $reviewedCollector)
+					<td>$reviewedNumber</td>
+				#end
+			</tr>
+			<tr>
+				<td><b>Opened Issues</b></td>
+				#foreach ($openedNumber in $openedCollector)
+					<td>$openedNumber</td>
+				#end
+			</tr>
+			<tr>
+				<td><b>Recent Issues</b></td>
+				#set ($loopCount = 1)
+				#foreach ($recentNumber in $recentCollector)
+					##show only value in last week
+					#set ($loopCount = $loopCount + 1)
+					#if($loopCount < $numberOfWeeks)
+						<td></td>
+					#else
+						<td>$recentNumber</td>
+					#end
+				#end
+			</tr>
+		</table>
+		<p />
+		<!-- line chart for continuous progress of all issues -->
+		<img style="border:5px solid black" src=
+		"http://chart.apis.google.com/chart?chs=1000x300&chxt=x,y&chtt=All_Issues&chts=000000,11&cht=lc&chd=t:0
+		#foreach ($definedNumber in $definedCollector)
+			,$definedNumber
+		#end
+		|0
+		#foreach ($assignedNumber in $assignedCollector)
+			,$assignedNumber
+		#end
+		|0
+		#foreach ($inWorkNumber in $inWorkCollector)
+			,$inWorkNumber
+		#end
+		|0
+		#foreach ($checkedInNumber in $checkedInCollector)
+			,$checkedInNumber
+		#end
+		|0
+		#foreach ($reviewedNumber in $reviewedCollector)
+			,$reviewedNumber
+		#end
+		|0
+		#set ($loopCount = 1)
+		#foreach ($recentNumber in $recentCollector)
+			#set ($loopCount = $loopCount + 1)
+				#if($loopCount == $numberOfWeeks)
+					,$recentNumber
+				#end
+		#end
+		&chxr=0,1,$numberOfWeeks,1|1,0,$maxIssue&chco=8A0808,FE2E2E,FF8000,58ACFA,0404B4,0B610B
+		&chg=100/$numberOfWeeks,100/$maxIssue&chds=0,$maxIssue&chdl=Defined|Assigned|InWork|CheckedIn|Reviewed|Recent" />
+		
+		<p />
+		
+		
+		
+	<!-- if versions report was chosen -->
+	#else
+		<!-- table for the number for each issue depending on the version --> 
+		<table border="1">
+			<tr>
+				<td>Project: $projectName</td>
+			</tr>
+			<tr>
+				<td><b>Version-ID</b></td>
+				<td>Defined</td>
+				<td>Assigned</td>
+				<td>In Work</td>
+				<td>CheckedIn</td>
+				<td>Reviewed</td>
+				<td>Open</td>
+				<td>Tested</td>
+				<td>Closed</td>
+			</tr>
+			##iterate through all versions
+			#set ($numberOfVersions = 0)
+			#foreach($version in $versionIssueCollector.keySet())
+				<tr>
+					<td><b>$version</b></td>
+					##iterate trough requested statuses
+					#foreach($number in $versionIssueCollector.get($version))
+						<td>$number</td>
+					#end
+				</tr>
+				#set ($numberOfVersions = $numberOfVersions + 1)
+			#end
+		</table>
+		
+		<p />
+		
+		<!-- line chart for progress of all issues depending on there versions -->
+		<img style="border:5px solid black" src="http://chart.apis.google.com/chart?chs=1000x300&chxt=x,y&chtt=Version-Report&chts=000000,11&cht=bvs&chd=t:0
+		##iterate through all versions
+		#set ($loopCount = 0)
+		#foreach($version in $versionIssueCollector.keySet())
+			##iterate through all numbers of issues with status defined 
+			#foreach($number in $versionIssueCollector.get($version))
+				#if($loopCount == 0)
+					,$number
+				#end
+				#set ($loopCount = $loopCount + 1)
+			#end
+			#set ($loopCount = 0)
+		#end
+		|0
+		#set ($loopCount = 0)
+		#foreach($version in $versionIssueCollector.keySet())
+			##iterate through all numbers of issues with status assigned 
+			#foreach($number in $versionIssueCollector.get($version))
+				#if($loopCount == 1)
+					,$number
+				#end
+				#set ($loopCount = $loopCount + 1)
+			#end
+			#set ($loopCount = 0)
+		#end
+		|0
+		#set ($loopCount = 0)
+		#foreach($version in $versionIssueCollector.keySet())
+			##iterate through all numbers of issues with status inWork 
+			#foreach($number in $versionIssueCollector.get($version))
+				#if($loopCount == 2)
+					,$number
+				#end
+				#set ($loopCount = $loopCount + 1)
+			#end
+			#set ($loopCount = 0)
+		#end
+		|0
+		#set ($loopCount = 0)
+		#foreach($version in $versionIssueCollector.keySet())
+			##iterate through all numbers of issues with status checkedIn 
+			#foreach($number in $versionIssueCollector.get($version))
+				#if($loopCount == 3)
+					,$number
+				#end
+				#set ($loopCount = $loopCount + 1)
+			#end
+			#set ($loopCount = 0)
+		#end
+		|0
+		#set ($loopCount = 0)
+		#foreach($version in $versionIssueCollector.keySet())
+			##iterate through all numbers of issues with status reviewed 
+			#foreach($number in $versionIssueCollector.get($version))
+				#if($loopCount == 4)
+					,$number
+				#end
+				#set ($loopCount = $loopCount + 1)
+			#end
+			#set ($loopCount = 0)
+		#end
+		|0
+		#set ($loopCount = 0)
+		#foreach($version in $versionIssueCollector.keySet())
+			##iterate through all numbers of issues with status tested 
+			#foreach($number in $versionIssueCollector.get($version))
+				#if($loopCount == 6)
+					,$number
+				#end
+				#set ($loopCount = $loopCount + 1)
+			#end
+			#set ($loopCount = 0)
+		#end
+		&chxr=0,0,$numberOfVersions|1,0,$maxIssuesPerVersion&chco=8A0808,FE2E2E,FF8000,58ACFA,0404B4,0B610B
+		&chxl=0:|Version
+		#foreach($version in $versionIssueCollector.keySet())
+			|$version
+		#end
+		&chg=100/&numberOfVersions,100/$maxIssuesPerVersion&chds=0,$maxIssuesPerVersion&chdl=Defined|Assigned|InWork|CheckedIn|Reviewed|Tested
+		&chbh=25,50,5" />
+	#end
+</div>

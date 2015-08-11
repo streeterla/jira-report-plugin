@@ -1,0 +1,20 @@
+#controlHeader ($action $customField.id $customField.name $fieldLayoutItem.required $displayParameters.noHeader)
+
+#if ($!customField.isRenderable() && $rendererDescriptor)
+  ## setup some additional parameters
+  $!rendererParams.put("maxlength", "254")
+
+  ## let the renderer display the edit component
+  $rendererDescriptor.getEditVM($!value, $!issue.key, $!fieldLayoutItem.rendererType, $!customField.id, $customField.name, $rendererParams, true)
+#else
+<input type="text"
+       name="$customField.id"
+       value="$textutils.htmlEncode($!value)"
+       id="$customField.id"
+       class="textfield"
+       maxlength="254"
+       #if ($configs.styles.style) style="$configs.styles.style" #end
+       />
+#end
+
+#controlFooter ($action $fieldLayoutItem.fieldDescription $displayParameters.noHeader)

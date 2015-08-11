@@ -1,0 +1,8 @@
+<div class="actionContainer">
+    <table cellpadding="2" cellspacing="0" border="0" width="100%">
+        <tr>
+            <td>$message
+            </td>
+        </tr>
+    </table>
+</div>

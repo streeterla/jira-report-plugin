@@ -1,0 +1,11 @@
+#if ($username)
+    #set ($quote = '"')
+    #if($user)
+        #set($author = "<a id=${quote}$!{id}_${textutils.htmlEncode($username)}${quote} href=${quote}${baseurl}/secure/ViewProfile.jspa?name=${velocityhelper.urlencode($username)}${quote}>$textutils.htmlEncode($fullname)</a>")
+    #else
+        #set($author = $textutils.htmlEncode($username))
+    #end
+#else
+    #set($author = $i18n.getText('common.words.anonymous'))
+#end
+${author}

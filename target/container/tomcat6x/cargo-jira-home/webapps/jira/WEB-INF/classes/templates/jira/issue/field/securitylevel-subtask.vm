@@ -1,0 +1,5 @@
+#controlHeader ($action $field.id $i18n.getText($field.nameKey) $fieldLayoutItem.required $displayParameters.get('noHeader'))
+
+$i18n.getText($infoMessageKey)
+
+#controlFooter ($action $fieldLayoutItem.getFieldDescription() $displayParameters.get('noHeader'))

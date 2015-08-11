@@ -1,0 +1,15 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>$textutils.htmlEncode($title)</title>
+
+    <link rel="stylesheet" type="text/css" media="print,screen" href="$webResourceManager.getStaticPluginResource('jira.webresources:global-static', 'global-static.css', $urlModeAbsolute)">
+    <link rel="stylesheet" type="text/css" media="print,screen" href="$webResourceManager.getStaticPluginResource('jira.webresources:global-static', 'global.css', $urlModeAbsolute)">
+    <link rel="stylesheet" type="text/css" media="print,screen" href="$webResourceManager.getStaticPluginResource('jira.webresources:global-static', 'printable.css', $urlModeAbsolute)">
+</head>
+<body bgcolor="#ffffff" link="#003366" vlink="#003366" alink="#660000">
+
+$linkToPrevious
+$searchRequestHeader
+
+<div style="margin-right:10px; margin-left: 10px; margin-top:2%">

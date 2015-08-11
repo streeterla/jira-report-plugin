@@ -1,0 +1,13 @@
+## /secure/views/issue/viewissue-word.jsp
+<html>
+<head>
+    <title>$textutils.htmlEncode($title)</title>
+    #if ($showCssLinks)
+        <link rel="stylesheet" type="text/css" media="print,screen" href="$webResourceManager.getStaticPluginResource('jira.webresources:global-static', 'global-static.css', $urlModeAbsolute)">
+        <link rel="stylesheet" type="text/css" media="print,screen" href="$webResourceManager.getStaticPluginResource('jira.webresources:global-static', 'global.css', $urlModeAbsolute)">
+    #end
+    <META HTTP-EQUIV="Content-Type" Content="$contentType">
+    $style
+</head>
+<body bgcolor="#ffffff" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" link="$linkColour" vlink="$linkColour" alink="$linkAColour">
+$!{linkToPrevious}

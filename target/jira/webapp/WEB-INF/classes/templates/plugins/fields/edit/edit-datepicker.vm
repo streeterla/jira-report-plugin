@@ -1,0 +1,57 @@
+#controlHeader ($action $customField.id $customField.name $fieldLayoutItem.required $displayParameters.noHeader)
+
+#if ($displayParameters.defaultScreen)
+<script language="JavaScript" type="text/javascript">
+<!--
+    function handleClick(e)
+    {
+        if(e.checked)
+        {
+            // alert(e.checked + ' ' + document.getElementById('$customField.id').disabled);
+            document.getElementById('$customField.id').disabled = true;
+            document.getElementById('$customField.id').value = '';
+            document.getElementById('${customField.id}img').style.display = 'none';
+        }
+        else
+        {
+            document.getElementById('$customField.id').disabled = false;
+            document.getElementById('${customField.id}img').style.display = '';
+        }
+
+        return true;
+    }
+//-->
+</script>
+    <input type="text"
+           size="20"
+           name="$customField.id"
+           id="$customField.id"
+           value="$!value"
+    />
+    #if($hasCalendarTranslation)
+        <img id="${customField.id}_trigger_c" src="$req.contextPath/images/icons/cal.gif" width="16" height="16" border="0" alt="$i18n.getText('date.picker.select.date')" title="$i18n.getText('date.picker.select.date')" />
+        #datePopup(${customField.id} "${customField.id}_trigger_c" $dateTimeFormat $dateFormat $timeFormat $dateTimePicker $currentMillis $currentCalendar)
+    #end
+    <br />
+    <input type="checkbox" id="useCurrentDate" name="useCurrentDate" onclick="return handleClick(this);" value="true"
+    #if ($customField.customFieldType.isUseNow($config)) checked="checked" #end
+    /> <label for="useCurrentDate">Use current date as the default</label>
+    <script language="JavaScript" type="text/javascript">
+    <!--
+        handleClick(document.getElementById('useCurrentDate'));
+    //-->
+    </script>
+#else
+
+    <input type="text"
+           #if ($configs.styles.style) style="$configs.styles.style" #else size="20" #end
+           name="$customField.id"
+           id="$customField.id"
+           value="$!value"
+    />
+    #if($hasCalendarTranslation)
+        <img id="${customField.id}_trigger_c" src="$req.contextPath/images/icons/cal.gif" width="16" height="16" border="0" alt="$i18n.getText('date.picker.select.date')" title="$i18n.getText('date.picker.select.date')" />
+        #datePopup(${customField.id} "${customField.id}_trigger_c" $dateTimeFormat $dateFormat $timeFormat $dateTimePicker $currentMillis $currentCalendar)
+    #end
+#end
+#controlFooter ($action $fieldLayoutItem.fieldDescription $displayParameters.noHeader)

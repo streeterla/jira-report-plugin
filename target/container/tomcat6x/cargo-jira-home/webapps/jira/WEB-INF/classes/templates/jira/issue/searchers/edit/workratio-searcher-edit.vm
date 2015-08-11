@@ -1,0 +1,9 @@
+#searcherEditHeader ($minField ${i18n.getText(${searcherNameKey})})
+
+<label for="${minField}" class="label">${i18n.getText('navigator.filter.workratio.min')}</label>
+<input type="text" name="${minField}" id="${minField}" class="smallInputField" value="$!fieldValuesHolder.getEscaped($minField)" />
+<label for="${maxField}" class="label">${i18n.getText('navigator.filter.workratio.max')}</label>
+<input type="text" name="${maxField}" id="${maxField}" class="smallInputField" value="$!fieldValuesHolder.getEscaped($maxField)" />
+#jiraHelpLink ('issue_filters' '#workratio')
+
+#searcherEditFooter ($minField ${i18n.getText('navigator.filter.workratio.desc')})

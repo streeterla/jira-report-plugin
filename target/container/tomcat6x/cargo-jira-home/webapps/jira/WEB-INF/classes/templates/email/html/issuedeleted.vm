@@ -1,0 +1,15 @@
+#parse("templates/email/html/includes/header.vm")
+#parse("templates/email/html/includes/summary-topleft.vm")
+
+<br/>
+<table cellpadding="1" cellspacing="0" border="0" bgcolor="#bbbbbb" width="100%" align="center"><tr><td>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" bgcolor="#ffffff">
+<tr bgcolor="#f0f0f0"><td>
+    #text("template.issue.deleted")<br/>
+    #text("template.deleted.by") #authorlink ($remoteUser.name)
+</td></tr>
+</table>
+</td></tr></table>
+
+#parse("templates/email/html/includes/summary-bottom.vm")
+#parse("templates/email/html/includes/footer.vm")

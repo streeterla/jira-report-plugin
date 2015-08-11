@@ -1,0 +1,25 @@
+#*
+This edit template is for when there's no permission to edit the issue type
+*#
+
+#controlHeader ($action $field.id $i18n.getText($field.nameKey) true $displayParameters.noHeader)
+
+<img src="#getNormalizedUrl($issueTypeObject.iconUrl)" height="16" width="16" border="0" align="absmiddle"
+     title="$textutils.htmlEncode($issueTypeObject.getNameTranslation(), false) #if ($textutils.htmlEncode($issueTypeObject.descTranslation, false) - $textutils.htmlEncode($issueTypeObject.descTranslation, false)) #end" />
+$textutils.htmlEncode($issueTypeObject.getNameTranslation(), false)
+
+## Check if move permission has been granted - show link to move issue
+#if ($hasMovePermission)
+    #if (${issue.isSubTask()})
+        #set ($link1 = "<strong><a href='${req.getContextPath()}/secure/MoveSubTaskChooseOperation!default.jspa?id=${issue.getId()}' rel='pageReload'>")
+    #else
+        #set ($link1 = "<strong><a href='${req.getContextPath()}/secure/MoveIssue!default.jspa?id=${issue.getId()}' rel='pageReload'>")
+    #end
+    #set ($link2 = "</a></strong>")
+    <br /><span class="small">$i18n.getText('issue.field.issuetype.incompatible.type')</span>
+    <br /><span class="small">$i18n.getText('issue.field.issuetype.editnote', $link1, $link2)</span>
+#end
+
+<input type="hidden" name="$field.id" id="$field.id" value="$issuetype" />
+
+#controlFooter ($action $fieldLayoutItem.fieldDescription $displayParameters.noHeader)

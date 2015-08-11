@@ -1,0 +1,12 @@
+#searcherEditHeader ($customField.id $customField.name)
+
+<select name="$customField.id" id="$customField.id" class="standardInputField">
+    <option value="-1">$i18n.getText("common.filters.any")</option>
+    #foreach ($option in $configs.options)
+        <option value="$textutils.htmlEncode($option.value)"
+            #if ($value && $value == $option.value)selected#end
+            >$option.value</option>
+    #end
+</select>
+
+#searcherEditFooter ($customField.id $customField.description)

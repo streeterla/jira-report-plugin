@@ -1,0 +1,53 @@
+#if (!$request || !$request.getAttribute("cascade"))
+$!request.setAttribute("cascade" , "true")
+## @TODO Somewhat of a hack should move when fields is refactored.
+    <script language="JavaScript" type="text/javascript" src="$!{request.contextPath}/includes/js/cascadingUtil.js"></script>
+#end
+
+#controlHeader ($action $customField.id $customField.name $fieldLayoutItem.required $displayParameters.noHeader)
+
+#if ($value.getValuesForKey(null) && !$value.getValuesForKey(null).empty)
+    #set ($selectedParent = $value.getValuesForKey(null).iterator().next())
+#end
+
+#if ($value.getValuesForKey('1') && !$value.getValuesForKey('1').empty)
+    #set ($selectedChild = $value.getValuesForKey('1').iterator().next())
+#end
+##par: $!value.getValuesForKey(null) : <br/>
+##child: : $!value.getValuesForKey('1') :<br/>
+##selpar: : $!selectedParent.class : <br/>
+##selchild: : $!selectedChild.class : <br/>
+
+<select name="${customField.id}" id="${customField.id}">
+    <option value="">$i18n.getText("common.words.pleaseselect")</option>
+    <option value="-1">$i18n.getText("common.words.none")</option>
+    #foreach ($option in $configs.options.rootOptions)
+        <option value="$option.optionId"
+            #if ($selectedParent && $selectedParent == $option.optionId.toString())selected#end
+            >$option.value</option>
+    #end
+</select>
+
+<select name="${customField.id}:1" id="${customField.id}:1">
+        <option class="" value="">$i18n.getText("common.words.pleaseselect")</option>
+        <option class="-1" value="-1">$i18n.getText("common.words.none")</option>
+    #foreach ($parentOption in $configs.options.rootOptions)
+        <option class="$parentOption.optionId" value="">$i18n.getText("common.words.pleaseselect")</option>
+        <option class="$parentOption.optionId" value="-1">$i18n.getText("common.words.none")</option>
+        #foreach ($childOption in $parentOption.childOptions)
+            <option class="$parentOption.optionId" value="$childOption.optionId" #if ($selectedChild && $selectedChild == $childOption.optionId.toString())selected#end>
+                $childOption.value
+            </option>
+        #end
+    #end
+
+</select>
+
+
+#controlFooter ($action $fieldLayoutItem.fieldDescription $displayParameters.noHeader)
+
+
+
+<script>
+    dynamicSelect("${customField.id}", "${customField.id}:1");
+</script>

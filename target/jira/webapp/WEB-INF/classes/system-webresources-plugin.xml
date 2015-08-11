@@ -1,0 +1,608 @@
+<atlassian-plugin key="jira.webresources" i18n-name-key="admin.web.resources.plugin.name" name="Web Resources Plugin">
+
+    <plugin-info>
+        <description key="admin.web.resources.plugin.desc">System Web Resources</description>
+        <version>1.0</version>
+        <application-version min="4.0" max="4.0"/>
+        <vendor name="Atlassian" url="http://www.atlassian.com"/>
+    </plugin-info>
+
+    <!-- Global JS -->
+
+    <web-resource key="jira-global" i18n-name-key="admin.web.resources.plugin.jira-global.name" name="jira-global" state='enabled'>
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        <!--
+          This is still referenced as a minified file.  There are problems with removing it.  This needs some more work to find out why.
+        -->
+        <resource type="download" name="jqueryeffects.js" location="/includes/js/jquery/plugins/effects/effects.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+        <resource type="download" name="inheritence.js" location="/includes/js/inheritence.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+        <resource type="download" name="moveto.js" location="/includes/js/jquery/plugins/moveto/moveto.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+         <resource type="download" name="getdocheight.js" location="/includes/js/jquery/plugins/getdocheight/getdocheight.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+         <resource type="download" name="containdropdown.js" location="/includes/js/ajs/containdropdown/containdropdown.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+        <resource type="download" name="expandoninput.js" location="/includes/js/jquery/plugins/expandoninput/expandoninput.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+        <resource type="download" name="os.js" location="/includes/js/jquery/plugins/os/os.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+        <resource type="download" name="namespace.js" location="/includes/js/jquery/plugins/namespace/namespace-min.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+        <resource type="download" name="linkedmenu.js" location="/includes/js/jquery/plugins/linkedmenu/linkedmenu.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+        <resource type="download" name="json.js" location="/includes/js/json/json.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+        <resource type="download" name="layermanager.js" location="/includes/js/LayerManager.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+        <resource type="download" name="dropdown.js" location="/includes/js/widget/dropdown/dropdown.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+        <resource type="download" name="toggleblock.js" location="/includes/js/jira/toggleblock/toggleblock.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+        <resource type="download" name="$toggleblock.js" location="/includes/js/jquery/plugins/toggleblock/$toggleblock.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+        <resource type="download" name="jsonlister.js" location="/includes/js/widget/jsonlister/jsonlister.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+        <resource type="download" name="tooltip.js" location="/includes/js/jquery/plugins/tooltip/tooltip.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+         <resource type="download" name="togglefield.js" location="/includes/js/jquery/plugins/togglefield/togglefield.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+         <resource type="download" name="dirtyfilter.js" location="/includes/js/jquery/plugins/dirtyfilter/dirtyfilter.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+        <resource type="download" name="jira-global.js" location="/includes/js/jira-global.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+        <resource type="download" name="inlineform.js" location="/includes/js/inlineform.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="key-commands" i18n-name-key="admin.web.resources.plugin.key-commands.name" name="key-commands" state='enabled'>
+        <dependency>jira.webresources:jira-global</dependency>
+        <resource type="download" name="hotkeys.js" location="/includes/js/jquery/plugins/hotkeys/hotkeys.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+        <resource type="download" name="whenitype.js" location="/includes/js/ajs/whenitype/whenitype.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+        <resource type="download" name="keycommands.js" location="/includes/js/app/keycommands/keycommands.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="global-static" i18n-name-key="admin.web.resources.plugin.global.static.name" name="Global Static CSS Web Resource" state='enabled'>
+        <resource type="download" name="dropdown.css" location="/styles/js/widget/dropdown/dropdown.css">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+        <resource type="download" name="global-static.css" location="/styles/global-static.css">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+        <resource type="download" name="global-static-ie.css" location="/styles/global-static-ie.css">
+            <param name="source" value="webContextStatic"/>
+            <param name="ieonly" value="true"/>
+        </resource>
+         <resource type="download" name="wiki-renderer.css" location="/styles/wiki-renderer.css">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+        <resource type="download" name="printable.css" location="/styles/printable.css">
+            <param name="source" value="webContextStatic"/>
+            <param name="media" value="print"/>
+        </resource>
+
+        <!-- **************************************************************************************************
+             IMPORTANT: This resources *has* to come last.  It is generated dynamically via global_css.jsp and
+                        uses values from the LookAndFeelbean to override styles from global-static.css.
+             ************************************************************************************************** -->
+        <resource type="download" name="global.css" location="/styles/global.css" >
+            <param name="source" value="webContext"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="header" i18n-name-key="admin.web.resources.plugin.header.name" name="header" state='enabled'>
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        <resource type="download" name="header.js" location="/includes/js/widget/header/header.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+    <!-- Widgets -->
+    <web-resource key="autocomplete" i18n-name-key="admin.web.resources.plugin.jquery.autocomplete.name"
+                  name="autocomplete" state='enabled'>
+        <dependency>jira.webresources:jira-global</dependency>
+        <resource type="download" name="autocomplete.js" location="/includes/js/widget/autocomplete/autocomplete.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+        <resource type="download" name="autocomplete.css" location="/styles/js/widget/autocomplete/autocomplete.css">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="assignee-edit-no-context" i18n-name-key="Assignee edit for no context"
+                  name="assignee-edit-no-contextv" state='enabled'>
+        <dependency>jira.webresources:autocomplete</dependency>
+        <resource type="download" name="assignee-edit-no-context.js" location="/includes/js/assignee-edit-no-context.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="jqlautocomplete" i18n-name-key="JQL Autocomplete"
+                  name="jqlautocomplete" state='enabled'>
+        <dependency>jira.webresources:jira-global</dependency>
+        <dependency>jira.webresources:autocomplete</dependency>
+        <resource type="download" name="jql-autocomplete.js" location="/includes/js/jql/jql-autocomplete.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <!-- Application -->
+
+
+    <web-resource key="viewissue" i18n-name-key="admin.web.resources.viewissue.name" name="viewissue" state='enabled'>
+        <dependency>jira.webresources:jira-global</dependency>
+        <dependency>jira.webresources:jquery-fancybox-1-2-6</dependency>
+        <resource type="download" name="stalker.js" location="/includes/js/jquery/plugins/stalker/stalker.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+        <resource type="download" name="offsetanchors.js" location="/includes/js/jquery/plugins/offsetanchors/offsetanchors.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+        <resource type="download" name="viewissue.js" location="/includes/js/app/issue/viewissue.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+        <resource type="download" name="shortener.js" location="/includes/js/jquery/plugins/shortener/shortener.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+         <!--<resource type="download" name="inlineactions.js" location="/includes/js/app/issue/inlineactions.js">-->
+            <!--<param name="source" value="webContextStatic"/>-->
+        <!--</resource>-->
+    </web-resource>
+
+     <web-resource key="avatarpicker" i18n-name-key="admin.web.resources.plugin.avatarpicker.name" name="avatarpicker" state='enabled'>
+        <dependency>jira.webresources:jira-global</dependency>
+        <dependency>jira.webresources:avataror</dependency>
+        <resource type="download" name="fileupload.js" location="/includes/js/jquery/plugins/fileupload/fileupload.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+        <resource type="download" name="avatarpicker.js" location="/includes/js/app/avatarpicker/avatarpicker.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="wikipreview" i18n-name-key="admin.web.resources.plugin.wikipreview.name" name="wikipreview" state='enabled'>
+        <dependency>jira.webresources:jira-global</dependency>
+        <resource type="download" name="wikipreview.js" location="/includes/js/app/wikipreview/wikipreview.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="manageshared" i18n-name-key="admin.web.resources.plugin.manageshared.name" name="manageshared" state='enabled'>
+        <dependency>jira.webresources:jira-global</dependency>
+        <dependency>jira.webresources:autocomplete</dependency>
+        <dependency>jira.webresources:ajaxhistory</dependency>
+        <dependency>jira.webresources:share-types</dependency>
+        <dependency>jira.webresources:ajax-favourite-control</dependency>
+        <resource type="download" name="managefilters.js" location="/includes/js/app/shared/manageshared.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="managefilters" i18n-name-key="admin.web.resources.plugin.managefilters.name" name="managefilters" state='enabled'>
+        <dependency>jira.webresources:manageshared</dependency>
+        <resource type="download" name="managefilters.js" location="/includes/js/app/filters/managefilters.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+
+    </web-resource>
+    <web-resource key="managedashboards" i18n-name-key="admin.web.resources.plugin.managedashboards.name" name="managedashboards" state='enabled'>
+        <dependency>jira.webresources:manageshared</dependency>
+        <resource type="download" name="managedashboards.js" location="/includes/js/app/dashboards/managedashboards.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="browseprojects" i18n-name-key="admin.web.resources.plugin.browseprojects.name" name="browseprojects" state='enabled'>
+        <dependency>jira.webresources:jira-global</dependency>
+        <dependency>jira.webresources:ajaxhistory</dependency>
+        <resource type="download" name="browseprojects.js" location="/includes/js/app/browseproject/browseprojects.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="browseproject" i18n-name-key="admin.web.resources.plugin.browseproject.name" name="browseproject" state='enabled'>
+        <dependency>jira.webresources:jira-global</dependency>
+        <dependency>com.atlassian.gadgets.embedded:gadget-standalone-resources</dependency>
+        <resource type="download" name="browseproject.js" location="/includes/js/app/browseproject/browseproject.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="expandoSupport" i18n-name-key="admin.web.resources.plugin.expando.name" name="expandoSupport" state='enabled'>
+        <resource type="download" name="expandos.js" location="/includes/js/expandos.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="userprofile" i18n-name-key="admin.web.resources.plugin.userprofile.name" name="userprofile" state='enabled'>
+        <dependency>jira.webresources:manageshared</dependency>
+        <dependency>com.atlassian.gadgets.embedded:gadget-standalone-resources</dependency>
+        <resource type="download" name="userprofile.js" location="/includes/js/app/user/userprofile.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="editissuetypescheme" i18n-name-key="admin.web.resources.plugin.editissuetypescheme.name" name="editissuetypescheme" state='enabled'>
+        <dependency>jira.webresources:jira-global</dependency>
+        <resource type="download" name="editissuetypescheme.js" location="/includes/js/app/editissuetypescheme/editissuetypescheme.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="selectissuetypescheme" i18n-name-key="admin.web.resources.plugin.selectissuetypescheme.name" name="selectissuetypescheme" state='enabled'>
+        <dependency>jira.webresources:jira-global</dependency>
+        <resource type="download" name="selectissuetypescheme.js" location="/includes/js/app/selectissuetypescheme/selectIssueTypeScheme.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+     <web-resource key="lookandfeel" i18n-name-key="admin.web.resources.plugin.lookandfeel.name" name="lookandfeel" state='enabled'>
+         <dependency>jira.webresources:jira-global</dependency>
+         <resource type="download" name="lookandfeel.js" location="/includes/js/app/lookandfeel/lookandfeel.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <!-- Miscellaneous -->
+
+    <web-resource key="ajaxhistory" i18n-name-key="admin.web.resources.plugin.ajaxhistory.name" name="ajaxhistory" state='enabled'>
+        <resource type="download" name="reallysimplehistory.js" location="/includes/js/reallysimplehistory.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="croneditor" i18n-name-key="admin.web.resources.plugin.croneditor.name" name="CronEditor"
+                  state='enabled'>
+        <resource type="download" name="croneditor.js" location="/includes/js/cron/croneditor.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="browser-detect" i18n-name-key="admin.web.resources.plugin.browser-detect" name="browser-detect"
+                  state='enabled'>
+        <resource type="download" name="browser-detect.js" location="/includes/js/browser-detect.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="ajax-favourite-control" i18n-name-key="admin.web.resources.plugin.ajax.favourite.control"
+                  name="ajax-favourite-control" state='enabled'>
+        <dependency>jira.webresources:jira-global</dependency>
+        <resource type="download" name="favourite.js" location="/includes/js/favourite.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="share-types" i18n-name-key="admin.web.resources.plugin.share.name"
+                  name="share-types" state='enabled'>
+        <dependency>jira.webresources:jira-global</dependency>
+        <resource type="download" name="color.js" location="/includes/js/jquery/plugins/color/color.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+        <resource type="download" name="share-types.js" location="/includes/js/share-types.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+        <resource type="download" name="share-types.css" location="/styles/share-types.css">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="task" i18n-name-key="admin.web.resources.plugin.task.name" name="task" state='enabled'>
+        <resource type="download" name="task.css" location="/styles/task/task.css">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar" i18n-name-key="admin.web.resources.plugin.calendar.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar.js" location="/includes/js/calendar/calendar.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+        <resource type="download" name="calendar-setup.js" location="/includes/js/calendar/calendar-setup.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+        <resource type="download" name="calendar.css" location="/styles/calendar.css">
+            <param name="source" value="webContext"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-af" i18n-name-key="admin.web.resources.plugin.calendar.af.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-af.js" location="/includes/js/calendar/lang/calendar-af.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-al" i18n-name-key="admin.web.resources.plugin.calendar.al.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-al.js" location="/includes/js/calendar/lang/calendar-al.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-bg" i18n-name-key="admin.web.resources.plugin.calendar.bg.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-bg.js" location="/includes/js/calendar/lang/calendar-bg.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-br" i18n-name-key="admin.web.resources.plugin.calendar.br.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-br.js" location="/includes/js/calendar/lang/calendar-br.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-ca" i18n-name-key="admin.web.resources.plugin.calendar.ca.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-ca.js" location="/includes/js/calendar/lang/calendar-ca.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-cs" i18n-name-key="admin.web.resources.plugin.calendar.cs.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-cs.js" location="/includes/js/calendar/lang/calendar-cs.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-da" i18n-name-key="admin.web.resources.plugin.calendar.da.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-da.js" location="/includes/js/calendar/lang/calendar-da.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-de" i18n-name-key="admin.web.resources.plugin.calendar.de.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-de.js" location="/includes/js/calendar/lang/calendar-de.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-du" i18n-name-key="admin.web.resources.plugin.calendar.du.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-du.js" location="/includes/js/calendar/lang/calendar-du.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-el" i18n-name-key="admin.web.resources.plugin.calendar.el.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-el.js" location="/includes/js/calendar/lang/calendar-el.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-en" i18n-name-key="admin.web.resources.plugin.calendar.en.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-en.js" location="/includes/js/calendar/lang/calendar-en.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-es" i18n-name-key="admin.web.resources.plugin.calendar.es.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-es.js" location="/includes/js/calendar/lang/calendar-es.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-fi" i18n-name-key="admin.web.resources.plugin.calendar.fi.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-fi.js" location="/includes/js/calendar/lang/calendar-fi.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-fr" i18n-name-key="admin.web.resources.plugin.calendar.fr.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-fr.js" location="/includes/js/calendar/lang/calendar-fr.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-he" i18n-name-key="admin.web.resources.plugin.calendar.he.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-he-utf8.js"
+                  location="/includes/js/calendar/lang/calendar-he-utf8.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-hr" i18n-name-key="admin.web.resources.plugin.calendar.hr.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-hr.js" location="/includes/js/calendar/lang/calendar-hr.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-hu" i18n-name-key="admin.web.resources.plugin.calendar.hu.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-hu.js" location="/includes/js/calendar/lang/calendar-hu.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-it" i18n-name-key="admin.web.resources.plugin.calendar.it.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-it.js" location="/includes/js/calendar/lang/calendar-it.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-ja" i18n-name-key="admin.web.resources.plugin.calendar.ja.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-ja.js" location="/includes/js/calendar/lang/calendar-ja.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-jp" i18n-name-key="admin.web.resources.plugin.calendar.jp.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-jp.js" location="/includes/js/calendar/lang/calendar-jp.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-ko" i18n-name-key="admin.web.resources.plugin.calendar.ko.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-ko.js" location="/includes/js/calendar/lang/calendar-ko.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-lt" i18n-name-key="admin.web.resources.plugin.calendar.lt.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-lt.js" location="/includes/js/calendar/lang/calendar-lt.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-lv" i18n-name-key="admin.web.resources.plugin.calendar.lv.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-lv.js" location="/includes/js/calendar/lang/calendar-lv.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-nl" i18n-name-key="admin.web.resources.plugin.calendar.nl.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-nl.js" location="/includes/js/calendar/lang/calendar-nl.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-no" i18n-name-key="admin.web.resources.plugin.calendar.no.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-no.js" location="/includes/js/calendar/lang/calendar-no.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-pl" i18n-name-key="admin.web.resources.plugin.calendar.pl.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-pl.js" location="/includes/js/calendar/lang/calendar-pl.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-pt" i18n-name-key="admin.web.resources.plugin.calendar.pt.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-pt.js" location="/includes/js/calendar/lang/calendar-pt.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-ro" i18n-name-key="admin.web.resources.plugin.calendar.ro.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-ro.js" location="/includes/js/calendar/lang/calendar-ro.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-ru" i18n-name-key="admin.web.resources.plugin.calendar.ru.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-ru.js" location="/includes/js/calendar/lang/calendar-ru.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-si" i18n-name-key="admin.web.resources.plugin.calendar.si.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-si.js" location="/includes/js/calendar/lang/calendar-si.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-sk" i18n-name-key="admin.web.resources.plugin.calendar.sk.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-sk.js" location="/includes/js/calendar/lang/calendar-sk.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-sl" i18n-name-key="admin.web.resources.plugin.calendar.sl.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-sl.js" location="/includes/js/calendar/lang/calendar-sl.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-sp" i18n-name-key="admin.web.resources.plugin.calendar.sp.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-sp.js" location="/includes/js/calendar/lang/calendar-sp.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-sv" i18n-name-key="admin.web.resources.plugin.calendar.sv.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-sv.js" location="/includes/js/calendar/lang/calendar-sv.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-tr" i18n-name-key="admin.web.resources.plugin.calendar.tr.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-tr.js" location="/includes/js/calendar/lang/calendar-tr.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="calendar-zh" i18n-name-key="admin.web.resources.plugin.calendar.zh.name" name="Calendar"
+                  state='enabled'>
+        <resource type="download" name="calendar-zh.js" location="/includes/js/calendar/lang/calendar-zh.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>    
+
+    <web-resource key="avataror">
+        <dependency>jira.webresources:jira-global</dependency>
+        <resource type="download" name="avataror.js" location="/includes/js/avataror.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+        <resource type="download" name="avataror.css" location="/styles/avataror.css">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+    <web-resource key="jquery-fancybox-1-2-6">
+        <dependency>com.atlassian.auiplugin:ajs</dependency>
+        <resource type="download" name="jquery.fancybox.js" location="/includes/js/jquery/plugins/fancybox-1.2.6/jquery.fancybox-1.2.6.js">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+        <resource type="download" name="jquery.fancybox.css" location="/styles/js/jquery/plugins/fancybox-1.2.6/jquery.fancybox-1.2.6.css">
+            <param name="source" value="webContextStatic"/>
+        </resource>
+    </web-resource>
+
+</atlassian-plugin>

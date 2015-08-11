@@ -1,0 +1,5 @@
+#if ($resolution)
+    $textutils.htmlEncode($resolution.getNameTranslation(), false)
+#else
+    <span class="redText">$i18n.getText('common.resolution.UNRESOLVED')</span>
+#end

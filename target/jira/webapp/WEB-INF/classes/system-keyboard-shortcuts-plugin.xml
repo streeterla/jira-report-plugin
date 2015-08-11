@@ -1,0 +1,135 @@
+<atlassian-plugin key="jira.keyboard.shortcuts" i18n-name-key="admin.keyboard.shortcuts.plugin.name"
+                  name="Keyboard Shortcuts Plugin">
+
+    <plugin-info>
+        <description key="admin.keyboard.shortcuts.plugin.desc">A plugin that defines a number of keyboard shortcuts.
+        </description>
+        <version>1.0</version>
+        <application-version min="4.0" max="4.0"/>
+        <vendor name="Atlassian" url="http://www.atlassian.com"/>
+    </plugin-info>
+
+    <!--
+    Operations will generally use jQuery selectors to define the target of an action.  There's a couple of exceptions
+    such as the 'execute' and  'goTo' operations, which take a javascript function and url respectively.
+    -->
+
+    <!-- GLOBAL SHORTCUTS -->
+    <keyboard-shortcut key="goto.dashboard" i18n-name="admin.keyboard.shortcut.goto.dashboard.name"
+                       name="Goto Dashboard" state='enabled'>
+        <order>10</order>
+        <description key="admin.keyboard.shortcut.goto.dashboard.desc">Go to Dashboard</description>
+        <shortcut>gd</shortcut>
+        <operation type="followLink">#home_link</operation>
+    </keyboard-shortcut>
+
+    <keyboard-shortcut key="browse.project" i18n-name="admin.keyboard.shortcut.browse.project.name"
+                       name="Browse Project"
+                       state='enabled'>
+        <order>20</order>
+        <description key="admin.keyboard.shortcut.browse.project.desc">Browse to a Project</description>
+        <shortcut>gp</shortcut>
+        <operation type="followLink">#browse_link</operation>
+    </keyboard-shortcut>
+
+    <keyboard-shortcut key="find.issues" i18n-name="admin.keyboard.shortcut.find.issues.name" name="Find Issues"
+                       state='enabled'>
+        <order>30</order>
+        <description key="admin.keyboard.shortcut.find.issues.desc">Find Issues</description>
+        <shortcut>gi</shortcut>
+        <operation type="followLink">#find_link</operation>
+    </keyboard-shortcut>
+
+    <keyboard-shortcut key="quicksearch" i18n-name="admin.keyboard.shortcut.quicksearch.name" name="Quick Search"
+                       state='enabled'>
+        <order>40</order>
+        <description key="admin.keyboard.shortcut.quicksearch.desc">Quicksearch box</description>
+        <shortcut>/</shortcut>
+        <operation type="moveToAndFocus">#quickSearchInput</operation>
+    </keyboard-shortcut>
+
+    <keyboard-shortcut key="create.issue" i18n-name="admin.keyboard.shortcut.create.issue.name" name="Create Issue"
+                       state='enabled'>
+        <order>50</order>
+        <description key="admin.keyboard.shortcut.create.issue.desc">Create an Issue</description>
+        <shortcut>c</shortcut>
+        
+        <operation type="moveToAndClick">#create_link</operation>
+    </keyboard-shortcut>
+
+    <keyboard-shortcut key="edit.issue" i18n-name="admin.keyboard.shortcut.edit.issue.name" name="Edit Issue"
+                       state='enabled'>
+        <order>60</order>
+        <description key="admin.keyboard.shortcut.edit.issue.desc">Edit Issue</description>
+        <shortcut>e</shortcut>
+        <operation type="followLink">#editIssue</operation>
+        <context>issue</context>
+    </keyboard-shortcut>
+
+    <keyboard-shortcut key="assign.issue" i18n-name="admin.keyboard.shortcut.assign.issue.name" name="Assign Issue"
+                       state='enabled'>
+        <order>70</order>
+        <description key="admin.keyboard.shortcut.assign.issue.desc">Assign Issue</description>
+        <shortcut>a</shortcut>
+        <operation type="followLink">#assign-issue</operation>
+        <context>issue</context>
+    </keyboard-shortcut>
+
+    <keyboard-shortcut key="comment.issue" i18n-name="admin.keyboard.shortcut.commentissue.name" name="Comment Issue"
+                       state='enabled'>
+        <order>80</order>
+        <description key="admin.keyboard.shortcut.commentissue.desc">Scrolls to comment input and focuses it</description>
+        <shortcut>m</shortcut>
+        <operation type="click">#comment-issue</operation>
+        <context>issue</context>
+    </keyboard-shortcut>
+
+    <keyboard-shortcut key="next.issue" i18n-name="admin.keyboard.shortcut.next.issue.name" name="Next Issue"
+                       state='enabled'>
+        <order>90</order>
+        <description key="admin.keyboard.shortcut.next.issue.desc">Browses to next issue from search</description>
+        <shortcut>j</shortcut>
+        <operation type="followLink">#next-issue</operation>
+        <context>issue</context>
+    </keyboard-shortcut>
+
+    <keyboard-shortcut key="prev.issue" i18n-name="admin.keyboard.shortcut.prev.issue.name" name="Previous Issue"
+                       state='enabled'>
+        <order>100</order>
+        <description key="admin.keyboard.shortcut.prev.issue.desc">Browses to previous issue</description>
+        <shortcut>k</shortcut>
+        <operation type="followLink">#previous-issue</operation>
+        <context>issue</context>
+    </keyboard-shortcut>
+
+    <keyboard-shortcut key="move.to.next.action.item" i18n-name="admin.keyboard.shortcut.movetonextactionitem.name" name="Move to next action item"
+                       state='enabled'>
+        <order>110</order>
+        <description key="admin.keyboard.shortcut.movetonextactionitem.desc">Moves to the next action item on view issue page</description>
+        <shortcut>n</shortcut>
+        <operation type="moveToNextItem">.issue-data-block:visible</operation>
+        <context>issue</context>
+    </keyboard-shortcut>
+
+    <keyboard-shortcut key="move.to.prevaction.item" i18n-name="admin.keyboard.shortcut.movetoprevactionitem.name" name="Move to previous action item"
+                       state='enabled'>
+        <order>120</order>
+        <description key="admin.keyboard.shortcut.movetoprevactionitem.desc">Moves to the previous action item on view issue page</description>
+        <shortcut>p</shortcut>
+        <operation type="moveToPrevItem">.issue-data-block:visible</operation>
+        <context>issue</context>
+    </keyboard-shortcut>
+
+    <keyboard-shortcut key="help" i18n-name="admin.keyboard.shortcut.help.name" name="Shortcut help"
+                       state='enabled'>
+        <order>130</order>
+        <description key="admin.keyboard.shortcut.help.desc">Open shortcut help</description>
+        <shortcut>?</shortcut>
+        <operation type="execute">
+            <![CDATA[
+                jira.keyboard.displayKeyboardShortcutHelp();
+            ]]>
+        </operation>
+    </keyboard-shortcut>
+
+</atlassian-plugin>

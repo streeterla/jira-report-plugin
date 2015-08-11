@@ -1,0 +1,50 @@
+$!webResourceManager.requireResource("jira.webresources:wikipreview")
+
+<div class="wiki-edit">
+    <div id="${fieldId}-edit" class="wiki-edit-content">
+        <div class="content-inner">
+            #if($singleLine)
+            <input type="text"
+                   name="$fieldId"
+                   value="$textutils.htmlEncode($!value)"
+                   id="$fieldId"
+                   class="wiki-textfield"
+            #if($maxlength)maxlength="$maxlength"#end
+            />
+            #else
+            <textarea name="$fieldId"
+                      id="$fieldId"
+            #if($rows)rows="$rows"#end
+            #if($wrap)wrap="$wrap"#end
+            #if($cols)cols="$cols"#end
+            #if($accesskey)accesskey="$accesskey"#end
+            class="wiki-textfield"
+            >$textutils.htmlEncode($!value)</textarea>
+            #end
+        </div>
+    </div>
+</div>
+
+<div class="field-tools">
+    <dl id="wiki-prefs" class="wiki-js-prefs" style="display:none">
+        <dt>trigger</dt>
+        <dd>${fieldId}-preview_link</dd>
+        <dt>fieldId</dt>
+        <dd>$!fieldId</dd>
+        <dt>fieldName</dt>
+        <dd>$!fieldName</dd>
+        <dt>rendererType</dt>
+        <dd>$!rendererType</dd>
+        <dt>issueKey</dt>
+        <dd>$!issueKey</dd>
+    </dl>
+    <span id="${fieldId}-preview_link_div">
+        <a id="${fieldId}-preview_link" class="wiki-renderer fullscreen" title='$i18n.getText("renderer.preview")' href="#">$i18n.getText("renderer.preview")</a>
+    </span>
+    <a id="viewHelp"
+       onClick="window.open('$baseurl/secure/WikiRendererHelpAction.jspa?section=texteffects', 'wiki_renderer_notation_help', 'width=780, height=575, resizable, scrollbars=yes'); return false;"
+       href="$baseurl/secure/WikiRendererHelpAction.jspa?section=texteffects" title='$i18n.getText("renderer.notation-help")'><img
+            src='$baseurl/images/icons/help_blue.gif' class='unselectedPreview' width='16' height='16' alt='$i18n.getText("renderer.notation-help")'
+            title='$i18n.getText("renderer.notation-help")'></a>
+</div>
+

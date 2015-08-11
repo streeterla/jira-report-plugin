@@ -1,0 +1,24 @@
+#controlHeader ($action $field.id $i18n.getText($field.nameKey) $fieldLayoutItem.required $displayParameters.get('noHeader'))
+
+#if ($components && !$components.empty)
+    #if (!$fieldLayoutItem.required)
+        <select multiple name="$field.id"  id="$field.id" size="#minSelectSize($components 1 5)">
+    #else
+        <select multiple name="$field.id"  id="$field.id" size="#minSelectSize($components 0 5)">
+    #end
+        #if (!$fieldLayoutItem.required)
+        <option value="-1"
+            #if ($currentComponents && $unknownComponentId && $currentComponents.contains($unknownComponentId))selected#end
+            >$i18n.getText('common.words.unknown')</option>
+        #end
+        #foreach ($component in $components)
+            <option value="$!component.getLong('id')" title="$textutils.htmlEncode($component.getString("name")) #if($component.getString("description")) - $textutils.htmlEncode($component.getString("description"))#end"
+                #if ($currentComponents && $component && $currentComponents.contains($component.getLong('id')))selected#end
+                >$textutils.htmlEncode($component.getString('name'))</option>
+        #end
+    </select>
+#else
+    $i18n.getText('common.words.unknown')
+#end
+
+#controlFooter ($action $fieldLayoutItem.getFieldDescription() $displayParameters.get('noHeader'))

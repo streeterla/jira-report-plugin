@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.5.3 
+Created-By: 1.5.0_24-149 (Apple Inc.)
+Built-By: chris
+
+Name: com.atlassian
+Specification-Title: atlassian-jira
+Specification-Version: 4.1.2
+Specification-Vendor: Atlassian
+Implementation-Title: com.atlassian
+Implementation-Version: 4.1.2
+Implementation-Vendor: Atlassian
+

@@ -1,0 +1,735 @@
+<atlassian-plugin name='Top Navigation Bar' key='jira.top.navigation.bar' i18n-name-key="top.navigation.plugin.name">
+    <plugin-info>
+        <description key="top.navigation.plugin.desc">This plugin renders the content of the top navigation bar in JIRA.
+        </description>
+        <vendor name="Atlassian" url="http://www.atlassian.com"/>
+        <application-version min="3.12" max="3.12"/>
+        <version>1.0</version>
+    </plugin-info>
+
+    <top-navigation key="standard-navigation-top" i18n-name-key="top.navigation.plugin.standard.name"
+                    name="Standard Top Navigation Bar"
+                    class="com.atlassian.jira.plugin.navigation.DefaultPluggableTopNavigation" state='enabled'>
+        <resource type="velocity" name="view" location="templates/plugins/topnavigation/topnav.vm"/>
+        <order>10</order>
+    </top-navigation>
+
+
+    <!--Dashboard Menu-->
+
+    <web-item key="home_link" name="Home Link" section="system.top.navigation.bar"
+              i18n-name-key="webfragments.navigation.bar.item.home.name" system="true" weight="10">
+        <label key="menu.dashboard.header"/>
+        <tooltip key="menu.dashboard.header.title"/>
+        <link linkId="home_link" accessKey="$authcontext.i18nBean.getText('alt.text.home.accessKey')">
+            /secure/Dashboard.jspa
+        </link>
+    </web-item>
+
+    <web-section key="dashboard_link_main" name="Dashboard dropdown Main Section" location="home_link"
+                 i18n-name-key="webfragments.navigation.bar.dash.dropdown.main" system="true" weight="10"/>
+
+    <simple-link-factory key="dash_drop_fav-factory" name="Favourite Dashboard Link Factory"
+                         section="home_link/dashboard_link_main"
+                         i18n-name-key="webfragments.navigation.bar.dash.link.factory" system="true" weight="20"
+                         lazy="true"
+                         class="com.atlassian.jira.portal.FavouriteDashboardLinkFactory"/>
+
+    <web-section key="dashboard_link_manage" name="Manage Dashboards Dropdown Section" location="home_link"
+                 i18n-name-key="webfragments.navigation.bar.dash.dropdown.manage" system="true" weight="90">
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserLoggedInCondition"/>
+    </web-section>
+
+    <web-item key="manage_dashboard_drop" name="Manage Dashboards Link" section="home_link/dashboard_link_manage"
+              i18n-name-key="webfragments.navigation.bar.dash.item.manage" system="true" weight="10">
+        <label key="menu.dashboard.manage"/>
+        <tooltip key="menu.dashboard.manage.title"/>
+        <link linkId="manage_dash_link">/secure/ConfigurePortalPages!default.jspa</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserLoggedInCondition"/>
+    </web-item>
+
+
+    <!--Project Menu-->
+
+    <!-- if there are any projects the user can browse - show them the browse link -->
+    <web-item key="browse_project_link" name="Browse Project Link" section="system.top.navigation.bar"
+              i18n-name-key="webfragments.navigation.bar.item.browse.project.name" system="true" weight="20">
+        <label key="menu.project.header"/>
+        <tooltip key="menu.project.header.selected.title">
+            <param name="param0">$textutils.htmlEncode($helper.project.get('name'))</param>
+        </tooltip>
+        <link linkId="browse_link" accessKey="$authcontext.i18nBean.getText('alt.text.browseproject.accessKey')">
+            /browse/$helper.project.get('key')
+        </link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.HasSelectedProjectCondition"/>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserHasVisibleProjectsCondition">
+            <param name="permission">browse</param>
+        </condition>
+    </web-item>
+
+    <web-item key="browse_projects_link" name="Browse Projects Link" section="system.top.navigation.bar"
+              i18n-name-key="webfragments.navigation.bar.item.browse.projects.name" system="true" weight="20">
+        <label key="menu.project.header"/>
+        <tooltip key="menu.project.header.all.title"/>
+        <link linkId="browse_link" accessKey="$authcontext.i18nBean.getText('alt.text.browseproject.accessKey')">
+            /secure/BrowseProjects.jspa
+        </link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.HasSelectedProjectCondition" invert="true"/>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserHasVisibleProjectsCondition">
+            <param name="permission">browse</param>
+        </condition>
+    </web-item>
+
+    <web-section key="project_current" name="Project dropdown Current Project Section" location="browse_link"
+                 i18n-name-key="webfragments.navigation.bar.browse.dropdown.current" system="true" weight="20">
+        <label key="menu.project.current"/>
+        <tooltip key="menu.project.current.desc"/>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.HasSelectedProjectCondition"/>
+    </web-section>
+
+    <web-item key="project_current_proj" name="Project dropdown Current Project Link"
+              section="browse_link/project_current" i18n-name-key="webfragments.navigation.bar.browse.link.current"
+              system="true" weight="20">
+        <label>${helper.projectObject.name} (${helper.projectObject.key})</label>
+        <link linkId="admin_main_proj_link">/browse/${helper.projectObject.key}</link>
+        <icon width="16" height="16">
+            <link linkId="admin_main_proj_link">/secure/projectavatar?pid=${helper.projectObject.id}&amp;avatarId=${helper.projectObject.avatar.id}&amp;size=small</link>
+        </icon>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.HasSelectedProjectCondition"/>
+    </web-item>
+
+    <web-section key="project_history_main" name="Project dropdown history Section" location="browse_link"
+                 i18n-name-key="webfragments.navigation.bar.browse.dropdown.history" system="true" weight="30">
+        <label key="menu.project.recent"/>
+        <tooltip key="menu.project.recent.desc"/>
+    </web-section>
+
+    <simple-link-factory key="project_drop_history-factory" name="Project History Link Factory"
+                         section="browse_link/project_history_main"
+                         i18n-name-key="webfragments.navigation.bar.browse.history.link.factory" system="true"
+                         weight="20" lazy="true"
+                         class="com.atlassian.jira.project.ProjectHistoryLinkFactory"/>
+
+    <web-section key="project_view_all" name="View All projects Dropdown Section" location="browse_link"
+                 i18n-name-key="webfragments.navigation.bar.project.dropdown.all" system="true" weight="90"/>
+
+    <web-item key="project_view_all_link" name="View All Projects Link" section="browse_link/project_view_all"
+              i18n-name-key="webfragments.navigation.bar.project.item.view.all" system="true" weight="10">
+        <label key="menu.project.view.all"/>
+        <tooltip key="menu.project.view.all.title"/>
+        <link linkId="project_view_all_link">/secure/BrowseProjects.jspa#all</link>
+    </web-item>
+
+
+    <!--Issue Menu-->
+
+    <!-- if there are any projects the user can browse - show them the find link -->
+    <web-item key="find_link" name="Find Issues Link" section="system.top.navigation.bar"
+              i18n-name-key="webfragments.navigation.bar.item.find.issues.name" system="true" weight="30">
+        <label key="menu.issues.header"/>
+        <tooltip key="menu.issues.header.title"/>
+        <link linkId="find_link" accessKey="$authcontext.i18nBean.getText('alt.text.findissues.accessKey')">
+            /secure/IssueNavigator.jspa
+        </link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserHasVisibleProjectsCondition">
+            <param name="permission">browse</param>
+        </condition>
+    </web-item>
+
+    <web-section key="issues_current_main" name="Issues dropdown Current Search Section" location="find_link"
+                 i18n-name-key="webfragments.navigation.bar.issues.dropdown.current" system="true" weight="10">
+        <label key="menu.issues.current.section"/>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.HasLastSearchRequestCondition"/>
+    </web-section>
+
+    <simple-link-factory key="issues_drop_current-factory" name="Current Search Link Factory"
+                         section="find_link/issues_current_main"
+                         i18n-name-key="webfragments.navigation.bar.issues.current.link.factory" system="true"
+                         weight="20" lazy="true"
+                         class="com.atlassian.jira.issue.search.CurrentSearchLinkFactory"/>
+
+    <web-section key="issues_new" name="New Search Dropdown Section" location="find_link"
+                 i18n-name-key="webfragments.navigation.bar.issues.dropdown.new" system="true" weight="20">
+    </web-section>
+
+    <web-item key="issues_new_search_link" name="New Search Link" section="find_link/issues_new"
+              i18n-name-key="webfragments.navigation.bar.issues.item.new.filter" system="true" weight="10">
+        <label key="menu.issues.new.search"/>
+        <tooltip key="menu.issues.new.search.title"/>
+        <link linkId="issues_new_search_link">/secure/IssueNavigator.jspa?mode=show&amp;createNew=true</link>
+    </web-item>
+
+    <web-item key="issues_new_issue_link" name="New Issue Menu Link" section="find_link/issues_new"
+              i18n-name-key="webfragments.navigation.bar.issues.item.new.issue" system="true" weight="20">
+        <label key="menu.issues.new.issue"/>
+        <tooltip key="menu.issues.new.issue.title"/>
+        <link linkId="issues_new_issue_link">/secure/CreateIssue!default.jspa</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserHasVisibleProjectsCondition">
+            <param name="permission">create</param>
+        </condition>
+    </web-item>
+
+    <web-section key="issues_history_main" name="Issues dropdown history Section" location="find_link"
+                 i18n-name-key="webfragments.navigation.bar.issues.dropdown.history" system="true" weight="30">
+        <label key="menu.issues.history.section"/>
+    </web-section>
+
+    <simple-link-factory key="issues_drop_history-factory" name="Issue History Link Factory"
+                         section="find_link/issues_history_main"
+                         i18n-name-key="webfragments.navigation.bar.issues.history.link.factory" system="true"
+                         weight="20" lazy="true"
+                         class="com.atlassian.jira.issue.history.IssueHistoryLinkFactory"/>
+
+    <web-section key="issues_filter_main" name="Issues dropdown filter Section" location="find_link"
+                 i18n-name-key="webfragments.navigation.bar.issues.dropdown.filters" system="true" weight="50">
+        <label key="menu.issues.filter.section"/>
+    </web-section>
+
+    <simple-link-factory key="issues_drop_fav-filters-factory" name="Favourite Filters Link Factory"
+                         section="find_link/issues_filter_main"
+                         i18n-name-key="webfragments.navigation.bar.issues.fav.filters.link.factory" system="true"
+                         weight="20" lazy="true"
+                         class="com.atlassian.jira.issue.search.FavouriteFilterLinkFactory"/>
+
+
+    <web-section key="issues_manage_filters" name="Manage filters Dropdown Section" location="find_link"
+                 i18n-name-key="webfragments.navigation.bar.issues.dropdown.manage" system="true" weight="90"/>
+
+    <web-item key="issues_manage_filters_link" name="Manage Filters Link" section="find_link/issues_manage_filters"
+              i18n-name-key="webfragments.navigation.bar.issues.item.manage.filters" system="true" weight="10">
+        <label key="menu.issues.manage.filters"/>
+        <tooltip key="menu.issues.manage.filters.title"/>
+        <link linkId="issues_manage_filters_link">/secure/ManageFilters.jspa</link>
+    </web-item>
+
+
+    <!--Admin menu-->
+
+    <!-- if the user is an administrator or project admin - show them the administration link -->
+    <web-item key="admin_link" name="Administration Link" section="system.top.navigation.bar"
+              i18n-name-key="webfragments.navigation.bar.item.admin.name" system="true" weight="50">
+        <label key="menu.admin.header"/>
+        <tooltip key="menu.admin.header.title"/>
+        <link linkId="admin_link">/secure/project/ViewProjects.jspa</link>
+        <conditions type="OR">
+            <condition class="com.atlassian.jira.plugin.webfragment.conditions.JiraGlobalPermissionCondition">
+                <param name="permission">admin</param>
+            </condition>
+            <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserIsProjectAdminCondition"/>
+        </conditions>
+    </web-item>
+
+
+    <web-section key="admin_main" name="Admin Dropdown" location="admin_link"
+                 i18n-name-key="webfragments.navigation.bar.admin.dropdown.main" system="true" weight="100"/>
+
+    <web-item key="admin_mac_link" name="Administration Dropdown My Atlassian Account Link"
+              section="admin_link/admin_main" i18n-name-key="webfragments.navigation.bar.admin.item.mac" system="true"
+              weight="20">
+        <label key="menu.admin.mac"/>
+        <tooltip key="menu.admin.mac.title"/>
+        <link linkId="admin_mac_link">http://www.atlassian.com/my/</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.JiraGlobalPermissionCondition">
+            <param name="permission">sysadmin</param>
+        </condition>
+    </web-item>
+    <web-item key="admin_plugin_exchange_link" name="Administration Dropdown Plugin Exchange Link"
+              section="admin_link/admin_main" i18n-name-key="webfragments.navigation.bar.admin.item.plugin.exchange"
+              system="true" weight="22">
+        <label key="menu.admin.plugin"/>
+        <tooltip key="menu.admin.plugin.title"/>
+        <link linkId="admin_plugin_exchange_link">https://plugins.atlassian.com/search/by/jira</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.JiraGlobalPermissionCondition">
+            <param name="permission">sysadmin</param>
+        </condition>
+    </web-item>
+    <web-item key="admin_main_proj_link" name="Administrate Project Dropdown Link" section="admin_link/admin_main"
+              i18n-name-key="webfragments.navigation.bar.admin.item.project" system="true" weight="30">
+        <label>$authcontext.i18nBean.getText('menu.admin.current.project',
+            $textutils.htmlEncode($helper.project.get('name')))
+        </label>
+        <tooltip key="menu.admin.current.project.title"/>
+        <link linkId="admin_main_proj_link">/secure/project/ViewProject.jspa?pid=${helper.project.get('id')}</link>
+        <icon width="16" height="16">
+            <link linkId="admin_main_proj_link">/secure/projectavatar?pid=${helper.projectObject.id}&amp;avatarId=${helper.projectObject.avatar.id}&amp;size=small</link>
+        </icon>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.HasSelectedProjectCondition"/>
+    </web-item>
+
+    <!--<web-section key="admin_other" name="Other Admin Tasks Dropdown" location="admin_link" i18n-name-key="webfragments.navigation.bar.admin.dropdown.other" system="true" weight="200">-->
+    <!--</web-section>-->
+
+    <!--<web-item key="admin_other_sys_info_link" name="System Info Dropdown Link" section="admin_link/admin_other" i18n-name-key="webfragments.navigation.bar.admin.item.sysinfo" system="true" weight="10">-->
+    <!--<label key="menu.admin.system.info" />-->
+    <!--<tooltip key="menu.admin.system.info.title" />-->
+    <!--<link linkId="admin_other_sys_info_link">/secure/admin/jira/ViewSystemInfo.jspa</link>-->
+    <!--</web-item>-->
+
+
+    <web-section key="tasks" name="Admin Tasks Section" location="admin_link"
+                 i18n-name-key="webfragments.menu.section.tasks.name" state="enabled" weight="100">
+        <label key="admin.menu.tasks"/>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.JiraGlobalPermissionCondition">
+            <param name="permission">admin</param>
+        </condition>
+    </web-section>
+
+    <web-item key="view_projects" name="View Projects Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.view.projects.name" state="enabled" weight="10">
+        <label key="common.concepts.projects"/>
+        <link linkId="view_projects">/secure/project/ViewProjects.jspa</link>
+    </web-item>
+
+    <web-item key="view_categories" name="View Project Categories Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.view.categories.name" state="disabled" weight="15">
+        <label key="admin.menu.projects.project.categories"/>
+        <link linkId="view_categories">/secure/admin/projectcategories/ViewProjectCategories!default.jspa</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.EnterpriseJiraLicenseCondition"/>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserIsAdminCondition"/>
+    </web-item>
+
+    <web-item key="userbrowser" name="User Browser Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.userbrowser.name" state="enabled" weight="20">
+        <label key="admin.menu.usersandgroups.user.browser"/>
+        <link linkId="user_browser">/secure/admin/user/UserBrowser.jspa</link>
+    </web-item>
+
+    <web-item key="groupbrowser" name="Group Browser Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.groupbrowser.name" state="disabled" weight="25">
+        <label key="admin.menu.usersandgroups.group.browser"/>
+        <link linkId="group_browser">/secure/admin/user/GroupBrowser.jspa</link>
+    </web-item>
+
+    <web-item key="projectrolebrowser" name="Project Role Browser Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.projectrolebrowser.name" state="disabled" weight="30">
+        <label key="admin.menu.usersandgroups.role.browser"/>
+        <link linkId="project_role_browser">/secure/project/ViewProjectRoles.jspa</link>
+    </web-item>
+
+    <web-item key="attachments" name="Attachments Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.attachments.name" state="disabled" weight="35">
+        <label key="admin.menu.globalsettings.attachments"/>
+        <link linkId="attachments">/secure/admin/jira/ViewAttachmentSettings.jspa</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserIsAdminCondition"/>
+    </web-item>
+
+    <web-item key="cvs_modules" name="CVS Modules Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.cvs.modules.name" state="disabled" weight="40">
+        <label key="admin.menu.globalsettings.cvs.modules"/>
+        <link linkId="cvs_modules">/secure/admin/ViewRepositories.jspa</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserIsAdminCondition"/>
+    </web-item>
+
+    <web-item key="edit_default_dashboard" name="Edit Default Dashboard Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.edit.default.dashboard.name" state="disabled" weight="45">
+        <label key="admin.menu.globalsettings.default.dashboard"/>
+        <link linkId="edit_default_dashboard">/secure/admin/jira/EditDefaultDashboard!default.jspa</link>
+    </web-item>
+
+    <web-item key="eventtypes" name="Event Types Link" section="admin_link/globalsettings"
+              i18n-name-key="webfragments.admin.menu.item.eventtypes.name" state="disabled" weight="50">
+        <label key="admin.menu.globalsettings.event.types"/>
+        <link linkId="eventtypes">/secure/admin/jira/ListEventTypes.jspa</link>
+        <condition
+                class="com.atlassian.jira.plugin.webfragment.conditions.ProfessionalOrEnterpriseJiraLicenseCondition"/>
+    </web-item>
+
+    <web-item key="general_configuration" name="General Configuration Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.general.configuration.name" state="enabled" weight="55">
+        <label key="admin.menu.globalsettings.general.configuration"/>
+        <link linkId="general_configuration">/secure/admin/jira/ViewApplicationProperties.jspa</link>
+    </web-item>
+
+    <web-item key="global_permissions" name="Global Permissions Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.global.permissions.name" state="disabled" weight="60">
+        <label key="admin.menu.globalsettings.global.permissions"/>
+        <link linkId="global_permissions">/secure/admin/jira/GlobalPermissions!default.jspa</link>
+    </web-item>
+
+    <web-item key="linking" name="Issue Linking Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.linking.name" state="disabled" weight="70">
+        <label key="admin.menu.globalsettings.issue.linking"/>
+        <link linkId="linking">/secure/admin/jira/ViewLinkTypes.jspa</link>
+    </web-item>
+
+    <web-item key="lookandfeel" name="Look and Feel Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.lookandfeel.name" state="enabled" weight="80">
+        <label key="admin.menu.globalsettings.look.and.feel"/>
+        <link linkId="lookandfeel">/secure/admin/jira/ViewLookAndFeel.jspa</link>
+    </web-item>
+
+    <web-item key="mail_servers" name="Mail Servers Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.mail.servers.name" state="disabled" weight="90">
+        <label key="admin.menu.globalsettings.mail.servers"/>
+        <link linkId="mail_servers">/secure/admin/ViewMailServers.jspa</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserIsSysAdminCondition"/>
+    </web-item>
+
+    <web-item key="subtasks" name="Subtasks Link" section="admin_link/globalsettings"
+              i18n-name-key="webfragments.admin.menu.item.subtasks.name" state="disabled" weight="100">
+        <label key="admin.menu.globalsettings.sub.tasks"/>
+        <link linkId="subtasks">/secure/admin/subtasks/ManageSubTasks.jspa</link>
+        <condition
+                class="com.atlassian.jira.plugin.webfragment.conditions.ProfessionalOrEnterpriseJiraLicenseCondition"/>
+    </web-item>
+
+    <web-item key="timetracking" name="Timetracking Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.timetracking.name" state="disabled" weight="110">
+        <label key="admin.menu.globalsettings.time.tracking"/>
+        <link linkId="timetracking">/secure/admin/jira/TimeTrackingAdmin!default.jspa</link>
+    </web-item>
+
+    <web-item key="trackbacks" name="Trackbacks Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.trackbacks.name" state="disabled" weight="120">
+        <label key="admin.menu.globalsettings.trackbacks"/>
+        <link linkId="trackbacks">/secure/admin/jira/TrackbackAdmin.jspa</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserIsSysAdminCondition"/>
+    </web-item>
+
+    <web-item key="user_defaults" name="User Defaults Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.user.defaults.name" state="disabled" weight="130">
+        <label key="admin.menu.globalsettings.user.defaults"/>
+        <link linkId="user_defaults">/secure/admin/jira/ViewUserDefaultSettings.jspa</link>
+    </web-item>
+
+    <web-item key="workflows" name="Workflows Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.workflows.name" state="disabled" weight="140">
+        <label key="admin.menu.globalsettings.workflows"/>
+        <link linkId="workflows">/secure/admin/workflows/ListWorkflows.jspa</link>
+        <condition
+                class="com.atlassian.jira.plugin.webfragment.conditions.ProfessionalOrEnterpriseJiraLicenseCondition"/>
+    </web-item>
+
+    <web-item key="security_schemes" name="Security Schemes Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.security.schemes.name" state="disabled" weight="150">
+        <label key="admin.menu.schemes.issue.security.schemes"/>
+        <link linkId="security_schemes">/secure/admin/ViewIssueSecuritySchemes.jspa</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.EnterpriseJiraLicenseCondition"/>
+    </web-item>
+
+    <web-item key="notification_schemes" name="Notification Schemes Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.notification.schemes.name" state="disabled" weight="160">
+        <label key="admin.menu.schemes.notification.schemes"/>
+        <link linkId="notification_schemes">/secure/admin/ViewNotificationSchemes.jspa</link>
+    </web-item>
+
+    <web-item key="permission_schemes" name="Permission Schemes Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.permission.schemes.name" state="disabled" weight="170">
+        <label key="admin.menu.schemes.permission.schemes"/>
+        <link linkId="permission_schemes">/secure/admin/ViewPermissionSchemes.jspa</link>
+    </web-item>
+
+    <web-item key="workflow_schemes" name="Workflow Schemes Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.workflow.schemes.name" state="disabled" weight="180">
+        <label key="admin.menu.schemes.workflow.schemes"/>
+        <link linkId="workflow_schemes">/secure/admin/ViewWorkflowSchemes.jspa</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.EnterpriseJiraLicenseCondition"/>
+    </web-item>
+
+    <web-item key="scheme_tools" name="Scheme Tools Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.scheme.tools.name" state="disabled" weight="190">
+        <label key="admin.menu.scheme.tools"/>
+        <link linkId="scheme_tools">/secure/admin/SchemeTools.jspa</link>
+    </web-item>
+
+    <web-item key="view_custom_fields" name="View Custom Fields Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.view.custom.fields.name" state="disabled" weight="200">
+        <label key="admin.menu.issuefields.custom.fields"/>
+        <link linkId="view_custom_fields">/secure/admin/ViewCustomFields.jspa</link>
+    </web-item>
+
+    <web-item key="field_configuration_ent" name="Field Configuration Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.field.configuration.ent.name" state="disabled" weight="210">
+        <label key="admin.menu.issuefields.field.configurations"/>
+        <link linkId="field_configuration">/secure/admin/ViewFieldLayouts.jspa</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.EnterpriseJiraLicenseCondition"/>
+    </web-item>
+
+    <web-item key="issue_fields" name="Issue Fields Link" section="admin_link/issuefields"
+              i18n-name-key="webfragments.admin.menu.item.issue.fields.name" state="disabled" weight="220">
+        <label key="admin.menu.issuefields.field.configuration.schemes"/>
+        <link linkId="issue_fields">/secure/admin/ViewFieldLayoutSchemes.jspa</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.EnterpriseJiraLicenseCondition"/>
+    </web-item>
+
+    <web-item key="field_configuration" name="Field Configuration Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.field.configuration.name" state="disabled" weight="230">
+        <label key="admin.menu.issuefields.issue.fields"/>
+        <link linkId="field_configuration">/secure/admin/ViewIssueFields.jspa</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.EnterpriseJiraLicenseCondition"
+                   invert="true"/>
+    </web-item>
+
+    <web-item key="issue_field_columns" name="Issue Field Columns Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.issue.field.columns.name" state="disabled" weight="240">
+        <label key="admin.menu.issuefields.navigator.columns"/>
+        <link linkId="issue_field_columns">/secure/admin/ViewIssueColumns!default.jspa</link>
+    </web-item>
+
+    <web-item key="field_screens" name="Field Screens Link" section="admin_link/issuefields"
+              i18n-name-key="webfragments.admin.menu.item.field.screens.name" state="disabled" weight="250">
+        <label key="admin.menu.issuefields.screens"/>
+        <link linkId="field_screens">/secure/admin/ViewFieldScreens.jspa</link>
+    </web-item>
+
+    <web-item key="field_screen_scheme_std" name="Field Screen Scheme Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.field.screen.scheme.std.name" state="disabled" weight="260">
+        <label key="admin.menu.issuefields.screen.scheme"/>
+        <link linkId="field_screen_scheme_std">/secure/admin/ConfigureFieldScreenScheme.jspa</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.ProfessionalOrEnterpriseJiraLicenseCondition"
+                   invert="true"/>
+    </web-item>
+
+    <web-item key="field_screen_scheme" name="Field Screen Scheme Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.field.screen.scheme.name" state="disabled" weight="270">
+        <label key="admin.menu.issuefields.screen.schemes"/>
+        <link linkId="field_screen_scheme">/secure/admin/ViewFieldScreenSchemes.jspa</link>
+        <condition
+                class="com.atlassian.jira.plugin.webfragment.conditions.ProfessionalOrEnterpriseJiraLicenseCondition"/>
+    </web-item>
+
+    <web-item key="issue_type_screen_scheme" name="Issue Type Screen Scheme Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.issue.type.screen.scheme.name" state="disabled" weight="280">
+        <label key="admin.menu.issuefields.issue.type.screen.schemes"/>
+        <link linkId="issue_type_screen_scheme">/secure/admin/ViewIssueTypeScreenSchemes.jspa</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.EnterpriseJiraLicenseCondition"/>
+    </web-item>
+
+    <web-item key="issue_types" name="Issue Types Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.issue.types.name" state="disabled" weight="290">
+        <label key="admin.menu.issuesettings.issue.types"/>
+        <link linkId="issue_types">/secure/admin/ViewIssueTypes.jspa</link>
+    </web-item>
+
+    <web-item key="priorities" name="Priorities Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.priorities.name" state="disabled" weight="300">
+        <label key="admin.menu.issuesettings.priorities"/>
+        <link linkId="priorities">/secure/admin/ViewPriorities.jspa</link>
+    </web-item>
+
+    <web-item key="resolutions" name="Resolutions Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.resolutions.name" state="disabled" weight="310">
+        <label key="admin.menu.issuesettings.resolutions"/>
+        <link linkId="resolutions">/secure/admin/ViewResolutions.jspa</link>
+    </web-item>
+
+    <web-item key="statuses" name="Statuses Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.statuses.name" state="disabled" weight="320">
+        <label key="admin.menu.issuesettings.statuses"/>
+        <link linkId="statuses">/secure/admin/ViewStatuses.jspa</link>
+    </web-item>
+
+    <web-item key="backup_data" name="Backup Data Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.backup.data.name" state="disabled" weight="330">
+        <label key="admin.menu.importexport.backup.data.to.xml"/>
+        <link linkId="backup_data">/secure/admin/XmlBackup!default.jspa</link>
+    </web-item>
+
+    <web-item key="restore_data" name="Restore Data Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.restore.data.name" state="disabled" weight="340">
+        <label key="admin.menu.importexport.restore.data.from.xml"/>
+        <link linkId="restore_data">/secure/admin/XmlRestore!default.jspa</link>
+    </web-item>
+
+    <web-item key="external_import" name="External Import Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.external.import.name" state="disabled" weight="350">
+        <label key="admin.menu.importexport.external.system.import"/>
+        <link linkId="external_import">/secure/admin/views/ExternalImport.jspa</link>
+    </web-item>
+
+    <web-item key="project_import" name="Project Import Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.project.import.name" state="disabled" weight="360">
+        <label key="admin.menu.importexport.project.import"/>
+        <link linkId="project_import">/secure/admin/ProjectImportSelectBackup!default.jspa</link>
+    </web-item>
+
+    <web-item key="jelly_runner" name="Jelly Runner Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.jelly.runner.name" state="disabled" weight="370">
+        <label key="admin.menu.optionsandsettings.jelly.runner"/>
+        <link linkId="jelly_runner">/secure/admin/util/JellyRunner!default.jspa</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserIsSysAdminCondition"/>
+    </web-item>
+
+    <web-item key="send_email" name="Send Email Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.send.email.name" state="disabled" weight="380">
+        <label key="admin.menu.optionsandsettings.send.email"/>
+        <link linkId="send_email">/secure/admin/jira/SendBulkMail!default.jspa</link>
+    </web-item>
+
+    <web-item key="edit_announcement" name="Edit Announcement Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.edit.announcement.name" state="disabled" weight="390">
+        <label key="admin.menu.optionsandsettings.announcement.banner"/>
+        <link linkId="edit_announcement">/secure/admin/EditAnnouncementBanner!default.jspa</link>
+    </web-item>
+
+    <web-item key="indexing" name="Indexing Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.indexing.name" state="disabled" weight="400">
+        <label key="admin.menu.system.indexing"/>
+        <link linkId="indexing">/secure/admin/jira/IndexAdmin.jspa</link>
+    </web-item>
+
+    <web-item key="issue_caching" name="Issue Caching Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.issue.caching.name" state="disabled" weight="410">
+        <label key="admin.menu.system.issue.caching"/>
+        <link linkId="issue_caching">/secure/admin/ViewCacheConfig.jspa</link>
+        <condition class="com.atlassian.plugin.web.conditions.NeverDisplayCondition"/>
+    </web-item>
+
+    <web-item key="integrity_checker" name="Integrity Checker Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.integrity.checker.name" state="disabled" weight="420">
+        <label key="admin.menu.system.integrity.checker"/>
+        <link linkId="integrity_checker">/secure/admin/jira/IntegrityChecker!default.jspa</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserIsSysAdminCondition"/>
+    </web-item>
+
+    <web-item key="ldap" name="LDAP Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.ldap.name" state="disabled" weight="430">
+        <label key="admin.menu.system.ldap"/>
+        <link linkId="ldap">/secure/admin/jira/LDAPConfigurer!default.jspa</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.EnterpriseJiraLicenseCondition"/>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserIsSysAdminCondition"/>
+    </web-item>
+
+    <web-item key="license_details" name="License Details Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.license.details.name" state="enabled" weight="440">
+        <label key="admin.menu.system.license.details"/>
+        <link linkId="license_details">/secure/admin/jira/ViewLicense!default.jspa</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserIsSysAdminCondition"/>
+    </web-item>
+
+    <web-item key="listeners" name="Listeners Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.listeners.name" state="disabled" weight="450">
+        <label key="admin.menu.system.listeners"/>
+        <link linkId="listeners">/secure/admin/jira/ViewListeners!default.jspa</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserIsSysAdminCondition"/>
+    </web-item>
+
+    <web-item key="logging_profiling" name="Logging Profiling Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.logging.profiling.name" state="disabled" weight="460">
+        <label key="admin.menu.system.logging.and.profiling"/>
+        <link linkId="logging_profiling">/secure/admin/jira/ViewLogging.jspa</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserIsSysAdminCondition"/>
+    </web-item>
+
+    <web-item key="mail_queue" name="Mail Queue Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.mail.queue.name" state="disabled" weight="470">
+        <label key="admin.menu.system.mail.queue"/>
+        <link linkId="mail_queue">/secure/admin/jira/MailQueueAdmin.jspa</link>
+    </web-item>
+
+    <web-item key="plugins" name="Plugins Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.plugins.name" state="enabled" weight="480">
+        <label key="admin.menu.system.plugins"/>
+        <link linkId="plugins">/secure/admin/jira/ViewPlugins!default.jspa</link>
+    </web-item>
+
+    <web-item key="scheduler_details" name="Scheduler Details Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.scheduler.details.name" state="disabled" weight="490">
+        <label key="admin.menu.system.scheduler.details"/>
+        <link linkId="scheduler_details">/secure/admin/jira/SchedulerAdmin.jspa</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserIsSysAdminCondition"/>
+    </web-item>
+
+    <web-item key="services" name="Services Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.services.name" state="disabled" weight="500">
+        <label key="admin.menu.system.services"/>
+        <link linkId="services">/secure/admin/jira/ViewServices!default.jspa</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserIsSysAdminCondition"/>
+    </web-item>
+
+    <web-item key="system_info" name="System Info Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.system.info.name" state="enabled" weight="510">
+        <label key="admin.menu.system.system.info"/>
+        <link linkId="system_info">/secure/admin/jira/ViewSystemInfo.jspa</link>
+    </web-item>
+
+    <web-item key="support_request" name="Support Request Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.support.request.name" state="enabled" weight="520">
+        <label key="admin.menu.system.support.request"/>
+        <link linkId="support_request">/secure/admin/jira/JiraSupportRequest!default.jspa</link>
+    </web-item>
+
+    <web-item key="trusted_apps" name="Trusted Applications Link" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.trusted.apps.name" state="disabled" weight="530">
+        <label key="admin.menu.system.trusted.apps"/>
+        <link linkId="trusted_apps">/secure/admin/trustedapps/ViewTrustedApplications.jspa</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserIsSysAdminCondition"/>
+    </web-item>
+
+    <web-item key="oauth_consumers" name="OAuth Consumers" section="admin_link/tasks"
+              i18n-name-key="webfragments.admin.menu.item.oauth.consumers.name" state="disabled" weight="540">
+        <label key="admin.menu.system.oauth.consumers"/>
+        <link linkId="oauth_consumers">/plugins/servlet/oauth/consumers/list</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserIsSysAdminCondition"/>
+    </web-item>
+
+    <web-section key="admin_history_main" name="Admin dropdown history Section" location="admin_link"
+                 i18n-name-key="webfragments.navigation.bar.admin.dropdown.history" system="true" weight="110">
+        <label key="menu.admin.recent"/>
+        <tooltip key="menu.admin.recent.desc"/>
+    </web-section>
+
+    <simple-link-factory key="admin_drop_history-factory" name="Admin History Link Factory"
+                         section="admin_link/admin_history_main"
+                         i18n-name-key="webfragments.navigation.bar.admin.history.link.factory" system="true"
+                         weight="20" lazy="true"
+                         class="com.atlassian.jira.admin.AdminHistoryLinkFactory"/>
+
+    <web-section key="admin_main_instance" name="Administration Dropdown Section" location="admin_link"
+                 i18n-name-key="webfragments.navigation.bar.admin.item.instance" system="true" weight="200"/>
+
+    <web-item key="admin_main_instance_link" name="Administration Dropdown Link"
+              section="admin_link/admin_main_instance" i18n-name-key="webfragments.navigation.bar.admin.item.instance"
+              system="true" weight="10">
+        <label key="menu.admin.instance"/>
+        <tooltip key="menu.admin.header.title"/>
+        <link linkId="admin_drop_link">/secure/project/ViewProjects.jspa</link>
+    </web-item>
+
+
+    <!-- All the dashboard Tools links -->
+    <web-item key="gadgets.dashboard.menu.copy" section="gadgets.dashboard.tools.menu" weight="10">
+        <label key="portal.copypage"/>
+        <link linkId="copy_dashboard">/secure/AddPortalPage!default.jspa?clonePageId=$dashboardId&amp;returnUrl=/secure/Dashboard.jspa</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.ShowDashboardToolsMenuCondition"/>
+    </web-item>
+
+    <web-item key="gadgets.dashboard.menu.edit" section="gadgets.dashboard.tools.menu" weight="20">
+        <label key="portal.editpage"/>
+        <link linkId="edit_dashboard">/secure/EditPortalPage!default.jspa?pageId=$dashboardId&amp;returnUrl=/secure/Dashboard.jspa</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.ShowDashboardToolsMenuCondition"/>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.IsDashboardOwnerCondition"/>
+    </web-item>
+
+    <web-item key="gadgets.dashboard.menu.share" section="gadgets.dashboard.tools.menu" weight="30">
+        <label key="portal.sharepage"/>
+        <link linkId="share_dashboard">/secure/EditPortalPage!default.jspa?pageId=$dashboardId&amp;returnUrl=/secure/Dashboard.jspa</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.ShowDashboardToolsMenuCondition"/>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.IsDashboardOwnerCondition"/>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.CanCreateSharedObjectsCondition"/>
+    </web-item>
+
+    <web-item key="gadgets.dashboard.menu.delete" section="gadgets.dashboard.tools.menu" weight="40">
+        <label key="portal.deletepage"/>
+        <link linkId="delete_dashboard">/secure/DeletePortalPage!default.jspa?pageId=$dashboardId&amp;returnUrl=/secure/Dashboard.jspa</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.ShowDashboardToolsMenuCondition"/>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.IsDashboardOwnerCondition"/>
+    </web-item>
+
+    <web-item key="gadgets.dashboard.menu.manage" section="gadgets.dashboard.tools.menu" weight="50">
+        <label key="portals.find"/>
+        <styleClass>groupmarker</styleClass>
+        <link linkId="find">/secure/ConfigurePortalPages!default.jspa?returnUrl=/secure/Dashboard.jspa&amp;view=search
+        </link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.ShowDashboardToolsMenuCondition"/>
+    </web-item>
+
+    <web-item key="gadgets.dashboard.menu.create" section="gadgets.dashboard.tools.menu" weight="60">
+        <label key="portal.createpage"/>
+        <styleClass>groupmarker</styleClass>
+        <link linkId="create_dashboard">/secure/AddPortalPage!default.jspa?returnUrl=/secure/Dashboard.jspa</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.ShowDashboardToolsMenuCondition"/>
+    </web-item>
+
+
+</atlassian-plugin>

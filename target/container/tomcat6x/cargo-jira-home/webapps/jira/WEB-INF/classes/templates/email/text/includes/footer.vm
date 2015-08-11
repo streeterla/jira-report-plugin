@@ -1,0 +1,8 @@
+-- 
+$i18n.getText("template.footer.text")
+-
+$i18n.getText("template.footer.text.incorrect", "${baseurl}/secure/Administrators.jspa")
+-
+$i18n.getText("template.footer.text.info")
+
+        

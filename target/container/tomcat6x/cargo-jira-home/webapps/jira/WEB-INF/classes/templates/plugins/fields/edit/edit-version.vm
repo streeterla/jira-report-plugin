@@ -1,0 +1,47 @@
+#if ($multiple || (!$multiple && $archivedVersions.empty))
+#controlHeader ($action $customField.id $customField.name $fieldLayoutItem.required $displayParameters.noHeader)
+#if ($value)
+#set ($selectedValues = $value)
+#end
+<select name="$customField.id" id="$customField.id"
+        #if ($multiple) multiple size="6" #end
+>
+    <option value="-1" #if (!$selectedValues || $selectedValues.empty || $selectedValues.contains("-1")) selected #end>$i18n.getText('common.words.unknown')</option>
+    #if ($releasedVersion && !$releasedVersion.empty)
+        <optgroup label="$i18n.getText('common.filters.releasedversions')">
+            #foreach ($option in $releasedVersion)
+                <option value="$option.id"
+                        #if ($selectedValues && $selectedValues.contains($option.id.toString()))selected#end
+                        >
+                    $option.name
+                </option>
+            #end
+        </optgroup>
+    #end
+    #if ($unreleasedVersion && !$unreleasedVersion.empty)
+        <optgroup label="$i18n.getText('common.filters.unreleasedversions')">
+            #foreach ($option in $unreleasedVersion)
+                <option value="$option.id"
+                        #if ($selectedValues && $selectedValues.contains($option.id.toString()))selected#end
+                        >
+                    $option.name
+                </option>
+            #end
+        </optgroup>
+    #end
+</select>
+
+#controlFooter ($action $fieldLayoutItem.fieldDescription $displayParameters.noHeader)
+#end
+
+
+#if ($archivedVersions && !$archivedVersions.empty)
+    #controlHeader ($action "" "$customField.name (${i18n.getText('admin.common.words.archived')})" false false)
+
+    #foreach ($version in $archivedVersions)
+        <a href="$req.getContextPath()/secure/IssueNavigator.jspa?reset=true&mode=hide&sorter/order=ASC&sorter/field=priority&pid=$issue.project.getLong('id')&$customField.id=$version.id">$textutils.htmlEncode($version.name)</a>#comma($archivedVersions)
+        <input type="hidden" name="$customField.id" value="$version.id" />
+    #end
+
+    #controlFooter ($action "" false)
+#end

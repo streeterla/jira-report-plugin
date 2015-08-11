@@ -1,0 +1,65 @@
+## hCard microformat
+<div class="vcard">
+<table id="full_profile" cellpadding="3" cellspacing="0" border="0">
+    <tr>
+        <td valign=top>
+            <b>$i18n.getText('common.words.username'):</b><br/>
+            $textutils.htmlEncode($username)
+        </td>
+    </tr>
+    <tr>
+        <td valign=top>
+            <b>$i18n.getText('common.words.fullname'):</b><br/>
+            <span class="fn">$textutils.htmlEncode($user.fullName)</span>## hCard:fn
+        </td>
+    </tr>
+    #if($action.isEmailVisible($user))
+    <tr>
+        <td valign=top>
+            <b>$i18n.getText('common.words.email'):</b><br/>
+            <span class="email">$action.getDisplayEmail($user)</span>## hCard:email
+        </td>
+    </tr>
+    #end
+
+    #set($userProperties = $action.getUserProperties($user))
+    #if(!$userProperties.isEmpty())
+    <tr>
+        <td valign="top">
+        <b>$i18n.getText('user.properties'):</b><br />
+        #foreach($userProperty in $userProperties.keySet())
+            <img src="$baseurl/images/icons/bullet_blue.gif" height="8" width="8" border="0" align="absmiddle" alt="">
+            $userProperty : $textutils.plainTextToHtml($userProperties.get($userProperty)) <br/>
+        #end
+        </td>
+    </tr>
+    #end
+
+    #if($user.groups && $user.groups.size() > 0)
+    <tr>
+        <td valign=top>
+            <b>$i18n.getText('common.words.groups'):</b><br>
+            #foreach($group in $user.groups)
+                #if($action.hasViewGroupPermission($group))
+                    <img src="$baseurl/images/icons/bullet_blue.gif" height="8" width="8" border="0" align="absmiddle" alt="">
+                    $textutils.htmlEncode($group)<br/>
+                #end
+            #end
+        </td>
+    </tr>
+    #end
+</table>
+</div>
+<p/>
+
+<table cellpadding="3" cellspacing="0" border="0" width="200">
+    <tr><td class="lhc-h">
+        <b>$i18n.getText('common.words.operations')</b>
+    </td></tr>
+</table>
+
+
+<table  id="full_profile_ops" cellpadding="3" cellspacing="0" border="0">
+    $action.getUserLinks($user, "templates/plugins/webfragments/system-user-profile-links-operations.vm")
+</table>
+<br/>

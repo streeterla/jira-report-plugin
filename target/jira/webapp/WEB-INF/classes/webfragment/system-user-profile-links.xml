@@ -1,0 +1,71 @@
+<!--
+  All linkId atributes of link elements must not contain spaces!
+  Reason: linkIds are used for window names for pop-ups. See JRA-12387 for more details.
+-->
+<atlassian-plugin name='User Profile Links' key='jira.webfragments.user.profile.links'
+                  i18n-name-key="webfragments.user.profile.links.plugin.name" system='true'>
+    <plugin-info>
+        <description key="webfragments.user.navigation.bar.plugin.desc">This library includes the web fragments for the
+            left hand user profile links. This should not be disabled
+        </description>
+        <vendor name="Atlassian" url="http://www.atlassian.com"/>
+        <application-version min="3.12" max="3.12"/>
+        <version>1.0</version>
+    </plugin-info>
+
+    <web-item key="user_profile_administer_user" name="Administer User" section="system.user.profile.links/operations"
+              i18n-name-key="webfragments.user.profile.links.item.admin.user.name" system="true" weight="10">
+        <label key="common.concepts.administer.user"/>
+        <tooltip key=""/>
+        <link linkId="admin_user">/secure/admin/user/ViewUser.jspa?name=${profileUser.name}</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserIsAdminCondition"/>
+    </web-item>
+
+    <web-item key="user_profile_view_project_roles" name="View User Project Roles"
+              section="system.user.profile.links/operations"
+              i18n-name-key="webfragments.user.profile.links.item.view.project.roles.name" system="true" weight="20">
+        <label key="admin.viewuser.view.project.roles"/>
+        <tooltip key=""/>
+        <link linkId="view_project_roles">/secure/admin/ViewUserProjectRoles!default.jspa?name=${profileUser.name}</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserIsAdminCondition"/>
+    </web-item>
+
+    <web-item key="user_profile_dashboard_config" name="Dashboard Configuration"
+              section="system.user.profile.links/operations"
+              i18n-name-key="webfragments.user.profile.links.item.dashboard.config" system="true" weight="40">
+        <label key="configureportalpages.title"/>
+        <tooltip key=""/>
+        <link linkId="view_dashboard_config">/secure/ConfigurePortalPages!default.jspa</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserLoggedInCondition"/>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserIsTheLoggedInUserCondition"/>
+    </web-item>
+
+    <web-item key="user_profile_manage_filters" name="Manage Filters" section="system.user.profile.links/operations"
+              i18n-name-key="webfragments.user.profile.links.item.manage.filters" system="true" weight="50">
+        <label key="common.concepts.managefilters"/>
+        <tooltip key=""/>
+        <link linkId="view_manage_filters">/secure/ManageFilters.jspa</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserLoggedInCondition"/>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserIsTheLoggedInUserCondition"/>
+    </web-item>
+
+    <web-item key="user_profile_nav_columns" name="Navigator Columns" section="system.user.profile.links/operations"
+              i18n-name-key="webfragments.user.profile.links.item.nav.columns" system="true" weight="60">
+        <label key="common.concepts.navigatorColumns"/>
+        <tooltip key=""/>
+        <link linkId="view_nav_columns">/secure/ViewUserIssueColumns!default.jspa</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserLoggedInCondition"/>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserIsTheLoggedInUserCondition"/>
+    </web-item>
+
+
+    <web-item key="user_profile_oauth_access_tokens" name="User Oauth Access Tokens" section="system.user.profile.links/operations"
+              i18n-name-key="webfragments.user.profile.links.item.oauth.access.tokens" system="true" weight="110">
+        <label key="user.oauth.access.tokens"/>
+        <tooltip key=""/>
+        <link linkId="oauth_access_tokens">/plugins/servlet/oauth/users/access-tokens</link>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserLoggedInCondition"/>
+        <condition class="com.atlassian.jira.plugin.webfragment.conditions.UserIsTheLoggedInUserCondition"/>
+    </web-item>
+
+</atlassian-plugin>

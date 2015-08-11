@@ -1,0 +1,20 @@
+## Show user picker
+#searcherEditHeader ($customField.id $customField.name)
+#userPicker ($action "filterform" $customField.id $value false $null "" $canPerformAjaxSearch $ajaxLimit)
+#searcherEditFooter ($customField.id $customField.description)
+
+## Show group picker
+#searcherEditHeader ("${customField.id}:group" $customField.name)
+
+#set ($selectedValue = $customFieldParams.getFirstValueForKey('group'))
+
+<select name="${customField.id}:group">
+    <option value="">Any Group</option>
+    #foreach ($group in $searcher.groups)
+        <option value="$group.name"
+            #if ($selectedValue && $selectedValue == $group.name)selected#end
+            >$group.name</option>
+    #end
+</select>
+
+#searcherEditFooter ($customField.id $customField.description)

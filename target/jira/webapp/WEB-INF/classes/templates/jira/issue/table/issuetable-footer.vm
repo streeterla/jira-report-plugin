@@ -1,0 +1,28 @@
+## There are columns selected
+    #if ($layout.columns.empty == false)
+                #if ($columnTotals && !$columnTotals.isEmpty())
+                    #totals ($columnTotals $layout.columns)
+                #end
+
+            </table>
+        #if ($layout.showExteriorTable)
+            </td></tr>
+            </table>
+        #end
+
+        ## paginate the issues (ie show links to page 1, page 2 etc).  This is used if there are more issues than can be shown on one page
+        #pages ($pager)
+
+    #else
+    <table bgcolor="#bbbbbb" border="0" cellpadding="0" cellspacing="0">
+        <tr><td>
+            <table border="0" cellpadding="3" cellspacing="1" width="100%">
+                <tr><td bgcolor="#ffffff">
+                    ## Issues to display, but no columns selected
+                    $i18n.getText('navigator.results.nocolumns')<br>
+                    <a href='${baseurl}/secure/ViewUserIssueColumns!default.jspa'><b>$i18n.getText('navigator.results.configurenavigator')</b></a>
+                </td></tr>
+            </table>
+        </td></tr>
+    </table>
+    #end

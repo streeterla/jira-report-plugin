@@ -1,0 +1,171 @@
+
+#macro (alternateRowColors $issueCount)
+    #if ($issueCount % 2 == 0)
+        class="rowAlternate"
+    #else
+        class="rowNormal"
+    #end
+#end
+
+
+#macro (header $columns $sortingenabled $firstsort $showheaderdesc $showControlRow $actionColumn)
+
+    <tr class="rowHeader">
+
+    #foreach ($column in $columns)
+        #set ($field = $column.navigableField)
+        #set ($heading = $textutils.htmlEncode($i18n.getText($column.columnHeadingKey)))
+        #set ($sortbytext = "${i18n.getText('navigator.sort.by')} ${heading}")
+
+        #if ($req)
+            #set ($reqURI = $req.requestURI)
+        #else
+            #set ($reqURI = "")
+        #end
+
+        #if ($column.headerHtml)
+            <td class="colHeaderLink" width="1%" nowrap>
+                $column.headerHtml
+            </td>
+        #else
+            #if ($sortingenabled == true && $field.sortComparatorSource)
+                #if ($firstsort && $column.isAliasForField($authcontext.user, $firstsort.field))
+                    #set ($sortorder = $column.getSafeSortOrder($firstsort.order))
+
+                    #if ($sortorder == 'ASC')
+                        <td class="colHeaderOver sortable" width="1%" rel="${field.id}:DESC" nowrap onClick="window.document.location='${reqURI}?sorter/field=${field.id}&sorter/order=DESC'">
+                            <span title="$sortbytext"><b>$heading</b></span>
+                            ## JRA-14000 This is intentionally using the old arrow, the blue arrows look bad here
+                            <img class="sortArrow sortable" src="$baseurl/images/icons/up.gif" title="$i18n.getText('navigator.ascending.order')" /></td>
+                    #else
+                        <td class="colHeaderOver sortable" width="1%" rel="${field.id}:ASC" nowrap onClick="window.document.location='${reqURI}?sorter/field=${field.id}&sorter/order=ASC'">
+                            <span title="$sortbytext"><b>$heading</b></span>
+                            ## JRA-14000 This is intentionally using the old arrow, the blue arrows look bad here
+                            <img class="sortArrow" src="$baseurl/images/icons/down.gif" title="$i18n.getText('navigator.descending.order')" /></td>
+                    #end
+                #else
+                    <td class="colHeaderLink sortable" width="1%" rel="${field.id}:$field.defaultSortOrder" onMouseOver="this.className='colHeaderOver'" onMouseOut="this.className='colHeaderLink'" nowrap
+                        onClick="window.document.location='${reqURI}?sorter/field=${field.id}&sorter/order=$field.defaultSortOrder'">
+                        <span title="$sortbytext"><b>$heading</b></span></td>
+                #end
+            #else
+                <td class="colHeaderLink" width="1%" valign="top" nowrap>
+                    <b>$heading</b>
+                    #if ($showheaderdesc && $field.description && $field.description.length() > 0)
+                        <br/><font size="1">($field.description)</font>
+                    #end
+                </td>
+            #end
+        #end
+    #end
+    #if ($actionColumn)
+        <td class="colHeaderLink" width="1%" valign="top" nowrap><b>$i18n.getText($actionColumn.columnHeadingKey)</b></td>
+    #end
+    </tr>
+
+
+##  todo - this could be refactored out into a 'header provider'
+    #if ($showControlRow)
+        <tr class="rowAlternate">
+        #foreach ($column in $columns)
+            #set ($field = $column.navigableField)
+            #set ($normalisedCount = $velocityCount - 1)
+            <td align="center" width="1%" nowrap >
+
+                #if ($velocityCount != 1)
+                    #if ($layout.filterId)
+                        <a href="${req.contextPath}/secure/${layout.actionUrl}?filterId=${layout.filterId}&operation=3&fieldPosition=${normalisedCount}">
+                    #else
+                        <a href="${req.contextPath}/secure/${layout.actionUrl}?operation=3&fieldPosition=${normalisedCount}">
+                    #end
+                        <img border="0" src="${req.contextPath}/images/icons/prev.gif" width="16" height="16" alt="moveleft"
+                        title="$i18n.getText('issue.columns.reorder.moveleft', $textutils.htmlEncode($i18n.getText($field.nameKey)))"></a>
+                #end
+
+                #if ($layout.filterId)
+                    <a href="${req.contextPath}/secure/${layout.actionUrl}?filterId=${layout.filterId}&operation=2&fieldPosition=${normalisedCount}">
+                #else
+                    <a href="${req.contextPath}/secure/${layout.actionUrl}?operation=2&fieldPosition=${normalisedCount}">
+                #end
+                    <img border="0" src="${req.contextPath}/images/icons/trash_16.gif" width="16" height="16" alt="remove"
+                        title="$i18n.getText('issue.columns.reorder.hidecolumn', $textutils.htmlEncode($i18n.getText($field.nameKey)))"></a>
+
+                #if ($velocityCount != $columns.size())
+                    #if ($layout.filterId)
+                        <a href="${req.contextPath}/secure/${layout.actionUrl}?filterId=${layout.filterId}&operation=4&fieldPosition=${normalisedCount}">
+                    #else
+                        <a href="${req.contextPath}/secure/${layout.actionUrl}?operation=4&fieldPosition=${normalisedCount}">
+                    #end
+                        <img border="0" src="${req.contextPath}/images/icons/next.gif" width="16" height="16" alt="moveright"
+                        title="$i18n.getText('issue.columns.reorder.moveright', $textutils.htmlEncode($i18n.getText($field.nameKey)))"></a>
+                #end
+            </td>
+        #end
+        #if ($actionColumn)
+            <td align="center" width="1%" nowrap>
+                <a href="${req.contextPath}/secure/${layout.actionUrl}?operation=9">
+                <img border="0" src="${req.contextPath}/images/icons/trash_16.gif" width="16" height="16" alt="remove"
+                        title="$i18n.getText('issue.actions.and.operations.hide')"></a>
+            </td>
+        #end
+        </tr>
+    #end
+#end
+
+## JRA-14581 The td thats flush to the left after the foreach is intentional. We dont want whitespace which is why all statements are bunched up
+#macro (issues $issue $issueCount $columns $alternateRowColors $celldisplayparams $actionColumn)
+    <tr id="issuerow${issue.getId()}" rel="${issue.getId()}" #if($alternateRowColors) #alternateRowColors($issueCount) #else bgcolor="#ffffff" #end >
+    #foreach ($column in $columns)
+<td class="nav $column.navigableField.columnCssClass">#set($cell = $column.getHtml($celldisplayparams, $issue))$cell</td>
+    #end
+    #if ($actionColumn)
+        <td class="nav $actionColumn.navigableField.columnCssClass">$actionColumn.getHtml($celldisplayparams, $issue)</td>    
+    #end
+    </tr>
+#end
+
+#macro (totals $columnTotals $columns)
+    <tr bgcolor="#f0f0f0">
+    #foreach ($column in $columns)
+        #if ($columnTotals.containsKey($column.navigableField.id))
+            <td class="nav $column.navigableField.columnCssClass">$columnTotals.get($column.navigableField.id)</td>
+        #else
+            <td></td>
+        #end
+    #end
+    </tr>
+#end
+
+#macro (pages $pager)
+    #if ($pager)
+        #if ($req)
+            #set ($reqURI = $req.requestURI)
+        #else
+            #set ($reqURI = "")
+        #end
+
+        <p class="pagination">
+        #if ($pager.start > 0)
+            <a href="${reqURI}?pager/start=${pager.previousStart}" rel="${pager.previousStart}">&lt&lt; $i18n.getText('common.forms.previous')</a>
+        #end
+
+        #set ($pages = $pager.getPages())
+        #if ($pages.size() > 1)
+            #foreach ($page in $pages)
+                #if ($page.currentPage == true)
+                    <strong>$page.pageNumber</strong>
+                #else
+                    <a href="${reqURI}?pager/start=${page.start}" id="page_${velocityCount}" rel="${page.start}">$page.pageNumber</a>
+                #end
+
+                #if ($velocityCount != $pages.size())  #end
+            #end
+        #end
+
+        #if ($pager.end < $pager.total)
+             <a href="${reqURI}?pager/start=${pager.nextStart}" rel="${pager.nextStart}">$i18n.getText('common.forms.next') &gt;&gt;</a>
+        #end
+        </p>
+     #end
+
+#end

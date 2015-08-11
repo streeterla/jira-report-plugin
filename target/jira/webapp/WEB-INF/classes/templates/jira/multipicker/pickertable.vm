@@ -1,0 +1,119 @@
+<script type="text/javascript" language=javascript>
+    function setCheckboxes()
+    {
+        var value = document.stopform.all.checked;
+        var numelements = document.stopform.elements.length;
+        var item;
+        for (var i=0 ; i<numelements ; i++)
+        {
+            item = document.stopform.elements[i];
+            item.checked = value;
+        }
+    }
+</script>
+
+<!-- large outside table -->
+#if ($canEdit)
+    <table class="typeA item-picker" cellpadding="0" cellspacing="0" border="0" width="100%">
+#else
+    <table class="typeA item-picker" cellpadding="0" cellspacing="0" border="0" width="50%">
+#end
+
+<tr>
+    #if ($canEdit)
+    <td width="50%">
+        <!-- Add form -->
+        <div class="link-wrap">
+        <form name="startform" method="POST" action="$layout.addAction">
+            <input type="hidden" name="id" value="$id" />
+            <input type="hidden" name="atl_token" value="$!atl_token" />
+            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>$i18n.getText($layout.addHeadingKey)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td nowrap>$i18n.getText($layout.addDescKey2):<br>
+                         #genericMultiPicker($canPick $layout.pickerName 'startform' $valuesToAdd '30' '3' $layout.pickerId $layout.pickerAction $layout.pickerTitle true $windowName $canPerformAjaxSearch $ajaxLimit)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="submit">
+                                <input type="submit" name="add" value="$i18n.getText($layout.addButtonKey)">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+        </div>
+    </td>
+    #end
+
+
+    <td width="50%">
+    <!-- Current list -->
+    ## only show watchers table if they exist
+    #if ($currentSelections && $currentSelections.empty == false)
+        <form name="stopform" method="POST" action="$layout.removeAction">
+        <table cellpadding="0" cellspacing="0" border="0" width="100%">
+            <thead>
+                <tr>
+                    <th class="chbx-wrap">
+                        #if ($canEdit)
+                            <input type="checkbox" name="all" onClick="setCheckboxes()">
+                        #end
+                    </th>
+                    <th>$i18n.getText($layout.currentHeadingKey)</th>
+                </tr>
+            </thead>
+            <tbody>
+            #foreach ($selection in $currentSelections)
+
+                <tr #if ($velocityCount % 2 == 0) class="alt" #end>
+                    <td class="chbx-wrap">
+                        #if ($canEdit)
+                            <input type="checkbox" name="${layout.removePrefix}$textutils.htmlEncode(${selection.name})" value=".">
+                        #end
+                    </td>
+                    <td>
+                    #if ($layout.isUserLayoutBean())
+                        #if ($selection.real)
+                        $userformat.formatUser($selection.name, 'profileLink', "watcher_link")
+                        <span class="login-name"> ($textutils.htmlEncode(${selection.name}))</span>
+                        #else
+                        $textutils.htmlEncode(${selection.name})
+                        #end
+                    #else
+                        #if ($canEdit)
+                            <a id="group_link_$textutils.htmlEncode(${selection.name})" href="$req.contextPath/secure/admin/user/ViewGroup.jspa?name=$urlcodec.encode($selection.name)">$textutils.htmlEncode($selection.name)</a>
+                        #else
+                            $textutils.htmlEncode(${selection.name})
+                        #end
+                    #end
+                    </td>
+                </tr>
+                #end
+                #if ($canEdit)
+                <tr>
+                    <td colspan="2">
+                        <div class="submit">
+                            <input type="submit" name="remove" value="${i18n.getText($layout.removeButtonKey)}">
+                        </div>
+                    </td>
+                </tr>
+                #end
+            </tbody>
+        </table>
+        <input type="hidden" name="id" value="$id" />
+        <input type="hidden" name="atl_token" value="$!atl_token" />
+        </form>
+    #else
+        <div class="notify info">$i18n.getText($layout.noKey)</div>
+    #end
+    </td>
+</tr>
+</table>

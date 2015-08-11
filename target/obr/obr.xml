@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<repository lastmodified="20110413115027.963" name="MyRepository">
+<resource id="Untitled--1810275566/0.0.0" presentationname="Unnamed - doesntmatter:doesntmatter:jar:doesntmatter" symbolicname="Untitled--1810275566" uri="jira-report-plugin-1.0.jar" version="0.0.0">
+<description/>
+<size>9102</size>
+<category id="doesntmatter"/>
+<capability name="bundle">
+<p n="manifestversion" v="2"/>
+<p n="presentationname" v="Unnamed - doesntmatter:doesntmatter:jar:doesntmatter"/>
+<p n="symbolicname" v="Untitled--1810275566"/>
+<p n="version" t="version" v="0.0.0"/>
+</capability>
+</resource>
+<resource id="Untitled--46295972/0.0.0" presentationname="Unnamed - doesntmatter:doesntmatter:jar:doesntmatter" symbolicname="Untitled--46295972" uri="jira-report-plugin-1.0.jar" version="0.0.0">
+<description/>
+<size>13008</size>
+<category id="doesntmatter"/>
+<capability name="bundle">
+<p n="manifestversion" v="2"/>
+<p n="presentationname" v="Unnamed - doesntmatter:doesntmatter:jar:doesntmatter"/>
+<p n="symbolicname" v="Untitled--46295972"/>
+<p n="version" t="version" v="0.0.0"/>
+</capability>
+</resource>
+</repository>

@@ -1,0 +1,13 @@
+#searcherEditHeader ($customField.id $customField.name)
+
+<select name="$customField.id" id="$customField.id" class="standardInputField" >
+    <option value="-1">$i18n.getText("common.words.none")</option>
+    #foreach ($option in $configs.options)
+        <option value="$option.id"
+            #if ($value && $value.contains($option.id.toString()))selected#end>
+            $option.name
+        </option>
+    #end
+</select>
+
+#searcherEditFooter ($customField.id $customField.description)

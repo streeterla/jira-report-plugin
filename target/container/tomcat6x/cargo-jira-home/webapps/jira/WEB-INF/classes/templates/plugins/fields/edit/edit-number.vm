@@ -1,0 +1,9 @@
+#controlHeader ($action $customField.id $customField.name $fieldLayoutItem.required $displayParameters.noHeader)
+
+<input type="text"
+       name="$customField.id"
+       id="$customField.id"
+       value="$textutils.htmlEncode($!value)"
+/>
+    
+#controlFooter ($action $fieldLayoutItem.fieldDescription $displayParameters.noHeader)

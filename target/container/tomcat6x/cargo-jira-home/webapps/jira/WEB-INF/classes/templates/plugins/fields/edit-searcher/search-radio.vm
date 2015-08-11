@@ -1,0 +1,17 @@
+#searcherEditHeader ($customField.id $customField.name)
+
+#if ($value)
+    #set ($selectedValues = $value)
+#end
+
+<input type="radio" name="$customField.id" id="${customField.id}_none"
+       value="-1"#if (!$selectedValues || $selectedValues.empty || $selectedValues.contains("-1")) checked="checked"#end />
+<label for="${customField.id}_none">$i18n.getText("common.filters.any")</label> <br />
+#foreach ($option in $configs.options)
+<input type="radio" name="$customField.id" id="${customField.id}_$velocityCount" value="$option.value"
+            #if ($selectedValues && $selectedValues.equals($option.value))checked="checked"#end
+            > <label for="${customField.id}_$velocityCount">$option.value</label>
+<br>
+#end
+
+#searcherEditFooter ($customField.id $customField.description)

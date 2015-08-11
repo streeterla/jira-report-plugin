@@ -1,0 +1,27 @@
+<html>
+#set($role = $textutils.htmlEncode($action.projectRole.name))
+#if($action.projectId)
+    #set($retURL = "ViewProjectRoleActors.jspa?projectRoleId=${action.projectRoleId}&projectId=${action.projectId}")
+    #set($title = "$i18n.getText('admin.user.role.actor.action.title', [$role])")
+    #set($desc = "$i18n.getText('admin.user.role.actor.action.description', [${role}, $textutils.htmlEncode(${action.project.name})])")
+    #set($retURLText = $i18n.getText('admin.projectroles.returnlink'))
+#else
+    #set($retURL = "ViewDefaultProjectRoleActors.jspa?projectRoleId=${action.projectRoleId}")
+    #set($title = "$i18n.getText('admin.user.role.actor.default.action.title', [$role])")
+    #set($desc = "$i18n.getText('admin.user.role.actor.default.action.description', [${role}])")
+    #set($retURLText = "$i18n.getText('admin.group.role.actor.action.returnlink', [${role}])")
+#end
+<head>
+    <title>$title</title>
+    <!-- This needs to be here because in orion the decorator does not get applied because it things the request url
+         is that of this template and not the calling webwork action
+    -->
+    <meta name="decorator" content="admin">
+</head>
+<body>
+
+#jiraform("$title" "$desc" "$retURL" "&lt;&lt; $retURLText")
+
+$action.userPickerHtml
+</body>
+</html>

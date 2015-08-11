@@ -1,0 +1,20 @@
+#* @vtlvariable name="visibleProjects" type="java.util.List<org.ofbiz.core.entity.GenericValue>" *#
+#* @vtlvariable name="selectedProjects" type="java.util.List<java.lang.Long>" *#
+#*
+Project searcher section
+*#
+#if ($visibleProjects.isEmpty() == false)
+#searcherEditHeader ("pid" ${i18n.getText($searcherNameKey)})
+    <select name="pid" id="pid"  class="standardInputField" multiple="multiple" size="#minSelectSize ($visibleProjects 1 5)">
+        <option class="headerOption" value="-1" #if (!$selectedProjects || $selectedProjects.empty) selected="selected" #end>${i18n.getText('common.filters.allprojects')}</option>
+        #foreach ($option in $visibleProjects)
+            #set ($name = $textutils.htmlEncode($option.getString('name')))
+            #if ($selectedProjects && $option && $selectedProjects.contains($option.getString('id')))
+                <option title="$name" value="$option.getLong('id')" selected="selected">$name</option>
+            #else
+                <option title="$name" value="$option.getLong('id')">$name</option>
+            #end
+        #end
+    </select>
+#searcherEditFooter ("pid" '')
+#end

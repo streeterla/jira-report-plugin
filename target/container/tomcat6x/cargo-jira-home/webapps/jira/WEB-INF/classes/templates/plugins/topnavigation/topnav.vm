@@ -1,0 +1,49 @@
+<div id="header">
+    <div id="header-top">
+        <a id="logo" href="${baseurl}/secure/Dashboard.jspa">
+            #if ($jiraLogoIsPNG && $systemNavLayout.filterBasedPngOpacity)
+            <div style="cursor:pointer;cursor:pointer;height:${jiraLogoHeight}px;width:${jiraLogoWidth}px;filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='$jiraLogo', sizingMethod='scale')" alt="$textutils.htmlEncode($jiraTitle)"></div>
+            #else
+            <img class="logo" src="$jiraLogo" width="$jiraLogoWidth" height="$jiraLogoHeight" border="0" alt="$textutils.htmlEncode($jiraTitle)">
+            #end
+        </a>
+        #if ($hasAnyProjects)
+        <form id="quicksearch" action="${baseurl}/secure/QuickSearch.jspa" method="post">
+            <label for="quickSearchInput" title="$i18n.getText('alt.text.quicksearch.title')" class="overlabel">$i18n.getText('alt.text.quicksearch')</label>
+            <input id="quickSearchInput" class="quickSearchInput" type="text" size="25" title="$i18n.getText('alt.text.quicksearch.title')" name="searchString" accessKey="$i18n.getText('alt.text.quicksearch.accessKey')"  valign="absmiddle" />
+        </form>
+        #end
+        $utilTimerStack.push("Rendering User Navigation Bar")
+        $navWebFragment.getHtml("templates/plugins/webfragments/system-user-options.vm", "system.user.options", $jiraHelperNoProject, $userNavLayout)
+        $utilTimerStack.pop("Rendering User Navigation Bar")
+    </div>
+    <div id="header-bottom">
+        #if ($canCreateIssue)
+            <div id="createItem">
+                <a class="lnk ico-add" title="$i18n.getText('tooltip.createnewissue')" accesskey="$i18n.getText('alt.text.createnewissue.accessKey')" id="create_link" href="$baseurl/secure/CreateIssue!default.jspa" class="lnk aui-dd-parent">$i18n.getText('alt.text.createnewissue')</a>
+            </div>
+            <fieldset id="create_link_params" rel="createItem" class="hidden">
+                <input type="hidden" id="createItem_create" value="$i18n.getText('common.forms.create')">
+                <input type="hidden" id="createItem_create_desc" value="$i18n.getText('createissue.title')">
+                <input type="hidden" id="createItem_project" value="$i18n.getText('common.concepts.project')">
+                <input type="hidden" id="createItem_select_project" value="$i18n.getText('createissue.select.project')">
+                <input type="hidden" id="createItem_issuetype" value="$i18n.getText('issue.field.issuetype')">
+                <input type="hidden" id="createItem_select_type" value="$i18n.getText('createissue.select.type')">
+                <input type="hidden" id="createItem_cancel" value="$i18n.getText('common.forms.cancel')">
+                <input type="hidden" id="createItem_log_in" value="$i18n.getText('login.click')">
+                <input type="hidden" id="createItem_log_in_desc" value="$i18n.getText('createissue.not.logged.in')">
+                <input type="hidden" id="createItem_no_permission" value="$i18n.getText('createissue.no.perm')">
+                <input type="hidden" id="createItem_project_recent" value="$i18n.getText('menu.project.recent')">
+                <input type="hidden" id="createItem_project_all" value="$i18n.getText('menu.project.all')">
+                <input type="hidden" id="createItem_issuetype_invalid" value="$i18n.getText('editissue.error.issue.type.mismatch')">
+                <input type="hidden" id="createItem_issuetype_select" value="$i18n.getText('common.words.pleaseselect')">
+            </fieldset>
+        #end
+        <div id="menu">
+            $utilTimerStack.push("Rendering Top Navigation Bar")
+            $navWebFragment.getHtml("templates/plugins/webfragments/system-navigation-bar.vm", "system.top.navigation.bar", $jiraHelperWithProject, $systemNavLayout)
+            $utilTimerStack.pop("Rendering Top Navigation Bar")
+        </div>
+
+    </div>
+</div>

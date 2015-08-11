@@ -1,0 +1,11 @@
+#controlHeader ($action "$!{displayParameters.fieldNamePrefix}$field.id" $i18n.getText($field.nameKey) true $displayParameters.get('noHeader'))
+
+<select name="$!{displayParameters.fieldNamePrefix}pid" id="$!{displayParameters.fieldNamePrefix}$field.id">
+    #foreach ($pr in $projects)
+        <option value="$!pr.getLong('id')"
+        #if ($project && $pr && $project == $pr.getLong('id')) selected #end
+        >$textutils.htmlEncode($pr.getString('name'))</option>
+    #end
+</select>
+
+#controlFooter ($action "" $displayParameters.get('noHeader'))

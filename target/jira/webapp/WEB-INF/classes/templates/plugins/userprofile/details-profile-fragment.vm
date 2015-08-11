@@ -1,0 +1,57 @@
+<div class="mod-header">
+    #if($displayEdit && $displayEdit == true)
+    <ul class="ops">
+        <li><a id="edit_profile_lnk" class="icon icon-edit-sml" href="$baseurl/secure/EditProfile!default.jspa?username=${urlcodec.encode($user.name)}" title=""><span>$i18n.getText('common.words.edit')</span></a></li>
+    </ul>
+    #end
+    <h3>$i18n.getText('admin.common.words.details')</h3>
+</div>
+<div class="mod-content">
+    <div id="userdetails-notify" class="notify info" style="display:none">
+        $i18n.getText('editprofile.details.updated')
+    </div>
+    <ul class="item-details">
+        <li>
+            <dl>
+                <dt>$i18n.getText('common.words.username'):</dt>
+                <dd id="up-d-username">$textutils.htmlEncode($user.name)</dd>
+            </dl>
+            <dl>
+                <dt>$i18n.getText('common.words.fullname'):</dt>
+                <dd id="up-d-fullname" class="description">$textutils.htmlEncode($user.fullName)</dd>
+            </dl>
+            #if ($displayChangePassword)
+            <dl>
+                <dt>$i18n.getText('common.words.password'):</dt>
+                <dd id="up-d-change-password" class="description"><a id="view_change_password" class="trigger_lnk" href="$baseurl/secure/ChangePassword!default.jspa?username=${urlcodec.encode($user.name)}">$i18n.getText('common.concepts.changepassword')</a><span class="loading_lnk">$i18n.getText('common.concepts.loading')</span></dd>
+            </dl>
+            #end
+            #if ($email)
+            <dl>
+                <dt>$i18n.getText('common.words.email'):</dt>
+                <dd id="up-d-email" class="description">$email</dd>
+            </dl>
+            #end
+            #if(!$userProperties.isEmpty())
+            <dl>
+                <dt>$i18n.getText('user.properties'):</dt>
+                <dd class="description">
+                #foreach($userProperty in $userProperties.keySet())
+                    $userProperty: $textutils.plainTextToHtml($userProperties.get($userProperty))<br/>
+                #end
+                </dd>
+            </dl>
+            #end
+            #if($groups)
+            <dl>
+                <dt>$i18n.getText('common.words.groups'):</dt>
+                <dd class="description">
+                #foreach($group in $groups)
+                    $textutils.htmlEncode($group)<br/>
+                #end
+                </dd>
+            </dl>
+            #end
+        </li>
+    </ul>
+</div>

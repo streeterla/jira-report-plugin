@@ -1,0 +1,16 @@
+#controlHeader ($action $customField.id $customField.name $fieldLayoutItem.required $displayParameters.noHeader)
+
+#set ($groupString = "")
+#if ($value)
+    #foreach ($selectedValue in $value)
+        #if ($groupString == "")
+            #set ($groupString=$selectedValue)
+        #else
+            #set ($groupString="${groupString}, $selectedValue")
+        #end
+    #end
+#end
+
+#groupPicker ($action "jiraform" $customField.id $groupString $multiple $null "width: 30%;")
+
+#controlFooter ($action $fieldLayoutItem.fieldDescription $displayParameters.noHeader)

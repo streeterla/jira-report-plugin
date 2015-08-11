@@ -1,0 +1,3 @@
+#controlHeader ($action $customField.id $customField.name $fieldLayoutItem.required $displayParameters.noHeader)
+#userPicker ($action "jiraform" $customField.id $value false $null "width: 30%;" $canPerformAjaxSearch $ajaxLimit)
+#controlFooter ($action $fieldLayoutItem.fieldDescription $displayParameters.noHeader)

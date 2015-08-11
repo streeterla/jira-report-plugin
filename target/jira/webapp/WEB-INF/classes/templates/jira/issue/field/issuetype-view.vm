@@ -1,0 +1,11 @@
+#if ($issueTypeObject)
+#set ($iconurl = $issueTypeObject.getIconUrl())
+
+#if ($iconurl.startsWith('http://') || $iconurl.startsWith('https://'))
+    <img src="$iconurl" height="16" width="16" border="0" align="absmiddle" alt="$textutils.htmlEncode($issueTypeObject.getNameTranslation(), false)" title="$textutils.htmlEncode($issueTypeObject.getNameTranslation(), false) - $textutils.htmlEncode($issueTypeObject.getDescTranslation(), false)">
+#else
+    <img src="${req.getContextPath()}${iconurl}" height="16" width="16" border="0" align="absmiddle" alt="$textutils.htmlEncode($issueTypeObject.getNameTranslation(), false)" title="$textutils.htmlEncode($issueTypeObject.getNameTranslation(), false) - $textutils.htmlEncode($issueTypeObject.getDescTranslation(), false)">
+#end
+$textutils.htmlEncode($issueTypeObject.getNameTranslation(), false)
+#end
+

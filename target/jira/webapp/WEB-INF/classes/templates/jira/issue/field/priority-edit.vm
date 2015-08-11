@@ -1,0 +1,22 @@
+#controlHeader ($action $field.id $i18n.getText($field.nameKey) $fieldLayoutItem.required $displayParameters.get('noHeader'))
+
+<select name="$field.id" id="$field.id">
+    #if ($displayParameters.displayNone)
+        <option value="">$i18n.getText("common.words.none")</option>
+    #end
+    #foreach ($pr in $priorities)
+        #set ($iconurl = $pr.iconUrl)
+        #if ($iconurl.startsWith('http://') || $iconurl.startsWith('https://'))
+            #set ($iconurl = $pr.getIconUrl())
+        #else
+            #set ($iconurl = "${req.getContextPath()}${iconurl}")
+        #end
+        <option value="$!pr.getId()" class="imagebacked" style="background-image: url(${iconurl});"
+            #if ($priority && $pr.getId() && $priority == $pr.getId())selected#end
+            >$textutils.htmlEncode($pr.getNameTranslation())</option>
+    #end
+</select>
+
+#localHelp ('issue.field.priority' 'PriorityLevels')
+
+#controlFooter ($action $fieldLayoutItem.getFieldDescription() $displayParameters.get('noHeader'))

@@ -1,0 +1,70 @@
+.shareTrash {
+    padding-left: 0.5em;
+    vertical-align: text-bottom;
+}
+
+.shareIcon {
+    padding-right: 0.5em;
+    vertical-align: text-bottom;
+}
+
+.pseudoButton {
+    margin-left: 0.5em;
+}
+
+.shareItem {
+    padding-bottom: 5px;
+    vertical-align: middle;
+}
+
+.shareItem div {
+    display: inline;
+    padding: 3px;
+}
+
+table.shareList {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+table.shareList td {
+    border: none!important;
+    padding: 2px;
+}
+
+.shareLink {
+    cursor: pointer;
+}
+
+.shareRight {
+    text-align: right;
+    padding: 2px 2px;
+}
+
+.addShare {
+    cursor:pointer;
+    padding: 0 0 0 6px;
+    *position: relative;
+    *top:-2px;
+}
+
+#share_type_description {
+    padding-top:5px;
+}
+
+#share_display_component * {
+    /*vertical-align: middle;*/
+}
+
+#share_display_component img {
+    position:relative;
+    top:1px;
+    *top:-1px;
+}
+
+#share_display_component .addShare img {
+    top:4px;
+}
+
+

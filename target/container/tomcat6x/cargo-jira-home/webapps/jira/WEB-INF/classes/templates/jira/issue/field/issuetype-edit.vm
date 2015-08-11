@@ -1,0 +1,51 @@
+#*
+This edit template is for a mutltiple issue types per project
+*#
+
+#controlHeader ($action "$!{displayParameters.fieldNamePrefix}${field.id}" $i18n.getText($field.nameKey) true $displayParameters.noHeader)
+<select name="$!{displayParameters.fieldNamePrefix}${field.id}" id="$!{displayParameters.fieldNamePrefix}$field.id" class="imagebacked">
+    #foreach ($configOption in $configOptions)
+    #if ($configOptions.size() > 1)<optgroup label="$configOption.projects">#end
+    #foreach ($option in $configOption.childOptions)
+        <option id="$!{displayParameters.fieldNamePrefix}${field.id}$!configOption.id$!option.id" class="$!configOption.fieldConfigurationId" value="$!option.id" style="background-image: url(#getNormalizedUrl($option.imagePath));"
+            #if ($issuetype && $option.id && $issuetype == $option.id) selected="selected" #end
+            >$textutils.htmlEncode($option.name)</option>
+    #end
+    #if ($configOptions.size() > 1)</optgroup>#end
+    #end
+</select>
+#localHelp ('issue.field.issuetype' 'IssueTypes')
+
+#if ($configOptions.size() > 1)
+
+#if (!$req || !$req.getAttribute("issueTypeJs"))
+$!request.setAttribute("issueTypeJs" , "true")
+
+<script language="JavaScript" type="text/javascript" src="$!{req.contextPath}/includes/js/issuetypes.js"></script>
+<script language="JavaScript" type="text/javascript">
+<!--
+    #foreach ($entry in $projectToConfig.entrySet())
+       addEntry('$entry.key','$entry.value');
+    #end
+    #foreach ($entry in $configToDefaultOption.entrySet())
+       addDefaultEntry('$entry.key','$entry.key$entry.value');
+    #end
+//-->
+</script>
+#end
+
+<script language="JavaScript" type="text/javascript">
+<!--
+    dynamicIssueTypeSelect("$!{displayParameters.fieldNamePrefix}${field.parentField.id}", "$!{displayParameters.fieldNamePrefix}${field.id}");
+    #if (!$issuetype)
+    setDefaultValue("$!{displayParameters.fieldNamePrefix}${field.parentField.id}", "$!{displayParameters.fieldNamePrefix}${field.id}");
+    #end
+//-->
+</script>
+#end
+
+#if ($displayParameters && $displayParameters.restrictedSelection)
+<br /><span class="small">$i18n.getText('issue.field.issuetype.incompatible.types')</span>
+#end
+
+#controlFooter ($action $fieldLayoutItem.fieldDescription $displayParameters.noHeader)

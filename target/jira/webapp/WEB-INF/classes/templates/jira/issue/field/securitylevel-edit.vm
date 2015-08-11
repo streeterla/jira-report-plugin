@@ -1,0 +1,18 @@
+#controlHeader ($action $field.id $i18n.getText($field.nameKey) $fieldLayoutItem.required $displayParameters.get('noHeader'))
+
+<select name="$field.id" id="$field.id">
+
+    <option value="$!noneLevelId"
+        #if ($noneLevelId && $security && $security == $noneLevelId )selected#end
+        >$i18n.getText('common.words.none')</option>
+    #foreach ($sc in $securityLevels)
+        <option value="$sc.getLong('id')"
+            #if ($security && $sc && $security == $sc.getLong('id'))selected#end
+            >$textutils.htmlEncode($sc.getString('name'))</option>
+    #end
+
+</select>
+
+#localHelp ('issue.field.securitylevel' 'SecurityLevels')
+
+#controlFooter ($action $fieldLayoutItem.getFieldDescription() $displayParameters.get('noHeader'))

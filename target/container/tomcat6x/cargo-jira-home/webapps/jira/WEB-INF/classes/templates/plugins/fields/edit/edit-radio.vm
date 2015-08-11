@@ -1,0 +1,16 @@
+#controlHeader ($action $customField.id $customField.name $fieldLayoutItem.required $displayParameters.noHeader)
+
+
+#if (!$fieldLayoutItem || $fieldLayoutItem.required == false)
+        <input type="radio" name="$customField.id" id="${customField.id}_none"
+               value="-1"#if (!$value || $value.equals("-1")) checked="checked"#end />
+        <label for="${customField.id}_none">None</label><br />
+#end
+#foreach ($option in $configs.options)
+<input type="radio" name="$customField.id" id="${customField.id}_$velocityCount" value="$textutils.htmlEncode($option.value)"
+            #if ($value && $value.equals($option.value))checked="checked"#end
+            > <label for="${customField.id}_$velocityCount">$option.value</label>
+    #if($velocityCount != $configs.options.size())<br />#end
+#end
+
+#controlFooter ($action $fieldLayoutItem.fieldDescription $displayParameters.noHeader)

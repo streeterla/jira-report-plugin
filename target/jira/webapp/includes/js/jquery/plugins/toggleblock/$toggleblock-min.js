@@ -1,0 +1,1 @@
+jQuery.fn.toggleBlock=function(options){options=options||{};options.blockSelector=this.selector;return new JIRA.ToggleBlock(options)};

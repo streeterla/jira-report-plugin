@@ -1,0 +1,8 @@
+#controlHeader ($action $field.id $i18n.getText($fieldName) $fieldLayoutItem.required $displayParameters.get('noHeader'))
+
+<input type="text"
+    name="$field.id" id="$field.id"
+    value="#if ($timetracking)$textutils.htmlEncode($timetracking)#end"
+    size="20">
+
+#controlFooter ($action $fieldLayoutItem.getFieldDescription() $displayParameters.get('noHeader'))

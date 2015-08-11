@@ -1,0 +1,18 @@
+#controlHeader ($action $field.id $i18n.getText($field.nameKey) true $displayParameters.get('noHeader'))
+
+<select name="$field.id" id="$field.id">
+    #if (!$resolution || $resolution == "-1")
+        <option value="-1" selected="selected">$i18n.getText("common.words.pleaseselect")</option>
+    #end
+    #if ($displayParameters.displayNone)
+        <option value="">$i18n.getText("common.words.none")</option>
+    #end
+    #foreach ($rs in $resolutions)
+        <option value="$!rs.getId()"
+            #if ($resolution && $rs.getId() && $resolution == $rs.getId())selected#end
+            >$textutils.htmlEncode($rs.getNameTranslation())</option>
+    #end
+</select>
+#localHelp ('issue.field.resolution' 'ResolutionTypes')
+
+#controlFooter ($action $fieldLayoutItem.getFieldDescription() $displayParameters.get('noHeader'))

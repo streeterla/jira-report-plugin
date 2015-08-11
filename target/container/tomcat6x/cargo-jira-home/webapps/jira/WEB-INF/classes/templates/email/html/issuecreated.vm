@@ -1,0 +1,4 @@
+#parse("templates/email/html/includes/header.vm")
+#parse("templates/email/html/includes/summary-topleft.vm")
+#parse("templates/email/html/includes/summary-bottom.vm")
+#parse("templates/email/html/includes/footer.vm")

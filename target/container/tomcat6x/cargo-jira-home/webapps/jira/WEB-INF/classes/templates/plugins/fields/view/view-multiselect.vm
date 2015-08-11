@@ -1,0 +1,7 @@
+#if ($value)
+    <div class="shorten" id="${customField.id}-field">
+        #foreach ($singleValue in $value)
+          <span>$!singleValue.toString()#if ($velocityCount != $value.size())</span>,#end
+        #end
+    </div>
+#end

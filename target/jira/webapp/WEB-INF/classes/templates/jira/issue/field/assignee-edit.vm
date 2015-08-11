@@ -1,0 +1,47 @@
+#controlHeader ($action $field.id $i18n.getText($field.nameKey) $fieldLayoutItem.required $displayParameters.get('noHeader'))
+
+## Expects a collection of AssigneeOption objects
+<select name="$field.id" id="$field.id">
+    #foreach ($assigneeOption in $assigneeOptions)
+
+        #if ($assigneeOption.getOptionName().equals($authcontext.user.name))
+            #set ($currentUserInList = true)
+        #end
+
+        #if ($assigneeOption && $assigneeOption.isOptionEnabled() == false)
+            ## we will never reach here but we should never have two open option groups
+            #if($optGroupOpen)
+              </optgroup>
+            #end
+            <optgroup label="$textutils.htmlEncode($assigneeOption.getDisplayName())">
+            #set ($optGroupOpen = true)
+        #else
+                <option value="$textutils.htmlEncode($!assigneeOption.getOptionName())"
+                    #if ($currentAssignee && $assigneeOption.getOptionName() && $currentAssignee == $assigneeOption.getOptionName())selected#end
+                    >$textutils.htmlEncode($assigneeOption.getDisplayName())</option>
+        #end
+    #end
+    #if ($optGroupOpen)
+        </optgroup>
+        #set ($optGroupOpen = false)
+    #end
+</select>
+
+#if ($currentUserInList)
+    <a class="subText" title="$i18n.getText('issue.operations.assign', ['', '']) $i18n.getText('issue.operations.assign.tome')" onclick="clickAssignToMe();return false;" href="#">$i18n.getText('issue.operations.assign.tome.short')</a>
+<script language="JavaScript" type="text/javascript">
+function clickAssignToMe() {
+    var field = jQuery('#$field.id');
+    var oldValue = field.val();
+    var newValue = '$textutils.htmlEncode($authcontext.user.name)';
+    field.val(newValue);
+    if (oldValue !== newValue) {
+        field.change();
+    }
+}
+</script>
+
+#end 
+
+
+#controlFooter ($action $fieldLayoutItem.getFieldDescription() $displayParameters.get('noHeader'))

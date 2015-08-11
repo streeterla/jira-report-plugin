@@ -1,0 +1,8 @@
+#controlHeader ($action $field.id $i18n.getText($field.nameKey) $fieldLayoutItem.required $displayParameters.get('noHeader'))
+
+<input type="text"
+    name="$field.id" id="$field.id" class="textfield"
+    value="#if ($summary)$textutils.htmlEncode($summary)#end"
+    maxlength="$maxLen">
+
+#controlFooter ($action $fieldLayoutItem.getFieldDescription() $displayParameters.get('noHeader'))

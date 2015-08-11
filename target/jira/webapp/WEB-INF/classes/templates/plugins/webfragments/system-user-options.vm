@@ -1,0 +1,35 @@
+#set ($displayableSections = $webInterfaceManager.getDisplayableSections($location, $user, $helper))
+<div id="header-details-user" class="aui-dd-parent header-link-container">
+    #if ($user && $user.getFullName())
+     <a class="lnk" href="$baseurl/secure/ViewProfile.jspa">$textutils.htmlEncode($user.getFullName())</a>
+    #elseif($user)
+     <a class="lnk" href="$baseurl/secure/ViewProfile.jspa">$textutils.htmlEncode($user.getName())</a>
+    #else
+     $layout.getLoginLink($i18n.getText('common.concepts.login'))
+    #end
+    <span class="drop-wrap">
+        <a class="drop aui-dd-link"
+            #if ($headerLink.id)
+                id="${headerLink.id}_drop"
+                accessKey="$i18n.getText("menu.accesskey.${headerLink.id}")"
+                rel="$headerLink.id"
+                title="$i18n.getText('menu.access.more.options') (${layout.modifierKey}+$i18n.getText("menu.accesskey.${headerLink.id}").toUpperCase())"
+            #end
+            href="#"><span>$i18n.getText('menu.access.more.options')</span>
+        </a>
+    </span>
+    <div class="aui-dropdown standard hidden">
+        #set ($firstSection = true)
+        #foreach ($section in $displayableSections)
+            #set ($sectionKey = "$location/$section.key")
+            #set ($displayableItems = $webInterfaceManager.getDisplayableItems($sectionKey, $user, $helper))
+            #if (! $displayableItems.empty)
+                <ul id="$section.key" class=" #if( $firstSection ) first #set ($firstSection = false) #end  #if($velocityCount == $displayableSections.size()) last #end ">
+                    #foreach ($item in $displayableItems)
+                        <li><a #if ($item.link.id) id="$item.link.id" #end #if ($item.styleClass) class="$item.styleClass" #end #if ($item.tooltip)title="$item.tooltip.getDisplayableLabel($user, $helper)"#end href="$item.link.getDisplayableUrl($user, $helper)">$item.label.getDisplayableLabel($user, $helper)</a></li>
+                    #end
+                </ul>
+            #end
+        #end
+    </div>
+</div>

@@ -1,0 +1,81 @@
+#parse("templates/email/html/includes/header.vm")
+#parse("templates/email/html/includes/summary-topleft.vm")
+
+#if ($worklog)
+<br/>
+<table cellpadding="1" cellspacing="0" border="0" bgcolor="#bbbbbb" width="100%" align="center"><tr><td>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" bgcolor="#ffffff">
+    <tr bgcolor="#f0f0f0"><td>
+        $i18n.getText("template.issue.worklog.deleted.html", "<strong>", "</strong>")
+    </td></tr>
+    <tr bgcolor="#ffffff">
+        <td>
+            <strong>#text("template.common.author"):</strong> #authorlink ($worklog.getAuthor()) <br/>
+            <strong>#text("template.common.created.on"):</strong> <font color=#336699>$dateformatter.formatDMYHMS($worklog.getCreated())</font> <br/>
+            <strong>#text("template.issue.worklog.start.date"):</strong> <font color=#336699>$dateformatter.formatDMYHMS($worklog.getStartDate())</font><br/>
+            <strong>#text("template.common.time.logged"):</strong> $context.getCommentTimeLogged($i18n) <br/>
+            #if($groupVisibilityLevel || $roleVisibilityLevel)
+            <strong>#text("template.issue.worklog.visibility"):</strong> #visibility()<br/>
+            #end
+            #if ($textutils.stringSet($worklog.getComment()))
+            <strong>#text("logwork.workdesc"):</strong><br/>
+            $textutils.plainTextToHtml($worklog.getComment())<br/>
+            #end
+        </td>
+    </tr>
+</table>
+</td></tr></table>
+#end
+
+#if ($changelog)
+<style type="text/css">
+    table.worklogsummary
+    {
+        text-align: center;
+        background-color: #ffffff;
+        width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+        border: 1px solid #cccccc;
+        border-collapse: collapse;
+    }
+
+    table.worklogsummary tr td
+    {
+        text-align: left;
+        vertical-align: top;
+    }
+</style>
+<br/>
+<table cellpadding="1" cellspacing="0" border="0" bgcolor="#bbbbbb" width="100%" align="center"><tr><td>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" bgcolor="#ffffff">
+    <tr bgcolor="#f0f0f0"><td>
+        $i18n.getText("template.issue.worklog.issue.updated")
+    </td></tr>
+    <tr bgcolor="#ffffff">
+        <td style="text-align:center;padding:10px;">
+            <table class="worklogsummary" cellpadding="4" cellspacing="0">
+            #foreach ($changeitem in $changelog.getRelated("ChildChangeItem"))
+                #if(!$changeitem.getString("field").equals("WorklogTimeSpent") && !$changeitem.getString("field").equals("WorklogId"))
+            <tr>
+                <td>
+                    <strong>$velocityhelper.getFieldName($changeitem, $i18n):</strong>
+                </td>
+                <td>
+                    <del>#makelinkedhtml ($velocityhelper.getPrettyFieldString($changeitem.getString("field"), $changeitem.getString("oldstring"), $i18n))</del>
+                </td>
+                <td>
+                    #makelinkedhtml ($velocityhelper.getPrettyFieldString($changeitem.getString("field"), $changeitem.getString("newstring"), $i18n))
+                </td>
+            </tr>
+                #end
+            #end
+            </table>
+        </td>
+    </tr>
+</table>
+</td></tr></table>
+#end
+
+#parse("templates/email/html/includes/summary-bottom.vm")
+#parse("templates/email/html/includes/footer.vm")

@@ -1,0 +1,51 @@
+<atlassian-plugin key="${project.groupId}.${project.artifactId}"
+	name="${project.name}" plugins-version="2">
+	<plugin-info>
+		<description>${project.description}</description>
+		<version>${project.version}</version>
+		<vendor name="${project.organization.name}" url="${project.organization.url}" />
+	</plugin-info>
+	<!-- An 'Issue Summary' Report - displays a histogram of issue create within 
+		a specifed project over a specified time -->
+	<report key="issuesummaryreport" name="DRX Issue Summary Report"
+		class="com.atlassian.plugins.jira.report.IssueSummaryReport">
+		<description key="report.issuesummary.description">i18n description</description>
+		<label key="report.issuesummary.label" />
+
+		<resource type="velocity" name="view"
+			location="templates/summaryreport/issuesummary-report.vm" />
+		<resource type="i18n" name="i18n"
+			location="com.atlassian.plugins.jira.report.issuesummary_report" />
+
+		<properties>
+			<property>
+				<key>projectid</key>
+				<name>report.issuesummary.projectid.name</name>
+				<description>report.issuesummary.projectid.description</description>
+				<type>select</type>
+				<values class="com.atlassian.jira.portal.ProjectValuesGenerator" />
+			</property>
+			<property>
+				<key>reporttypeid</key>
+				<name>report.issuesummary.reporttypeid.name</name>
+				<description>report.issuesummary.reporttypeid.description</description>
+				<type>select</type>
+				<values class="com.atlassian.plugins.jira.report.SelectType" />
+			</property>
+			<property>
+				<key>startDate</key>
+				<name>report.issuesummary.startdate</name>
+				<description>report.issuesummary.startdate.description</description>
+				<type>date</type>
+				<default>1/Jan/10</default>
+			</property>
+			<property>
+				<key>endDate</key>
+				<name>report.issuesummary.enddate</name>
+				<description>report.issuesummary.enddate.description</description>
+				<type>date</type>
+				<default>1/Jan/11</default>
+			</property>
+		</properties>
+	</report>
+</atlassian-plugin>

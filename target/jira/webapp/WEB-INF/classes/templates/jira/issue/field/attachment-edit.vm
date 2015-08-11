@@ -1,0 +1,54 @@
+#controlHeader ($action $field.id $i18n.getText($field.nameKey) $fieldLayoutItem.required $displayParameters.get('noHeader'))
+
+#if ($numberAttachments == 1)
+
+<div id="attachment_div.1">
+    <input id="attachment_box.1" type="file" name="attachment_field.1" value="$!attachment_field" size="50">
+    <br/>
+</div>
+<span class="small">$i18n.getText('attachfile.filebrowser.warning', $maxSize)</span><br/>
+
+#else
+
+<script type="text/javascript" language="JavaScript">
+function openAnother(index, nextIndex)
+{
+    var currentBox = document.getElementById('attachment_box.' + index);
+    var currentValue = currentBox.value;
+    if (currentValue != null)
+    {
+        currentValue = currentValue.replace(/^[\s]+/g,"");
+        currentValue = currentValue.replace(/[\s]+$/g,"");
+
+        if (currentValue.length > 0)
+        {
+            var nextDiv = document.getElementById('attachment_div.' + nextIndex);
+            if (nextDiv != null)
+            {
+                nextDiv.style.display = 'block';
+            }
+        }
+    }
+}
+</script>
+
+<div id="attachment_div.1">
+    <input id="attachment_box.1" type="file" name="attachment_field.1" value="$!attachment_field" size="50" onChange="openAnother(1, 2);" onKeyPress="openAnother(1, 2);">
+    <br/>
+</div>
+#foreach ($i in [2..${numberAttachments}])
+<div id="attachment_div.${i}" style="display: none;padding-top:4px;">
+    #set($nextI = $i + 1)
+    #if($i < $numberAttachments)
+        <input id="attachment_box.${i}" type="file" name="attachment_field.${i}" value="$!attachment_field" size="50" onChange="openAnother($i, $nextI);" onKeyPress="openAnother($i, $nextI);">
+    #else
+        <input id="attachment_box.${i}" type="file" name="attachment_field.${i}" value="$!attachment_field" size="50">
+    #end
+    <br/>
+</div>
+#end
+<span class="small">$i18n.getText('attachfile.filebrowser.warning', $maxSize)</span><br/>
+
+#end
+
+#controlFooter ($action $fieldLayoutItem.getFieldDescription() $displayParameters.get('noHeader'))

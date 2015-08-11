@@ -1,0 +1,11 @@
+#searcherEditHeader ($customField.id $customField.name)
+
+<input type="text"
+       name="$customField.id"
+       value="$textutils.htmlEncode($!value)"
+       id="$customField.id"
+       class="standardInputField"
+       #if ($configs.styles.style) style="$configs.styles.style" #end
+       />
+
+#searcherEditFooter ($customField.id $customField.description)

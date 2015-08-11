@@ -1,0 +1,8 @@
+<a href="#" title="${i18n.getText('common.concepts.reports.list')}" class="lnk aui-dd-link standard icon-reports" id="reports"><span>${i18n.getText('common.concepts.reports')}</span></a>
+<div class="aui-dropdown standard hidden">
+    <ul id="reports-dropdown" class="last">
+        #foreach($report in $reports)
+        <li class="dropdown-item"><a href="${baseurl}/secure/ConfigureReport!default.jspa?selectedProjectId=${browseContext.project.id}&reportKey=${report.completeKey}" title="${report.getText($report.description)}">${report.label}</a></li>
+        #end
+    </ul>
+</div>

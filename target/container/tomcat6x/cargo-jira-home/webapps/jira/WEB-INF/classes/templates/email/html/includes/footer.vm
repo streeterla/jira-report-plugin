@@ -1,0 +1,28 @@
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+      <td height="12" style="background-image:url(${baseurl}/images/border/border_bottom.gif);border-top:black solid 1px;"><img src="${baseurl}/images/border/spacer.gif" width="1" height="1" border="0" alt=""/></td>
+  </tr>
+</table>
+
+<table width="100%">
+    <tr>
+        <td align="center">
+	        <font size="1" face="Verdana, Arial, Helvetica, sans-serif">
+                #set ($spancolor = '<span style="color:#666">')
+                #set ($spanend = '</span>')
+                #if ($buildutils.isEnterprise())
+                    $i18n.getText("template.footer.html.edition", "<a href='http://www.atlassian.com/c/JIRA/10140'>", "</a>", $spancolor, "Enterprise", "$buildutils.getVersion()", "$buildutils.getCurrentBuildNumber()", $spanend, "<a href='http://jira.atlassian.com/default.jsp?clicked=footer'>", "</a>")
+                #elseif ($buildutils.isProfessional())
+                    $i18n.getText("template.footer.html.edition", "<a href='http://www.atlassian.com/c/JIRA/10140'>", "</a>", $spancolor, "Professional", "$buildutils.getVersion()", "$buildutils.getCurrentBuildNumber()", $spanend, "<a href='http://jira.atlassian.com/default.jsp?clicked=footer'>", "</a>")
+                #elseif ($buildutils.isStandard())
+                    $i18n.getText("template.footer.html.edition", "<a href='http://www.atlassian.com/c/JIRA/10140'>", "</a>", $spancolor, "Standard", "$buildutils.getVersion()", "$buildutils.getCurrentBuildNumber()", $spanend, "<a href='http://jira.atlassian.com/default.jsp?clicked=footer'>", "</a>")
+                #end
+                <br/>
+                $i18n.getText("template.footer.html.incorrect", "<a href='${baseurl}/secure/Administrators.jspa'>", "</a>")
+            </font>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

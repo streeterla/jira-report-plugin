@@ -1,0 +1,107 @@
+## setup some additional parameters
+$!rendererParams.put("rows", "10")
+$!rendererParams.put("cols", "9999")
+$!rendererParams.put("wrap", "virtual")
+
+###macro (createLevelSelect $roleLevels $groupLevels $selected)
+##    <select name="commentLevel" id="commentLevel">
+##        <option value="">$textutils.htmlEncode($i18n.getText('comment.constants.allusers'))</option>
+##        #if ($isRolePresent)
+##            <optgroup label="$i18n.getText('common.words.project.roles')">
+##                #foreach ($level in $roleLevels)
+##                    <option value="role:${level.id}"
+##                    #if ($level.id && $selected == "role:${level.id.toString()}")selected#end
+##                    >$textutils.htmlEncode($level.name)</option>
+##                 #end
+##            </optgroup>
+##        #end
+##        #if ($isGroupPresent)
+##            <optgroup label="$i18n.getText('common.words.groups')">
+##                #foreach ($level in $groupLevels)
+##                    <option value="group:${textutils.htmlEncode($level)}"
+##                        #if ($level && $selected == "group:${level}")selected#end
+##                        >$textutils.htmlEncode($level)</option>
+##                #end
+##            </optgroup>
+##        #end
+##    </select>
+###end
+
+#set ($isGroupPresent = $groupLevels && !$groupLevels.isEmpty())
+#set ($isRolePresent = $roleLevels && !$roleLevels.isEmpty())
+
+#if ($commentLevel)
+    #set ($selectedCommentLevel = $commentLevel)
+#else
+    #set ($selectedCommentLevel = "")
+#end
+
+#if (!$displayParameters || !$displayParameters.get('noHeader'))
+
+    ## Display the comment levels as a separate row
+    #if($displayParameter.get("auiForm"))
+        #auiControlHeader ($action $field.id $i18n.getText($field.nameKey) $fieldLayoutItem.required $displayParameters.get('noHeader'))
+    #else
+        #controlHeader ($action $field.id $i18n.getText($field.nameKey) $fieldLayoutItem.required $displayParameters.get('noHeader'))
+    #end
+
+    ## let the renderer display the edit component
+    $rendererDescriptor.getEditVM($!comment, $!issue.key, $!fieldLayoutItem.rendererType, $!field.id, $!field.name, $rendererParams, false)
+
+    #if($displayParameter.get("auiForm"))
+        #auiControlFooter ($action $fieldLayoutItem.getFieldDescription() $displayParameters.get('noHeader'))
+    #else
+        #controlFooter ($action $fieldLayoutItem.getFieldDescription() $displayParameters.get('noHeader'))
+    #end
+    ## Display comment levels (groups to members of which the view of the comment should be restricted)
+
+    #if ( $isGroupPresent || $isRolePresent )
+
+        #if ($displayParameters.get('auiForm'))
+            #auiControlHeader ($action 'commentLevel' $i18n.getText('comment.viewable') false false)
+            #createLevelSelect($roleLevels $groupLevels $selectedCommentLevel)
+            #auiControlFooter ($action '' false)
+        #else
+            #controlHeader ($action 'commentLevel' $i18n.getText('comment.viewable') false $displayParameters.get('noHeader'))
+            <span class="comment-viewable-inline">$i18n.getText('comment.viewable'): </span>#createLevelSelect($roleLevels $groupLevels $selectedCommentLevel)
+            #controlFooter ($action '' $displayParameters.get('noHeader'))
+        #end
+    #end
+    
+#else
+
+
+
+    ## Display the comment levels in the same cell as the comment box
+    #if($displayParameters.get("auiForm"))
+        #auiControlHeader ($action $field.id $i18n.getText($field.nameKey) $fieldLayoutItem.required $displayParameters.get('noHeader'))
+    #else
+        #controlHeader ($action $field.id $i18n.getText($field.nameKey) $fieldLayoutItem.required $displayParameters.get('noHeader'))
+    #end
+
+    ## let the renderer display the edit component
+    $rendererDescriptor.getEditVM($!comment, $!issue.key, $!fieldLayoutItem.rendererType, $!field.id, $!field.name, $rendererParams, false)
+
+
+    ## Display comment levels (groups to members of which the view of the comment should be restricted)
+    #if($displayParameters.get("auiForm"))
+        #auiControlFooter ($action $fieldLayoutItem.getFieldDescription() true)
+    #end
+
+    #if ($displayParameters.get('auiForm'))
+        #if ( $isGroupPresent || $isRolePresent )
+            #auiControlHeader ($action 'commentLevel' $i18n.getText('comment.viewable') false false)
+            #createLevelSelect($roleLevels $groupLevels $selectedCommentLevel)
+            #auiControlFooter ($action '' false)
+        #end
+    #else 
+        #if ( $isGroupPresent || $isRolePresent )
+            #inlineControlHeader ($action 'commentLevelx')
+            #createLevelSelect($roleLevels $groupLevels $selectedCommentLevel)
+            #inlineControlFooter ()
+        #end
+
+        #controlFooter ($action $fieldLayoutItem.getFieldDescription() $displayParameters.get('noHeader'))
+    #end
+
+#end

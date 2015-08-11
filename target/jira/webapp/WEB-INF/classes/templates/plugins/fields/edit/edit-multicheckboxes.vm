@@ -1,0 +1,13 @@
+#controlHeader ($action $customField.id $customField.name $fieldLayoutItem.required $displayParameters.noHeader)
+
+#if ($value)
+    #set ($selectedValues = $value)
+#end
+#foreach ($option in $configs.options)
+<input type="checkbox" name="$customField.id" id="${customField.id}_$velocityCount" value="$textutils.htmlEncode($option.value)"
+            #if ($selectedValues && $selectedValues.contains($option.value))checked="checked"#end
+            > <label for="${customField.id}_$velocityCount">$option.value</label>
+    #if($velocityCount != $configs.options.size())<br />#end
+#end
+
+#controlFooter ($action $fieldLayoutItem.fieldDescription $displayParameters.noHeader)

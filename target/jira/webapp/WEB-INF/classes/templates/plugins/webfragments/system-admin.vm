@@ -1,0 +1,62 @@
+#set ($displayableSections = $webInterfaceManager.getDisplayableSections($location, $user, $helper))
+#foreach ($section in $displayableSections)
+#set ($sectionKey = "$location/$section.key")
+#set ($displayableItems = $webInterfaceManager.getDisplayableItems($sectionKey, $user, $helper))
+
+#if (!$displayableItems.isEmpty())
+<div class="section">
+    <a class="headerOpen" id="admin.$section.key" href="#" title="$authcontext.i18nBean.getText('admin.menu.system.tooltip', $section.label.getDisplayableLabel($user, $helper))" onclick="toggleMenu('admin.$section.key');return false;">$section.label.getDisplayableLabel($user, $helper)</a>
+    <ul id="admin.${section.key}_body">
+        #foreach ($item in $displayableItems)
+        <li>
+            <a #if ($item.link.id) id="$item.link.id" #end href="$item.link.getDisplayableUrl($user, $helper)" class="admin-item-link">$item.label.getDisplayableLabel($user, $helper)</a>
+        </li>
+        #end
+    </ul>
+</div>
+
+<script language="JavaScript" type="text/javascript">
+    <!--
+    restoreMenu('admin.$section.key');
+    //-->
+</script>
+#end
+#end
+
+<script language="JavaScript" type="text/javascript">
+    <!--
+    var allMenus = new Array(#foreach ($section in $displayableSections)'admin.${section.key}'#if ($velocityCount != $displayableSections.size()), #end#end);
+
+    function hideAll()
+    {
+        for (i = 0; i < allMenus.length; i++)
+        {
+            closeMenu(allMenus[i]);
+        }
+
+        areAllMenusOpen = false;
+        restoreShowHideAllMenu();
+    }
+
+    function showAll()
+    {
+        for (i = 0; i < allMenus.length; i++)
+        {
+            openMenu(allMenus[i]);
+        }
+
+        areAllMenusOpen = true;
+        restoreShowHideAllMenu();
+    }
+    //-->
+</script>
+
+<div class="section">
+    <a class="headerOpen" title="$authcontext.i18nBean.getText('admin.menu.hide.all.tooltip')" id="hideAllMenu" onClick="hideAll();return false;" href="">$authcontext.i18nBean.getText('admin.menu.hide.all')</a>
+    <a class="headerClosed" title="$authcontext.i18nBean.getText('admin.menu.show.all.tooltip')" id="showAllMenu" onClick="showAll();return false;" href="">$authcontext.i18nBean.getText('admin.menu.show.all')</a>
+    <script language="JavaScript" type="text/javascript">
+        <!--
+        restoreShowHideAllMenu();
+        //-->
+    </script>
+</div>

@@ -1,0 +1,71 @@
+#* 
+Issue type searcher section
+*#
+
+#searcherEditHeader ("type" ${i18n.getText('navigator.filter.issuetype')})
+
+    <select name="type" id="type" class="standardInputField" multiple="multiple" size="#minSelectSize ($visibleIssueTypes 1 5)">
+        <option class="headerOption" value="" #if (!$selectedIssueTypes || $selectedIssueTypes.empty)selected#end >${i18n.getText('common.filters.any')}</option>
+        #foreach ($option in $visibleIssueTypes)
+        <option value="$option.id" title="$textutils.htmlEncode($option.name, false)" id="type_$option.id"
+             #if ($option.cssClass) class="headerOption $option.cssClass" #end
+             #if ($option.imagePath)
+               class="imagebacked $visibleIssueTypeStyles.get($option)" style="background-image: url('#getNormalizedUrl($option.imagePath)');"
+             #end
+            #if ($selectedIssueTypes && $selectedIssueTypes.contains($option.id))selected#end
+            >$textutils.htmlEncode($option.name, false)</option>
+        #end
+    </select>
+    #jiraHelpLink ('issuetype_local' '')
+
+    <div id="projectRefreshPanel" class="infoBox" style="display:none;" onclick="refreshDependentFields();">
+        ${i18n.getText('navigator.filter.context.stale.text', '<a id="refresh-dependant-fields" href="#" onclick="refreshDependentFields();return false;">', "</a>")}
+    </div>
+
+
+    <script language="JavaScript" type="text/javascript">
+    <!--
+        var projectSelectList   = document.getElementById("pid");
+        var originalProjectValue = getMultiSelectValues(projectSelectList).replace(" -1", ""); // remove the "all projects flag"
+
+        var issueTypeSelectList = document.getElementById("type");
+        var originalIssueTypeValue = getMultiSelectValues(issueTypeSelectList);
+
+        function refreshDependentFields()
+        {
+            var refreshFilter = document.getElementById("refreshFilter");
+            refreshFilter.value = 'true';
+            refreshFilter.form.submit();
+        }
+
+        function toggleRefresh()
+        {
+            if(originalProjectValue   == getMultiSelectValues(projectSelectList).replace(" -1", "") && // remove the "all projects flag"
+               originalIssueTypeValue == getMultiSelectValues(issueTypeSelectList))
+            {
+                document.getElementById("projectRefreshPanel").style.display = 'none';
+            }
+            else
+            {
+                document.getElementById("projectRefreshPanel").style.display = '';         
+            }
+        }
+
+        projectSelectList.onchange = toggleRefresh;
+        issueTypeSelectList.onchange = toggleRefresh;
+
+        toggleRefresh();
+    //-->
+    </script>
+
+    <script language="JavaScript" type="text/javascript" src="$!{baseurl}/includes/js/issuetypes-search.js"></script>
+    <script language="JavaScript" type="text/javascript">
+    <!--
+        #foreach ($entry in $projectToConfig.entrySet())
+           addEntry('$entry.key','$entry.value');
+        #end
+        dynamicMultiIssueTypeSelect("pid", "type");
+    //-->
+</script>
+
+#searcherEditFooter ("type" '')

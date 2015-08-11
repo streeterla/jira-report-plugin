@@ -1,0 +1,16 @@
+#controlHeader ($action $customField.id $customField.name $fieldLayoutItem.required $displayParameters.noHeader)
+
+<select name="$customField.id" id="$customField.id">
+    #if (!$fieldLayoutItem || $fieldLayoutItem.required == false)
+        <option value="-1">$i18n.getText("common.words.none")</option>
+    #else
+        <option value="">$i18n.getText("common.words.none")</option>
+    #end
+    #foreach ($option in $configs.options)
+        <option value="$textutils.htmlEncode($option.value)"
+            #if ($value && $value == $option.value)selected#end
+            >$option.value</option>
+    #end
+</select>
+
+#controlFooter ($action $fieldLayoutItem.fieldDescription $displayParameters.noHeader)

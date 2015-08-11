@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<project name="gadgets"  basedir="." default="default">
+        <description>
+                Gadget framework build
+        </description>
+
+        <property name="build.dir" location="." />
+	    <property name="lib.dir" location="./lib" />
+
+	  <!--${libs} is path to the downloaded jars -->
+	   <property
+	        name="yui-compressor.jar"
+	        location="${lib.dir}/yui-compressor/lib/yuicompressor-2.4.2.jar" />
+	    <property
+	        name="yui-compressor-ant-task.jar"
+	        location="${lib.dir}/yui-compressor/bin/yui-compressor-ant-task-0.4.jar" />
+		
+	
+	   <path id="task.classpath">
+	       <pathelement location="${yui-compressor.jar}" />
+	       <pathelement location="${yui-compressor-ant-task.jar}" />
+	   </path>
+	
+	   <!-- yui-compressor task definition -->
+	   <taskdef
+	       name="yui-compressor"
+	       classname="net.noha.tools.ant.yuicompressor.tasks.YuiCompressorTask">
+	       <classpath refid="task.classpath" />
+	   </taskdef>
+	 
+     <target name="bundle-gadgets">
+      
+		
+       <!-- concatenation of javascript -->
+       <echo message="Building bundled gadgets" />
+       <concat destfile="${build.dir}/temp/gadgets/gadget.js" force="no">
+           <!-- explicitly order js concat because ordering matters here -->
+           <fileset dir="${build.dir}/gadgets" includes="namespace.js" />
+		   <fileset dir="${build.dir}/gadgets" includes="ajs.gadget.base.js" />
+           <fileset dir="${build.dir}/gadgets" includes="ajs.gadget.standard.js" />
+           <fileset dir="${build.dir}/gadgets" includes="ajs.gadget.configured.js" />
+           <fileset dir="${build.dir}/gadgets" includes="ajs.gadget.configurable.js" />
+		   <fileset dir="${build.dir}/gadgets" includes="ajs.gadget.factory.js" />
+       </concat>
+			
+   	</target>
+ 	
+	<target name="format-templates">
+		<echo message="Formatting templates" />
+		<copy todir="${build.dir}/temp/templater/templates" overwrite="true">
+		    <fileset dir="${build.dir}/templater/templates" />	
+	  	</copy>
+		
+	    <replaceregexp match="[\r\t\n]" replace="" flags="gms">
+	    	<fileset dir="${build.dir}/temp/templater/templates" includes="*"/>
+		</replaceregexp>
+		
+		<echo message="Building bundled templates" />
+	    <replaceregexp match='"' replace='\\\\"' flags="gm">
+	    	<fileset dir="${build.dir}/temp/templater/templates" includes="*"/>
+		</replaceregexp>
+		
+		<replaceregexp match="'" replace="\\\\'" flags="gm">
+	    	<fileset dir="${build.dir}/temp/templater/templates" includes="*"/>
+		</replaceregexp>
+		
+	    <replaceregexp match="/\*\s*@namespace\W+?([\w.]*)\s\*/(.*)" replace='\1 ="\2";' flags="m">
+	    	<fileset dir="${build.dir}/temp/templater/templates" includes="*"/>
+		</replaceregexp>	
+		
+	</target>
+	
+	<target name="bundle-templates" depends="format-templates">
+		<echo message="Bundling templates" />
+		<concat destfile="${build.dir}/temp/templater/templater.js" force="no">
+           <!-- explicitly order js concat because ordering matters here -->
+           <fileset dir="${build.dir}/templater" includes="namespace.js" />
+		   <fileset dir="${build.dir}/templater" includes="ajs.gadgets.templater.base.js" />
+           <fileset dir="${build.dir}/templater" includes="ajs.gadgets.templater.custom.js" />
+           <fileset dir="${build.dir}/templater" includes="ajs.gadgets.templater.form.js" />
+           <fileset dir="${build.dir}/templater" includes="ajs.gadgets.templater.table.js" />
+		   <fileset dir="${build.dir}/temp/templater/templates" includes="form.js" />
+           <fileset dir="${build.dir}/temp/templater/templates" includes="table.js" />
+	   </concat>
+	</target>
+	
+
+ 	<target name="default" depends="bundle-gadgets, bundle-templates">
+ 		
+		<concat destfile="${build.dir}/temp/gadget-framework.js" force="no">
+           <!-- explicitly order js concat because ordering matters here -->
+		   <fileset dir="${build.dir}/util" includes="util.js" />
+           <fileset dir="${build.dir}/temp/templater" includes="templater.js" />
+		   <fileset dir="${build.dir}/temp/gadgets" includes="gadget.js" />
+	   </concat>
+
+
+        <copy file="${build.dir}/temp/gadget-framework.js" tofile="ajs.gadgets-debug.js"/>
+
+	   	<echo message="Removing debug blocks" />
+	    <replaceregexp match="/\*\sdebug\s\*/.+?/\*\sdebug\send\s\*/" replace="" flags="gms">
+	    	<fileset dir="${build.dir}" includes="temp/gadget-framework.js"/>
+		</replaceregexp>
+		
+		<replaceregexp match="(.*)" replace="(function(){\1})();" flags="ms">
+	    	<fileset dir="${build.dir}" includes="temp/gadget-framework.js"/>
+		</replaceregexp>
+	   
+	   <yui-compressor warn="false" charset="UTF-8" fromdir="${build.dir}" todir="${build.dir}">
+           <include name="temp/gadget-framework.js" />
+       </yui-compressor>
+		
+ 		<move file="${build.dir}/temp/gadget-framework.js" tofile="${build.dir}/ajs.gadgets.js"/>
+		<move file="${build.dir}/temp/gadget-framework-min.js" tofile="${build.dir}/ajs.gadgets-min.js"/>
+		
+		<delete includeEmptyDirs="true">
+	    	<fileset dir="${build.dir}/temp"/>
+	  	</delete>
+		
+	</target>
+   
+       
+</project>

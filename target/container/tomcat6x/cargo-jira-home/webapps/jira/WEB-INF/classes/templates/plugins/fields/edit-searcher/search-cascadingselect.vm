@@ -1,0 +1,40 @@
+#searcherEditHeader ($customField.id $customField.name)
+
+#if ($value.getValuesForKey(null) && !$value.getValuesForKey(null).empty)
+    #set ($selectedParent = $value.getValuesForKey(null).iterator().next())
+#end
+
+#if ($value.getValuesForKey('1') && !$value.getValuesForKey('1').empty)
+    #set ($selectedChild = $value.getValuesForKey('1').iterator().next())
+#end
+
+<select name="${customField.id}" id="${customField.id}"  class="standardInputField">
+    <option value="">$i18n.getText("common.words.pleaseselect")</option>
+        <option value="-1">$i18n.getText("common.filters.any")</option>
+    #foreach ($option in $configs.options.rootOptions)
+        <option value="$option.optionId"
+            #if ($selectedParent && $selectedParent == $option.optionId.toString())selected#end
+            >$option.value</option>
+    #end
+</select>
+<br />
+<select name="${customField.id}:1" id="${customField.id}:1"  class="standardInputField childCascadingSelect">
+        <option class="" value="">$i18n.getText("common.words.pleaseselect")</option>
+        <option class="-1" value="-1">$i18n.getText("common.filters.any")</option>
+    #foreach ($parentOption in $configs.options.rootOptions)
+        <option class="$parentOption.optionId" value="-1">$i18n.getText("common.filters.any")</option>
+    #foreach ($childOption in $parentOption.childOptions)
+        <option class="$parentOption.optionId" value="$childOption.optionId" #if ($selectedChild && $selectedChild == $childOption.optionId.toString())selected#end>
+            $childOption.value
+        </option>
+    #end
+    #end
+
+</select>
+
+
+#searcherEditFooter ($customField.id $customField.description)
+
+<script>
+    dynamicSelect("${customField.id}", "${customField.id}:1");
+</script>

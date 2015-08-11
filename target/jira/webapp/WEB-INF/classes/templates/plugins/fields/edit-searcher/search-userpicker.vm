@@ -1,0 +1,3 @@
+#searcherEditHeader ($customField.id $customField.name)
+#userPicker ($action "filterform" $customField.id $value false $null "" $canPerformAjaxSearch $ajaxLimit)
+#searcherEditFooter ($customField.id $customField.description)

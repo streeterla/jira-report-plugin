@@ -1,0 +1,5 @@
+#if ($duedate)
+    $outlookDateManager.getOutlookDate($authcontext.getLocale()).formatDMY($duedate)
+#else
+    &nbsp;
+#end

@@ -1,0 +1,10 @@
+#set ($displayableItems = $webInterfaceManager.getDisplayableItems($location, $user, $helper))
+#if (!$displayableItems.isEmpty())
+    <p align="center">
+    <b>
+    #foreach ($item in $displayableItems)
+        <a #if ($item.link.id) id="$item.link.id" #end href="$item.link.getDisplayableUrl($user, $helper)">$item.label.getDisplayableLabel($user, $helper)</a>#if ($velocityCount != $displayableItems.size()) | #end
+    #end
+    </b>
+    </p>
+#end

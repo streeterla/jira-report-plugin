@@ -1,0 +1,20 @@
+## Due to these diffs appearing in emails we use <table> rather than a CSS-styled list, and inline styles for the
+## change backgrounds.
+#foreach ( $wordChunk in $wordChunks )
+    #if ($wordChunk.isChangedChunk())<span class="diff-changed-word>
+        #foreach ( $charChunk in $wordChunk.characterChunks )
+            #set ($charClass = $charChunk.type.className)
+            #set ($charStyle = "")
+            #if ($charClass == "diff-deleted-characters") #set ($charStyle = ' style="background-color: #FFE0E0; font-weight: bold;"')
+            #elseif ($charClass == "diff-added-characters") #set ($charStyle = ' style="background-color: #E0FFE0; font-weight: bold;"')
+            #end<span class="$charChunk.type.className"$!charStyle>$textutils.htmlEncode($charChunk.text).replaceAll(" ", "&nbsp;")</span>
+        #end</span>
+    #elseif ($wordChunk.type.className == "unchanged") $textutils.htmlEncode($wordChunk.text).replaceAll(" ", "&nbsp;")
+    #else
+        #set ($wordClass = $wordChunk.type.className)
+        #set ($wordStyle = "")
+        #if ($wordClass == "diffremovedchars") #set ($wordStyle = ' style="background-color: #FFE0E0; font-weight: bold;"')
+        #elseif ($wordClass == "diffaddedchars") #set ($wordStyle = ' style="background-color: #E0FFE0; font-weight: bold;"')
+        #end<span class="$wordChunk.type.className"$!wordStyle>$textutils.htmlEncode($wordChunk.text).replaceAll(" ", "&nbsp;")</span>
+    #end
+#end

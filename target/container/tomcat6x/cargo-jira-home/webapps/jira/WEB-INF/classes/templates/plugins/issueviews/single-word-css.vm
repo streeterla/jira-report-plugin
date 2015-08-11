@@ -1,0 +1,85 @@
+<style type="text/css">
+    *
+    {
+        border: 0;
+        padding: 0;
+    }
+
+    .tableBorder, .grid
+    {
+        background-color: #fff;
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    h3.formtitle
+    {
+    }
+
+    .tableBorder td, .grid td
+    {
+        vertical-align: top;
+        padding: 2px;
+        border: 1px solid #cccccc;
+        border-collapse: collapse;
+    }
+
+.noPadding
+{
+    padding: 0px !important;
+}
+
+h3 .subText
+{
+    font-size: 60%;
+    font-weight: normal;
+}
+
+.tabLabel
+{
+    font-weight: bold;
+    border-top: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+    padding: 2px;
+    border-collapse: collapse;
+    display: inline;
+}
+
+td.blank
+{
+    padding: 0;
+    margin: 0;
+}
+
+.blank td
+{
+    border: none;
+}
+
+
+#descriptionArea
+{
+    margin: 0px;
+    padding: 2px;
+    border: 1px solid #cccccc;
+}
+
+hr {border-top:1px solid #aaa}    
+
+hr.fullcontent
+{
+  height: 15px;
+  padding: 10px 0px;
+  background: #fff url('$requestContext.baseUrl/images/icons/hr.gif') no-repeat scroll center;
+}
+
+body
+{
+    margin: 0px;
+    font-size: 12px;
+    font-family: Arial, Sans-Serif, sans-serif;
+    color:black;
+}
+
+</style>

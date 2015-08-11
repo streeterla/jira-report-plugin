@@ -1,0 +1,14 @@
+#controlHeader ($action $customField.id $customField.name $fieldLayoutItem.required $displayParameters.noHeader)
+
+<input type="text"
+       #if ($configs.styles.style) style="$configs.styles.style" #else size="20" #end
+       name="$customField.id"
+       id="$customField.id"
+       value="$!value" />
+
+#if($hasCalendarTranslation)
+    <img id="${$customField.id}_trigger_c" src="$req.contextPath/images/icons/cal.gif" width="16" height="16" border="0" width="16" height="16" border="0" alt="$i18n.getText('date.picker.select.date.n.time')" title="$i18n.getText('date.picker.select.date.n.time')" />
+    #datePopup(${$customField.id} "${$customField.id}_trigger_c" $dateTimeFormat $dateFormat $timeFormat $dateTimePicker $currentMillis $currentCalendar)
+#end
+
+#controlFooter ($action $fieldLayoutItem.fieldDescription $displayParameters.noHeader)

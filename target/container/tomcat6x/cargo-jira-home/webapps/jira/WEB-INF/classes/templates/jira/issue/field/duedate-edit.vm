@@ -1,0 +1,9 @@
+#controlHeader ($action $field.id $i18n.getText($field.nameKey) $fieldLayoutItem.required $displayParameters.get('noHeader'))
+
+<input type="text" name="$field.id" id="$field.id" value="#esc($!duedate)" size="10" />
+#if($hasCalendarTranslation)
+    <img id="${field.id}_trigger_c" src="${req.getContextPath()}/images/icons/cal.gif" width="16" height="16" border="0" alt="$i18n.getText('date.picker.select.date')" title="$i18n.getText('date.picker.select.date')" />
+    #datePopup(${field.id} "${field.id}_trigger_c" $dateTimeFormat $dateFormat $timeFormat $dateTimePicker $currentMillis $currentCalendar)
+#end
+
+#controlFooter ($action $fieldLayoutItem.getFieldDescription() $displayParameters.get('noHeader'))

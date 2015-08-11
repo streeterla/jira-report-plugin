@@ -1,0 +1,14 @@
+#searcherEditHeader ($searcherId ${i18n.getText($searcherNameKey)})
+
+<select name="${searcherId}" id="${searcherId}" class="standardInputField" multiple="multiple" size="#minSelectSize ($selectListOptions 2 5)">
+    <option class="headerOption" value="">${i18n.getText('common.filters.any')}</option>
+    #if ($extraOption) <option class="headerOption" value="$extraOption.key" #if ($selectedValues && $selectedValues.contains($extraOption.key)) selected="selected" #end>$extraOption.value</option> #end
+    #foreach ($option in $selectListOptions)
+    <option value="$option.id"
+        #if ($option.cssClass) class="$option.cssClass" #end
+        #if ($selectedValues && $selectedValues.contains($option.id)) selected="selected" #end
+        >$textutils.htmlEncode($option.name)</option>
+    #end
+</select>
+
+#searcherEditFooter ($searcherId '')

@@ -1,0 +1,17 @@
+#if ($components && !$components.empty)
+    #if ($displayParams && $displayParams.nolink)
+        #foreach ($component in $components)
+            $textutils.htmlEncode($component.getString('name'))
+        #end
+    #else
+        #foreach ($component in $components)
+            #set ($pkey = "$urlcodec.encode($projectManager.getProjectObj($component.project).key)")
+            #set ($url = "${baseurl}/browse/${pkey}/component/$component.id")
+            <a href="$textutils.htmlEncode($url)" class="tinylink">$textutils.htmlEncode($component.getString('name'))</a>
+            ## velocityCount starts at 1
+            #if ($velocityCount != $components.size())<br />#end
+        #end
+    #end
+#else
+    &nbsp;
+#end

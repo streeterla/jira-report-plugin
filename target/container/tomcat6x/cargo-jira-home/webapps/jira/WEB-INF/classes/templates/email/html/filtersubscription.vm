@@ -1,0 +1,49 @@
+<html>
+<head>
+<link rel="stylesheet" href="$webResourceManager.getStaticPluginResource('jira.webresources:global-static', 'global-static.css', $urlModeAbsolute)">
+<link rel="stylesheet" href="$webResourceManager.getStaticPluginResource('jira.webresources:global-static', 'global.css', $urlModeAbsolute)">
+## We need the baseUrl, as SRUtils.getDescription (below) only produces relative URLs
+<base href="${baseHREF}">
+<style type="text/css">
+    body {
+        background-color:#f0f0f0;
+        font-size:12px;
+    }
+</style>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" link="#003366" vlink="#003366" alink="#660000">
+#set ($navigatorUrl = "${baseurl}/secure/IssueNavigator.jspa?mode=hide&requestId=${subscription.getString('filterID')}")
+<table width="100%" bgcolor="#bbbbbb" border="0" cellpadding="0" cellspacing="0"><tr><td>
+<table border="0" cellpadding="5" cellspacing="1" width="100%">
+	<tr>
+	    <td bgcolor="#f0f0f0"><h3 class="formtitle">$i18n.getText("template.subscription.issue.sub")</h3></td>
+	</tr>
+	<tr>
+	    <td bgcolor="#f0f0f0">
+            <b>#text("template.subscription.filter")</b>: <a href="${navigatorUrl}">$textutils.htmlEncode($searchRequest.getName(), false)</a>
+            #if (${actualIssueCount} == ${totalIssueCount})
+                ($i18n.getText("template.subscription.filter.count", ${totalIssueCount}))<br/>
+            #else
+                ($i18n.getText("template.subscription.filter.subcount", "${actualIssueCount}", "${totalIssueCount}"))<br/>
+            #end
+	    	#if (${searchRequest.getDescription()})
+	    	    $textutils.htmlEncode($searchRequest.getDescription(), false)<br/>
+	    	#end
+	    	<b>#text("template.subscription.subscriber")</b>: $textutils.htmlEncode($subscription.getString("username"), false)<br/>
+        </td>
+	</tr>
+</table>
+</td></tr></table>
+
+$issueTableHtml
+
+#if (${actualIssueCount} != ${totalIssueCount})
+    <p>$i18n.getText("template.subscription.filter.html.subset", "${actualIssueCount}", "${totalIssueCount}", "<a href='${navigatorUrl}'>", "</a>")<p/>
+#end
+
+#if (${recipientIsAuthor})
+    #set ($subscriptionUrl = "${baseurl}/secure/FilterSubscription!default.jspa?subId=${subscription.getString('id')}&filterId=${subscription.getString('filterID')}")
+    <p>$i18n.getText("template.subscription.filter.html.edit", "<a href='${subscriptionUrl}'>", "</a>")<p/>
+#end
+
+#parse("templates/email/html/includes/footer.vm")

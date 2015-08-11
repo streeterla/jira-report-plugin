@@ -1,0 +1,4 @@
+<table border="0" cellpadding="2" cellspacing="0" width="100%" bgcolor="#ffffff">
+	<tr><td> &nbsp; <b><a href="$link">&lt;&lt; $i18n.getText('common.concepts.back.to.previous.view')</a></b></td></tr>
+    <tr><td bgcolor="#003366"><img src="$requestContext.baseUrl/images/border/spacer.gif" height="1" width="1" alt="" /></td></tr>
+</table>

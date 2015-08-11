@@ -1,0 +1,21 @@
+#controlHeader ($action $customField.id $customField.name $fieldLayoutItem.required $displayParameters.noHeader)
+
+#if ($!customField.isRenderable() && $rendererDescriptor)
+
+  ## setup some additional parameters
+  $!rendererParams.put("rows", "4")
+  $!rendererParams.put("cols", "40")
+  $!rendererParams.put("wrap", "virtual")
+
+  ## let the renderer display the edit component
+  $rendererDescriptor.getEditVM($!value, $!issue.key, $!fieldLayoutItem.rendererType, $!customField.id, $!customField.name, $rendererParams, false)
+
+#else
+  <textarea name="$customField.id"
+            id="$customField.id"
+            class="textfield"
+            rows="4" cols="40" wrap="virtual"
+  >$textutils.htmlEncode($!value)</textarea>
+#end
+
+#controlFooter ($action $fieldLayoutItem.fieldDescription $displayParameters.noHeader)

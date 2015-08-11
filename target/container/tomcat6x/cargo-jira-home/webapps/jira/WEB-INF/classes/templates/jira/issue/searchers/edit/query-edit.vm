@@ -1,0 +1,46 @@
+#searcherEditHeader ($searcherId ${i18n.getText('common.words.query')})
+    <input type="text" id="$searcherId" name="$searcherId" class="standardInputField"
+           value="$textutils.htmlEncode($!fieldValuesHolder.query)"
+    /> 
+    #jiraHelpLink ('querysyntax' '')
+#searcherEditFooter ($searcherId '')
+
+<tr>
+    <td class="fieldLabelArea" style="width:30%;">
+        ${i18n.getText('navigator.filter.queryfields')}:
+    </td>
+    <td class="fieldValueArea" style="width:70%;">
+        <table cellpadding=0 cellspacing=0 border=0 width="100%">
+        <tr>
+        <td nowrap width="50%">
+            <input type="checkbox" id="summaryId" name="summary" value="true" 
+                   #if ($searchRenderer.isFieldSelected('summary', $fieldValuesHolder)) checked="checked" #end >
+            <label for="summaryId">${i18n.getText('common.words.summary')}</label>
+        </td>
+        <td nowrap width=50%>
+            #if ($searchRenderer.isFieldVisible($authcontext.getUser(), 'description', $searchContext))
+                <input type="checkbox" id="descriptionId" name="description" value="true" 
+                       #if ($searchRenderer.isFieldSelected('description', $fieldValuesHolder)) checked="checked" #end >
+                <label for="descriptionId">${i18n.getText('common.words.description')}</label>
+            #else &nbsp; #end
+        </td>
+        </tr>
+        <tr>
+
+        <td nowrap width=50%>
+            <input type="checkbox" id="bodyId" name="body" value="true" 
+                   #if ($searchRenderer.isFieldSelected('body', $fieldValuesHolder)) checked="checked" #end >
+            <label for="bodyId">${i18n.getText('common.words.comments')}</label>
+        </td>
+
+        <td nowrap width=50%>
+            #if ($searchRenderer.isFieldVisible($authcontext.getUser(), 'environment', $searchContext))
+                <input type="checkbox" id="environmentId" name="environment" value="true" #if ($searchRenderer.isFieldSelected('environment', $fieldValuesHolder)) checked="checked" #end >
+                <label for="environmentId">${i18n.getText('common.words.env')}</label>
+            #else &nbsp; #end
+        </td>
+
+        </tr>
+        </table>
+        </td>
+</tr>

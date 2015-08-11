@@ -1,0 +1,342 @@
+2010-11-02 14:57:59,327 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-11-02 15:00:29,254 http-2990-1 anonymous 900x1x1 - / HttpSession created [p2wppm]
+2010-11-02 15:00:49,278 http-2990-3 admin 900x63x1 p2wppm /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2010-11-02 16:02:03,530 ContainerBackgroundProcessor[StandardEngine[Catalina]]     HttpSession [p2wppm] destroyed for 'admin'
+2010-11-02 16:47:05,525 http-2990-2 anonymous 1006x206x1 - /secure/Dashboard.jspa HttpSession created [p2wppm]
+2010-11-02 16:50:33,943 http-2990-1 admin 1010x271x1 p2wppm /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2010-11-02 16:54:02,740 http-2990-4 admin 1012x414x1 p2wppm /secure/admin/XmlRestore.jspa HttpSession [p2wppm] destroyed for 'admin'
+2010-11-02 16:54:02,742 http-2990-4 admin 1012x414x1 p2wppm /secure/admin/XmlRestore.jspa HttpSession created [p2wppm]
+2010-11-02 16:54:02,796 http-2990-4 admin 1012x414x1 p2wppm /secure/admin/XmlRestore.jspa The user 'admin' has logged out.
+2010-11-02 16:54:23,280 http-2990-1 admin 1014x507x1 p2wppm /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2010-11-02 16:59:58,723 http-2990-1 admin 1019x933x1 p2wppm /secure/Logout!default.jspa HttpSession [p2wppm] destroyed for 'admin'
+2010-11-02 16:59:58,723 http-2990-1 admin 1019x933x1 p2wppm /secure/Logout!default.jspa HttpSession created [p2wppm]
+2010-11-02 16:59:58,723 http-2990-1 admin 1019x933x1 p2wppm /secure/Logout!default.jspa The user 'admin' has logged out.
+2010-11-02 17:00:09,920 http-2990-8 km 1020x1010x1 p2wppm /rest/gadget/1.0/login The user 'km' has PASSED authentication.
+2010-11-02 17:01:56,395 http-2990-6 km 1021x1512x1 p2wppm /secure/Logout!default.jspa HttpSession [p2wppm] destroyed for 'km'
+2010-11-02 17:01:56,396 http-2990-6 km 1021x1512x1 p2wppm /secure/Logout!default.jspa HttpSession created [p2wppm]
+2010-11-02 17:01:56,396 http-2990-6 km 1021x1512x1 p2wppm /secure/Logout!default.jspa The user 'km' has logged out.
+2010-11-02 17:02:05,459 http-2990-6 admin 1022x1588x1 p2wppm /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2010-11-02 17:04:20,729 http-2990-8 admin 1024x1980x1 p2wppm /secure/Logout!default.jspa HttpSession [p2wppm] destroyed for 'admin'
+2010-11-02 17:04:20,730 http-2990-8 admin 1024x1980x1 p2wppm /secure/Logout!default.jspa HttpSession created [p2wppm]
+2010-11-02 17:04:20,730 http-2990-8 admin 1024x1980x1 p2wppm /secure/Logout!default.jspa The user 'admin' has logged out.
+2010-11-02 17:04:29,741 http-2990-8 km 1024x2056x1 p2wppm /rest/gadget/1.0/login The user 'km' has PASSED authentication.
+2010-11-02 17:05:39,049 http-2990-3 km 1025x2375x1 p2wppm /secure/Logout!default.jspa HttpSession [p2wppm] destroyed for 'km'
+2010-11-02 17:05:39,049 http-2990-3 km 1025x2375x1 p2wppm /secure/Logout!default.jspa HttpSession created [p2wppm]
+2010-11-02 17:05:39,049 http-2990-3 km 1025x2375x1 p2wppm /secure/Logout!default.jspa The user 'km' has logged out.
+2010-11-02 17:05:46,595 http-2990-3 admin 1025x2450x1 p2wppm /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2010-11-02 20:19:34,291 ContainerBackgroundProcessor[StandardEngine[Catalina]]     HttpSession [p2wppm] destroyed for 'admin'
+2010-11-02 21:38:25,189 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-11-02 21:40:04,912 http-2990-1 anonymous 1300x1x1 - / HttpSession created [p2wppm]
+2010-11-02 21:40:36,249 http-2990-6 admin 1300x63x1 p2wppm /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2010-11-02 23:06:55,749 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-11-02 23:07:17,209 http-2990-1 anonymous 1387x1x1 - / HttpSession created [p2wppm]
+2010-11-02 23:07:38,916 http-2990-6 admin 1387x62x1 p2wppm /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2010-11-03 00:15:06,805 ContainerBackgroundProcessor[StandardEngine[Catalina]]     HttpSession [p2wppm] destroyed for 'admin'
+2010-11-03 11:18:35,828 http-2990-3 anonymous 678x848x1 - /secure/Dashboard.jspa HttpSession created [p2wppm]
+2010-11-03 11:25:02,882 http-2990-5 admin 685x909x1 p2wppm /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2010-11-08 18:46:26,582 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-11-08 18:58:00,608 http-2990-1 anonymous 1138x1x1 - / HttpSession created [66i06p]
+2010-11-08 18:58:37,896 http-2990-3 admin 1138x67x1 66i06p /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2010-11-15 14:12:04,145 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-11-15 14:12:17,284 http-2990-1 anonymous 852x1x1 - / HttpSession created [ut0mja]
+2010-11-15 14:12:41,229 http-2990-1 admin 852x74x1 ut0mja /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2010-11-15 15:14:07,841 ContainerBackgroundProcessor[StandardEngine[Catalina]]     HttpSession [ut0mja] destroyed for 'admin'
+2010-11-17 08:57:08,048 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-11-17 08:57:31,985 http-2990-1 anonymous 537x1x1 - / HttpSession created [q1ixnj]
+2010-11-17 08:57:48,517 http-2990-7 admin 537x73x1 q1ixnj /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2010-11-18 08:27:14,901 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-11-18 08:50:39,000 http-2990-1 anonymous 530x1x1 - / HttpSession created [b9cecv]
+2010-11-18 08:50:57,845 http-2990-4 admin 530x74x1 b9cecv /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2010-11-23 09:31:10,935 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-11-23 09:31:29,201 http-2990-1 anonymous 571x1x1 - / HttpSession created [1ieq8m6]
+2010-11-23 09:31:50,779 http-2990-4 admin 571x74x1 1ieq8m6 /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2010-11-24 08:01:00,611 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-11-24 08:01:21,080 http-2990-1 anonymous 481x1x1 - / HttpSession created [1wy8x9p]
+2010-11-24 08:01:33,924 http-2990-8 admin 481x73x1 1wy8x9p /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2010-11-24 09:37:01,184 ContainerBackgroundProcessor[StandardEngine[Catalina]]     HttpSession [1wy8x9p] destroyed for 'admin'
+2010-11-25 15:12:52,785 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-11-25 15:12:59,707 http-2990-1 anonymous 912x1x1 - / HttpSession created [8hljhd]
+2010-11-25 15:13:24,488 http-2990-8 admin 913x73x1 8hljhd /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2010-11-26 10:33:43,127 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-11-26 10:33:44,830 http-2990-2 anonymous 633x1x1 - / HttpSession created [17fbyrz]
+2010-11-26 10:34:00,143 http-2990-5 admin 634x73x1 17fbyrz /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2010-12-06 09:50:19,513 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-06 09:56:55,015 http-2990-1 anonymous 596x1x1 - / HttpSession created [1rvgfm]
+2010-12-06 09:57:07,125 http-2990-1 admin 597x72x1 1rvgfm /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2010-12-06 11:08:59,210 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-06 11:09:17,898 http-2990-1 anonymous 669x1x1 - /secure/ConfigureReport.jspa HttpSession created [1rvgfm]
+2010-12-06 11:10:07,882 http-2990-4 admin 670x98x1 1rvgfm /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2010-12-06 11:24:15,710 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-06 11:24:24,085 http-2990-1 anonymous 684x1x1 - /secure/ConfigureReport.jspa HttpSession created [1rvgfm]
+2010-12-06 11:24:24,148 http-2990-1 admin 684x1x1 - /secure/ConfigureReport.jspa The user 'admin' has PASSED authentication.
+2010-12-06 11:37:27,434 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-06 11:37:38,341 http-2990-1 anonymous 697x1x1 - /secure/ConfigureReport.jspa HttpSession created [1rvgfm]
+2010-12-06 11:37:38,403 http-2990-1 admin 697x1x1 - /secure/ConfigureReport.jspa The user 'admin' has PASSED authentication.
+2010-12-06 12:57:28,684 ContainerBackgroundProcessor[StandardEngine[Catalina]]     HttpSession [1rvgfm] destroyed for 'admin'
+2010-12-06 13:25:26,146 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-06 13:26:07,459 http-2990-1 anonymous 806x1x1 - /rest/api/1.0/menus/browse_link HttpSession created [1rvgfm]
+2010-12-06 13:26:07,569 http-2990-1 admin 806x1x1 - /rest/api/1.0/menus/browse_link The user 'admin' has PASSED authentication.
+2010-12-06 13:56:34,796 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-06 13:57:24,640 http-2990-1 anonymous 837x1x1 - /secure/ConfigureReport.jspa HttpSession created [1rvgfm]
+2010-12-06 14:17:04,297 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-06 14:17:21,797 http-2990-1 anonymous 857x1x1 - /secure/ConfigureReport.jspa HttpSession created [1rvgfm]
+2010-12-06 14:17:48,969 http-2990-2 admin 857x46x1 1rvgfm /login.jsp The user 'admin' has PASSED authentication.
+2010-12-06 14:25:34,000 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-06 14:25:58,594 http-2990-1 anonymous 865x1x1 - /secure/ConfigureReport.jspa HttpSession created [1rvgfm]
+2010-12-06 14:26:17,422 http-2990-3 admin 866x46x1 1rvgfm /login.jsp The user 'admin' has PASSED authentication.
+2010-12-06 15:08:01,547 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-06 15:08:28,406 http-2990-1 anonymous 908x1x1 - /secure/ConfigureReport.jspa HttpSession created [1rvgfm]
+2010-12-06 15:19:31,083 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-06 15:19:43,989 http-2990-1 anonymous 919x1x1 - /secure/ConfigureReport.jspa HttpSession created [1rvgfm]
+2010-12-06 16:20:33,148 ContainerBackgroundProcessor[StandardEngine[Catalina]]     HttpSession [1rvgfm] destroyed for 'null'
+2010-12-07 08:25:39,328 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-07 08:25:53,141 http-2990-1 anonymous 505x1x1 - / HttpSession created [1xrfii4]
+2010-12-07 08:26:09,766 http-2990-6 admin 506x90x1 1xrfii4 /login.jsp The user 'admin' has PASSED authentication.
+2010-12-07 08:35:41,149 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-07 08:36:11,119 http-2990-1 anonymous 516x1x1 - /browse/SERVICES HttpSession created [1xrfii4]
+2010-12-07 08:36:11,134 http-2990-1 admin 516x1x1 - /browse/SERVICES The user 'admin' has PASSED authentication.
+2010-12-07 09:37:41,792 ContainerBackgroundProcessor[StandardEngine[Catalina]]     HttpSession [1xrfii4] destroyed for 'admin'
+2010-12-07 10:29:22,524 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-07 10:30:14,962 http-2990-1 anonymous 630x1x1 - /browse/MES HttpSession created [1xrfii4]
+2010-12-07 10:30:29,837 http-2990-6 admin 630x47x1 1xrfii4 /login.jsp The user 'admin' has PASSED authentication.
+2010-12-07 10:51:46,147 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-07 10:51:58,381 http-2990-1 anonymous 651x1x1 - /browse/AULA HttpSession created [1xrfii4]
+2010-12-07 10:52:20,178 http-2990-1 admin 652x47x1 1xrfii4 /login.jsp The user 'admin' has PASSED authentication.
+2010-12-07 10:57:18,321 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-07 10:57:24,852 http-2990-1 anonymous 657x1x1 - /browse/AULA HttpSession created [1xrfii4]
+2010-12-07 10:57:24,915 http-2990-1 admin 657x1x1 - /browse/AULA The user 'admin' has PASSED authentication.
+2010-12-07 11:03:52,774 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-07 11:04:00,790 http-2990-1 anonymous 664x1x1 - /browse/AULA HttpSession created [1xrfii4]
+2010-12-07 11:04:00,805 http-2990-1 admin 664x1x1 - /browse/AULA The user 'admin' has PASSED authentication.
+2010-12-07 11:12:06,430 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-07 11:12:22,118 http-2990-1 anonymous 672x1x1 - / HttpSession created [1xrfii4]
+2010-12-07 11:12:22,149 http-2990-1 admin 672x1x1 - / The user 'admin' has PASSED authentication.
+2010-12-07 11:19:30,739 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-07 11:19:44,584 http-2990-1 anonymous 679x1x1 - / HttpSession created [1xrfii4]
+2010-12-07 11:19:44,615 http-2990-1 admin 679x1x1 - / The user 'admin' has PASSED authentication.
+2010-12-07 11:30:11,789 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-07 11:31:00,836 http-2990-1 anonymous 691x1x1 - /secure/ConfigureReport.jspa HttpSession created [1xrfii4]
+2010-12-07 11:31:00,851 http-2990-1 admin 691x1x1 - /secure/ConfigureReport.jspa The user 'admin' has PASSED authentication.
+2010-12-07 11:36:48,260 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-07 11:37:16,791 http-2990-1 anonymous 697x1x1 - / HttpSession created [1xrfii4]
+2010-12-07 11:37:16,807 http-2990-1 admin 697x1x1 - / The user 'admin' has PASSED authentication.
+2010-12-07 11:50:59,276 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-07 11:51:25,730 http-2990-1 anonymous 711x1x1 - / HttpSession created [1xrfii4]
+2010-12-07 11:51:25,761 http-2990-1 admin 711x1x1 - / The user 'admin' has PASSED authentication.
+2010-12-07 12:12:52,111 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-07 12:13:03,674 http-2990-1 anonymous 733x1x1 - / HttpSession created [1xrfii4]
+2010-12-07 12:13:03,705 http-2990-1 admin 733x1x1 - / The user 'admin' has PASSED authentication.
+2010-12-07 12:19:02,783 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-07 12:19:05,767 http-2990-1 anonymous 739x1x1 - / HttpSession created [1xrfii4]
+2010-12-07 12:19:05,783 http-2990-1 admin 739x1x1 - / The user 'admin' has PASSED authentication.
+2010-12-07 13:23:20,541 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-07 13:27:46,728 http-2990-1 anonymous 807x1x1 - / HttpSession created [1xrfii4]
+2010-12-07 13:28:17,666 http-2990-3 admin 808x77x1 1xrfii4 /login.jsp The user 'admin' has PASSED authentication.
+2010-12-07 13:49:38,009 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-07 14:06:35,870 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-07 14:06:54,120 http-2990-1 anonymous 846x1x1 - /secure/ConfigureReport.jspa HttpSession created [1xrfii4]
+2010-12-07 14:07:49,432 http-2990-5 admin 847x47x1 1xrfii4 /login.jsp The user 'admin' has PASSED authentication.
+2010-12-07 14:18:57,151 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-07 14:19:06,823 http-2990-1 anonymous 859x1x1 - /secure/ConfigureReport.jspa HttpSession created [1xrfii4]
+2010-12-07 14:27:44,042 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-07 14:27:53,901 http-2990-1 anonymous 867x1x1 - /secure/ConfigureReport.jspa HttpSession created [1xrfii4]
+2010-12-07 14:54:17,539 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-07 14:54:45,196 http-2990-1 anonymous 894x1x1 - /secure/ConfigureReport.jspa HttpSession created [1xrfii4]
+2010-12-07 15:02:21,963 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-07 15:02:29,869 http-2990-1 anonymous 902x1x1 - /secure/ConfigureReport.jspa HttpSession created [1xrfii4]
+2010-12-07 15:25:43,666 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-07 15:26:05,275 http-2990-1 anonymous 926x1x1 - /secure/ConfigureReport.jspa HttpSession created [1xrfii4]
+2010-12-07 15:33:00,182 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-07 15:33:45,807 http-2990-1 anonymous 933x1x1 - /secure/ConfigureReport.jspa HttpSession created [1xrfii4]
+2010-12-07 15:50:57,298 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-07 15:52:02,383 http-2990-1 anonymous 952x1x1 - /secure/ConfigureReport.jspa HttpSession created [1xrfii4]
+2010-12-07 15:57:49,704 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-07 15:57:54,063 http-2990-1 anonymous 957x1x1 - /secure/ConfigureReport.jspa HttpSession created [1xrfii4]
+2010-12-07 16:08:04,276 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-07 16:08:24,307 http-2990-1 anonymous 968x1x1 - /secure/ConfigureReport.jspa HttpSession created [1xrfii4]
+2010-12-08 07:33:05,763 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-08 07:41:19,819 http-2990-1 anonymous 461x1x1 - / HttpSession created [xusa6q]
+2010-12-08 07:41:35,181 http-2990-4 admin 461x73x1 xusa6q /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2010-12-08 08:16:40,222 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-08 08:22:28,791 http-2990-1 anonymous 502x1x1 - /secure/ConfigureReport.jspa HttpSession created [xusa6q]
+2010-12-08 08:22:28,806 http-2990-1 admin 502x1x1 - /secure/ConfigureReport.jspa The user 'admin' has PASSED authentication.
+2010-12-08 08:30:55,915 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-08 08:31:17,462 http-2990-1 anonymous 511x1x1 - / HttpSession created [xusa6q]
+2010-12-08 08:31:17,493 http-2990-1 admin 511x1x1 - / The user 'admin' has PASSED authentication.
+2010-12-08 08:54:00,224 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-08 08:54:09,927 http-2990-1 anonymous 534x1x1 - / HttpSession created [xusa6q]
+2010-12-08 08:54:09,958 http-2990-1 admin 534x1x1 - / The user 'admin' has PASSED authentication.
+2010-12-08 09:06:51,340 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-08 09:07:10,293 http-2990-1 anonymous 547x1x1 - /secure/ConfigureReport.jspa HttpSession created [xusa6q]
+2010-12-08 09:07:10,324 http-2990-1 admin 547x1x1 - /secure/ConfigureReport.jspa The user 'admin' has PASSED authentication.
+2010-12-08 10:03:04,670 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-08 10:03:19,810 http-2990-1 anonymous 603x1x1 - /secure/ConfigureReport.jspa HttpSession created [xusa6q]
+2010-12-08 10:03:19,826 http-2990-1 admin 603x1x1 - /secure/ConfigureReport.jspa The user 'admin' has PASSED authentication.
+2010-12-08 11:17:29,800 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-08 11:18:12,611 http-2990-1 anonymous 678x1x1 - / HttpSession created [xusa6q]
+2010-12-08 11:18:30,298 http-2990-1 admin 678x69x1 xusa6q /login.jsp The user 'admin' has PASSED authentication.
+2010-12-08 11:28:48,664 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-08 11:29:01,071 http-2990-1 anonymous 689x1x1 - /secure/ConfigureReport.jspa HttpSession created [xusa6q]
+2010-12-08 11:29:01,133 http-2990-1 admin 689x1x1 - /secure/ConfigureReport.jspa The user 'admin' has PASSED authentication.
+2010-12-08 12:29:50,563 ContainerBackgroundProcessor[StandardEngine[Catalina]]     HttpSession [xusa6q] destroyed for 'admin'
+2010-12-08 13:16:48,589 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-08 13:16:55,042 http-2990-1 anonymous 796x1x1 - /secure/ConfigureReport.jspa HttpSession created [xusa6q]
+2010-12-08 13:18:02,183 http-2990-4 admin 798x47x1 xusa6q /login.jsp The user 'admin' has PASSED authentication.
+2010-12-08 13:44:46,665 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-08 13:45:39,275 http-2990-1 anonymous 825x1x1 - / HttpSession created [tllzpo]
+2010-12-08 13:45:56,634 http-2990-8 admin 825x73x1 tllzpo /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2010-12-08 14:51:47,122 ContainerBackgroundProcessor[StandardEngine[Catalina]]     HttpSession [tllzpo] destroyed for 'admin'
+2010-12-08 14:58:09,292 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-08 14:58:35,151 http-2990-1 anonymous 898x1x1 - /secure/ConfigureReport.jspa HttpSession created [tllzpo]
+2010-12-08 15:07:06,388 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-08 15:07:23,091 http-2990-1 anonymous 907x1x1 - /secure/ConfigureReport.jspa HttpSession created [tllzpo]
+2010-12-08 15:20:29,940 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-08 15:20:51,581 http-2990-1 anonymous 920x1x1 - /secure/ConfigureReport.jspa HttpSession created [tllzpo]
+2010-12-08 15:25:50,911 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-08 15:26:30,380 http-2990-1 anonymous 926x1x1 - /secure/ConfigureReport.jspa HttpSession created [tllzpo]
+2010-12-08 15:27:03,333 http-2990-2 admin 927x47x1 tllzpo /login.jsp The user 'admin' has PASSED authentication.
+2010-12-08 15:41:44,948 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-08 15:42:22,136 http-2990-1 anonymous 942x1x1 - / HttpSession created [tllzpo]
+2010-12-08 15:42:35,198 http-2990-5 admin 942x63x1 tllzpo /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2010-12-08 15:51:00,390 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-08 15:51:58,485 http-2990-1 anonymous 951x1x1 - /secure/ConfigureReport!default.jspa HttpSession created [tllzpo]
+2010-12-08 15:52:20,470 http-2990-1 admin 952x50x1 tllzpo /login.jsp The user 'admin' has PASSED authentication.
+2010-12-08 15:58:50,743 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-08 15:59:03,290 http-2990-1 anonymous 959x1x1 - / HttpSession created [tllzpo]
+2010-12-08 15:59:16,587 http-2990-6 admin 959x63x1 tllzpo /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2010-12-08 16:19:28,972 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-08 16:19:50,503 http-2990-1 anonymous 979x1x1 - / HttpSession created [tllzpo]
+2010-12-08 16:20:02,644 http-2990-1 admin 980x62x1 tllzpo /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2010-12-09 08:28:48,838 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-09 08:28:59,118 http-2990-1 anonymous 508x1x1 - / HttpSession created [1vuurd6]
+2010-12-09 08:29:22,715 http-2990-4 admin 509x72x1 1vuurd6 /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2010-12-09 08:50:59,640 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-09 08:59:57,234 http-2990-1 anonymous 539x1x1 - /secure/ConfigureReport.jspa HttpSession created [1vuurd6]
+2010-12-09 09:00:25,563 http-2990-6 admin 540x46x1 1vuurd6 /login.jsp The user 'admin' has PASSED authentication.
+2010-12-09 09:23:50,442 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-09 09:23:58,036 http-2990-1 anonymous 563x1x1 - /secure/ConfigureReport.jspa HttpSession created [1vuurd6]
+2010-12-09 09:23:58,380 http-2990-1 admin 563x1x1 - /secure/ConfigureReport.jspa The user 'admin' has PASSED authentication.
+2010-12-09 09:33:12,575 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-09 09:33:25,716 http-2990-1 anonymous 573x1x1 - /secure/ConfigureReport.jspa HttpSession created [1vuurd6]
+2010-12-09 09:33:25,732 http-2990-1 admin 573x1x1 - /secure/ConfigureReport.jspa The user 'admin' has PASSED authentication.
+2010-12-09 09:43:36,513 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-09 09:44:06,825 http-2990-1 anonymous 584x1x1 - /secure/ConfigureReport.jspa HttpSession created [1vuurd6]
+2010-12-09 09:44:06,857 http-2990-1 admin 584x1x1 - /secure/ConfigureReport.jspa The user 'admin' has PASSED authentication.
+2010-12-09 09:57:15,766 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-09 09:58:01,533 http-2990-1 anonymous 598x1x1 - /secure/ConfigureReport.jspa HttpSession created [1vuurd6]
+2010-12-09 09:58:01,548 http-2990-1 admin 598x1x1 - /secure/ConfigureReport.jspa The user 'admin' has PASSED authentication.
+2010-12-09 10:04:33,494 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-09 10:04:47,588 http-2990-1 anonymous 604x1x1 - /secure/ConfigureReport.jspa HttpSession created [1vuurd6]
+2010-12-09 10:04:47,604 http-2990-1 admin 604x1x1 - /secure/ConfigureReport.jspa The user 'admin' has PASSED authentication.
+2010-12-09 10:09:54,418 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-09 10:11:19,263 http-2990-1 anonymous 611x1x1 - /secure/ConfigureReport.jspa HttpSession created [1vuurd6]
+2010-12-09 10:11:19,278 http-2990-1 admin 611x1x1 - /secure/ConfigureReport.jspa The user 'admin' has PASSED authentication.
+2010-12-09 10:19:59,441 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-09 10:20:08,660 http-2990-1 anonymous 620x1x1 - /secure/ConfigureReport.jspa HttpSession created [1vuurd6]
+2010-12-09 10:20:08,675 http-2990-1 admin 620x1x1 - /secure/ConfigureReport.jspa The user 'admin' has PASSED authentication.
+2010-12-09 10:26:47,365 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-09 10:26:56,475 http-2990-1 anonymous 626x1x1 - /secure/ConfigureReport.jspa HttpSession created [1vuurd6]
+2010-12-09 10:26:56,553 http-2990-1 admin 626x1x1 - /secure/ConfigureReport.jspa The user 'admin' has PASSED authentication.
+2010-12-09 10:43:39,873 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-09 10:54:26,005 http-2990-1 anonymous 654x1x1 - /secure/ConfigureReport.jspa HttpSession created [1vuurd6]
+2010-12-09 11:02:38,615 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-09 11:02:55,209 http-2990-1 anonymous 662x1x1 - /secure/ConfigureReport.jspa HttpSession created [1vuurd6]
+2010-12-09 11:03:17,818 http-2990-2 admin 663x46x1 1vuurd6 /login.jsp The user 'admin' has PASSED authentication.
+2010-12-09 11:21:47,216 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-09 11:21:52,529 http-2990-1 anonymous 681x1x1 - /secure/ConfigureReport.jspa HttpSession created [1vuurd6]
+2010-12-09 11:23:15,154 http-2990-3 admin 683x46x1 1vuurd6 /login.jsp The user 'admin' has PASSED authentication.
+2010-12-09 12:23:49,238 ContainerBackgroundProcessor[StandardEngine[Catalina]]     HttpSession [1vuurd6] destroyed for 'admin'
+2010-12-09 12:55:10,535 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-09 12:55:20,066 http-2990-1 anonymous 775x1x1 - /secure/ConfigureReport.jspa HttpSession created [1vuurd6]
+2010-12-09 12:55:37,473 http-2990-6 admin 775x46x1 1vuurd6 /login.jsp The user 'admin' has PASSED authentication.
+2010-12-09 13:36:08,645 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-09 14:26:08,930 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-09 14:35:28,620 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-09 14:46:50,162 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-09 15:00:51,855 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-09 15:05:08,559 http-2990-1 anonymous 905x1x1 - /secure/ConfigureReport.jspa HttpSession created [1vuurd6]
+2010-12-09 15:05:34,591 http-2990-3 admin 905x46x1 1vuurd6 /login.jsp The user 'admin' has PASSED authentication.
+2010-12-09 15:19:05,924 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-09 15:58:57,789 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-10 08:55:16,259 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-10 08:59:45,047 http-2990-1 anonymous 539x1x1 - / HttpSession created [1vr1le0]
+2010-12-10 09:00:00,782 http-2990-2 admin 540x73x1 1vr1le0 /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2010-12-10 10:01:16,822 ContainerBackgroundProcessor[StandardEngine[Catalina]]     HttpSession [1vr1le0] destroyed for 'admin'
+2010-12-10 10:08:31,985 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-10 10:24:37,930 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-10 10:38:23,961 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-10 10:56:26,943 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-10 11:25:46,809 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-10 11:45:34,342 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-10 11:57:54,369 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-10 12:06:36,965 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-13 08:46:48,306 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-13 08:48:20,029 http-2990-1 anonymous 528x1x1 - / HttpSession created [xqgzh4]
+2010-12-13 08:48:45,280 http-2990-5 admin 528x73x1 xqgzh4 /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2010-12-13 09:49:52,071 ContainerBackgroundProcessor[StandardEngine[Catalina]]     HttpSession [xqgzh4] destroyed for 'admin'
+2010-12-13 14:13:55,191 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-13 14:14:10,974 http-2990-1 anonymous 854x1x1 - /secure/ConfigureReport.jspa HttpSession created [xqgzh4]
+2010-12-13 14:14:36,038 http-2990-3 admin 854x83x1 xqgzh4 /login.jsp The user 'admin' has PASSED authentication.
+2010-12-13 14:32:45,695 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-14 08:29:56,732 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-14 08:29:58,607 http-2990-1 anonymous 509x1x1 - / HttpSession created [325n8f]
+2010-12-14 08:30:12,189 http-2990-4 admin 510x73x1 325n8f /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2010-12-14 09:31:59,744 ContainerBackgroundProcessor[StandardEngine[Catalina]]     HttpSession [325n8f] destroyed for 'admin'
+2010-12-16 09:33:27,716 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-16 14:35:13,026 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-16 14:40:26,434 http-2990-1 anonymous 880x1x1 - / HttpSession created [19ybjff]
+2010-12-16 14:40:40,528 http-2990-6 admin 880x72x1 19ybjff /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2010-12-16 14:48:25,203 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2010-12-16 14:48:30,890 http-2990-1 anonymous 888x1x1 - / HttpSession created [19ybjff]
+2010-12-16 14:48:46,344 http-2990-6 admin 888x80x1 19ybjff /login.jsp The user 'admin' has PASSED authentication.
+2010-12-16 15:49:25,896 ContainerBackgroundProcessor[StandardEngine[Catalina]]     HttpSession [19ybjff] destroyed for 'admin'
+2011-02-23 10:51:29,761 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2011-02-23 10:52:11,432 http-2990-1 anonymous 652x1x1 - / HttpSession created [1es6inl]
+2011-02-23 10:52:35,884 http-2990-5 admin 652x60x1 1es6inl /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2011-02-23 11:33:36,228 http-2990-4 anonymous 693x211x1 - / HttpSession created [ecyiww]
+2011-02-23 11:33:39,931 http-2990-3 admin 693x283x1 ecyiww /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2011-02-23 11:53:31,587 ContainerBackgroundProcessor[StandardEngine[Catalina]]     HttpSession [1es6inl] destroyed for 'admin'
+2011-02-23 12:53:31,633 ContainerBackgroundProcessor[StandardEngine[Catalina]]     HttpSession [ecyiww] destroyed for 'admin'
+2011-02-25 08:33:03,586 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2011-02-25 08:34:08,820 http-2990-1 anonymous 514x1x1 - / HttpSession created [17f8d6n]
+2011-02-25 08:34:38,414 http-2990-2 admin 514x73x1 17f8d6n /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2011-02-25 09:36:18,227 ContainerBackgroundProcessor[StandardEngine[Catalina]]     HttpSession [17f8d6n] destroyed for 'admin'
+2011-02-25 10:26:26,015 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2011-02-25 10:26:38,484 http-2990-1 anonymous 626x1x1 - / HttpSession created [17f8d6n]
+2011-02-25 10:26:53,359 http-2990-4 admin 626x62x1 17f8d6n /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2011-02-25 10:38:45,255 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2011-02-25 10:39:39,427 http-2990-1 anonymous 639x1x1 - / HttpSession created [17f8d6n]
+2011-02-25 10:39:56,036 http-2990-1 admin 639x62x1 17f8d6n /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2011-02-25 10:54:21,149 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2011-02-25 10:54:43,931 http-2990-1 anonymous 654x1x1 - / HttpSession created [17f8d6n]
+2011-02-25 10:54:57,759 http-2990-5 admin 654x63x1 17f8d6n /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2011-02-25 11:02:35,074 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2011-02-25 11:02:42,324 http-2990-1 anonymous 662x1x1 - / HttpSession created [17f8d6n]
+2011-02-25 11:02:57,137 http-2990-3 admin 662x63x1 17f8d6n /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2011-03-07 13:21:26,895 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2011-03-07 13:21:30,958 http-2990-6 anonymous 801x1x1 - / HttpSession created [rl406e]
+2011-03-07 13:21:58,474 http-2990-7 admin 801x73x1 rl406e /rest/gadget/1.0/login The user 'admin' has PASSED authentication.
+2011-03-07 13:32:29,103 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2011-03-07 13:32:31,368 http-2990-2 anonymous 812x1x1 - / HttpSession created [rl406e]
+2011-03-07 13:45:18,873 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2011-03-07 13:45:21,545 http-2990-2 anonymous 825x1x1 - /plugins/servlet/gadgets/security-tokens HttpSession created [rl406e]
+2011-03-07 14:08:46,601 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2011-03-07 14:08:48,695 http-2990-2 anonymous 848x1x1 - /plugins/servlet/gadgets/security-tokens HttpSession created [rl406e]
+2011-03-07 14:25:26,951 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2011-03-07 14:40:25,316 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2011-03-07 14:44:48,365 http-2990-1 anonymous 884x1x1 - /plugins/servlet/gadgets/security-tokens HttpSession created [rl406e]
+2011-03-07 15:25:06,418 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2011-03-07 15:25:08,574 http-2990-2 anonymous 925x1x1 - /plugins/servlet/gadgets/security-tokens HttpSession created [rl406e]
+2011-03-07 15:57:55,493 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2011-03-07 15:57:58,602 http-2990-2 anonymous 957x1x1 - /plugins/servlet/gadgets/security-tokens HttpSession created [rl406e]
+2011-03-07 16:07:44,434 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2011-03-07 16:08:45,827 http-2990-1 anonymous 968x1x1 - /plugins/servlet/gadgets/security-tokens HttpSession created [rl406e]
+2011-03-07 16:18:22,794 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2011-03-07 16:20:45,874 http-2990-1 anonymous 980x1x1 - /plugins/servlet/gadgets/security-tokens HttpSession created [rl406e]
+2011-03-07 16:30:38,566 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2011-03-07 16:32:46,082 http-2990-1 anonymous 992x1x1 - /plugins/servlet/gadgets/security-tokens HttpSession created [rl406e]
+2011-03-07 16:43:09,539 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2011-03-07 16:44:45,837 http-2990-1 anonymous 1004x1x1 - /plugins/servlet/gadgets/security-tokens HttpSession created [rl406e]
+2011-03-08 09:08:36,659 main     JIRA 4.1.2 build: 531 started. You can now access JIRA through your web browser.
+2011-03-08 09:09:32,331 http-2990-1 anonymous 549x1x1 - / HttpSession created [kic36d]
+2011-03-08 09:09:47,691 http-2990-6 admin 549x72x1 kic36d /rest/gadget/1.0/login The user 'admin' has PASSED authentication.

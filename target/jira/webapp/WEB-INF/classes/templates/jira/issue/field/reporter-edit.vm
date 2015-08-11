@@ -1,0 +1,17 @@
+#controlHeader ($action $field.id $i18n.getText($field.nameKey) $fieldLayoutItem.required $displayParameters.get('noHeader'))
+
+<div class="ajax_autocomplete" id="${field.id}_container">
+    <input type="text" name="$field.id" id="$field.id" value="$textutils.htmlEncode($!reporter)" style="width: 30%;">
+#if ($hasPermissionPickUsers)
+    <fieldset rel="$field.id" class="hidden user-picker-params">
+        <input type="hidden" id="fieldName" value="$field.id">
+        <input type="hidden" id="multiSelect" value="false">
+        #if ($canPerformAjaxSearch)<input type="hidden" id="userPickerEnabled" value="true">#end
+    </fieldset>
+    <a class="popup-trigger" href="#"><img title="$i18n.getText('user.picker.select.user')" name="reporterImage" src="${req.getContextPath()}/images/icons/filter_public.gif" hspace=0 height=16 width=16 border=0 align=absmiddle alt="" /></a>
+#else
+    <img title="$i18n.getText('user.picker.select.user')" name="reporterImage" src="${req.getContextPath()}/images/icons/userpicker_disabled.gif" hspace=0 height=16 width=16 border=0 align=absmiddle alt="" />
+#end
+#if ($canPerformAjaxSearch)<div id="${field.id}_results" class="ajax_results"></div><font size="1">${i18n.getText('user.picker.ajax.desc')}</font>#end
+</div>
+#controlFooter ($action $fieldLayoutItem.getFieldDescription() $displayParameters.get('noHeader'))

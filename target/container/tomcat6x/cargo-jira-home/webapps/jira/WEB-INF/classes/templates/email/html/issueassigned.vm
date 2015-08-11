@@ -1,0 +1,22 @@
+#parse("templates/email/html/includes/header.vm")
+#parse("templates/email/html/includes/summary-topleft.vm")
+
+<br/>
+<table cellpadding="1" cellspacing="0" border="0" bgcolor="#bbbbbb" width="100%" align="center"><tr><td>
+<table cellpadding="4" cellspacing="0" border="0" width="100%" bgcolor="#ffffff">
+<tr bgcolor="#f0f0f0"><td>
+    #text("template.issue.reassigned")
+</td></tr>
+<tr bgcolor="#ffffff"><td>
+    <b>#text("issue.field.assignee"):</b> #authorlink ($issue.assigneeUser.name) <br/>
+    #if ($comment)
+        <b>#text("template.issue.assigner"):</b> #authorlink ($commentauthor.name) <br/>
+        <b>#text("template.common.date"):</b> <span style="color:#336699">$dateformatter.formatDMYHMS($comment.getCreated())</span><br/>
+        <b>#text("issue.field.comment"):</b>#visibility()<br/>
+        $htmlComment
+    #end
+</td></tr></table>
+</td></tr></table>
+
+#parse("templates/email/html/includes/summary-bottom.vm")
+#parse("templates/email/html/includes/footer.vm")
